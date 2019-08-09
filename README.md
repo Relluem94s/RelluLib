@@ -62,12 +62,10 @@ A Small Library
     * warning
     * log Object and List<?>
     * set Logging Levels
-  * MathUtils (needs to be cleaned)
+  * MathUtils
     * odd / even
-    * convert Int to Hex
-    * convert String to Float or Integer
-    * convert String to Boolean
-    * Convert String to Vector or Color
+    * almostEqual
+    * remainder
   * MessureUtils
     * Timer
   * NetworkUtils
@@ -83,9 +81,9 @@ A Small Library
   * StringUtils
     * toString
     * symbol (UTF8 Symbols)
-  * TypeUtils (needs to be cleaned)
-    * odd / even
+  * TypeUtils
     * convert Int to Hex
     * convert String to Float or Integer
     * convert String to Boolean
-    * Convert String to Vector or Color
+    * convert String to Vector or Color
+    * convert long to KiloByte, Seconds or minutes 
