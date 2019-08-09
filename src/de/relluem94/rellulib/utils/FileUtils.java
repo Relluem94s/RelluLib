@@ -19,7 +19,8 @@ import javax.imageio.ImageIO;
 import de.relluem94.rellulib.Image;
 import de.relluem94.rellulib.stores.DoubleStore;
 
-public class FileUtils {	
+public class FileUtils {
+	
 	public static void writeDoubleStoreTextFile(File file, List<DoubleStore> content) throws IOException{
 		List<String> str = new ArrayList<String>();
 		

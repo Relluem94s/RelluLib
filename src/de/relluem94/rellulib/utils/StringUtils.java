@@ -4,10 +4,20 @@ import java.util.List;
 
 public class StringUtils {
 	
+	/**
+	 * 
+	 * @param object
+	 * @return object as String
+	 */
 	public static String toString(Object object){
 		return "" + object;
 	}
 	
+	/**
+	 * 
+	 * @param input String Array
+	 * @return appends every String in one line
+	 */
 	public static String toString(String[] input){
 		String output = "";
 		for(int i = 0; i< input.length;i++){
@@ -16,6 +26,11 @@ public class StringUtils {
 		return output;
 	}
 	
+	/**
+	 * 
+	 * @param input List Object
+	 * @return appends every Object in one line
+	 */
 	public static String toString(List<Object> input){
 		String output = "";
 		for(int i = 0; i< input.size();i++){

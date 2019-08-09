@@ -3,7 +3,7 @@ package de.relluem94.rellulib.json;
 import java.util.List;
 
 import de.relluem94.rellulib.stores.DoubleStore;
-import de.relluem94.rellulib.utils.MathUtils;
+import de.relluem94.rellulib.utils.TypeUtils;
 
 public class Json {
 	
@@ -55,7 +55,7 @@ public class Json {
 			}
 			else{
 				
-				if(MathUtils.isInt((String) ds.getValue())){
+				if(TypeUtils.isInt((String) ds.getValue())){
 					out = out + ds.getValue() + ":";
 				}
 				else{
@@ -66,8 +66,8 @@ public class Json {
 						out = out + "\"" + ds.getValue() + "\":";
 					}
 				}
-				if(MathUtils.isInt("" + ds.getSecondValue()) 
-						|| MathUtils.isFloat("" + ds.getSecondValue())
+				if(TypeUtils.isInt("" + ds.getSecondValue()) 
+						|| TypeUtils.isFloat("" + ds.getSecondValue())
 						|| ds.getSecondValue() instanceof Boolean){
 					out = out + ds.getSecondValue();
 				}

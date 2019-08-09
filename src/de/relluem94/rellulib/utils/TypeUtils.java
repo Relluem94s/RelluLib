@@ -16,25 +16,6 @@ import de.relluem94.rellulib.vector.Vector5f;
 import de.relluem94.rellulib.vector.Vector5i;
 
 public class TypeUtils {
-	public static Integer getRemainder(int dividend, int divisor){
-		return dividend % divisor;
-	}
-	
-	public static boolean isOdd(int number){
-		if (number % 2 == 0) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-	
-	public static boolean isEven(int number){
-		if (number % 2 == 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 
 	public static int convertInt2Hex(int n) {
 		  return Integer.valueOf(String.valueOf(n), 16);

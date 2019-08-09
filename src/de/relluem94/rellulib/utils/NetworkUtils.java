@@ -14,6 +14,12 @@ import javax.imageio.ImageIO;
 import de.relluem94.rellulib.Image;
 
 public class NetworkUtils {
+	
+	/**
+	 * 
+	 * @param http String with Hyperlink
+	 * @return URL Resource
+	 */
 	private static URL getURL(String http){
 		try {
 			return new URL(http);
@@ -23,17 +29,30 @@ public class NetworkUtils {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param url URL
+	 * @return boolean true if HTTP OK
+	 */
 	public static boolean exists(URL url) {
-	    boolean result = false;
+	    boolean result;
 	    try {
 			InputStream input = url.openStream();
 	        input.close();
 	        input = null;
 	        result = true;
-	    } catch (IOException ex) {}   
+	    } 
+	    catch (IOException ex) {
+	    	result = false;
+	    }   
 	    return result;
 	} 
 	
+	/** 
+	 * 
+	 * @param http String with Hyperlink
+	 * @return BufferedImage from Hyperlink
+	 */
 	public static BufferedImage downloadImage(String http){
 		URL url = getURL(http);
 		if(exists(url)){
@@ -50,6 +69,13 @@ public class NetworkUtils {
 		
 	}
 	
+	/**
+	 * 
+	 * @param http String with Hyperlink
+	 * @param path String with Path to Location on the Disk
+	 * @param filename Name to save the Image
+	 * @return boolean true if saved to Disk 
+	 */
 	public static boolean downloadImage(String http, String path, String filename){
 		URL url = getURL(http);
 		if(exists(url)){
@@ -71,6 +97,13 @@ public class NetworkUtils {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param host
+	 * @param port to check
+	 * @param timeout in ms
+	 * @return boolean true if port is open
+	 */
 	public static boolean checkPort(String host, int port, int timeout){
 		try {
         	Socket socket = new Socket();	        	 
@@ -83,6 +116,11 @@ public class NetworkUtils {
         }
 	}
 	
+	/**
+	 * 
+	 * @param host
+	 * @return IP Address as an String
+	 */
 	public static String getIP(String host){
 		InetSocketAddress in = new InetSocketAddress(host, 0);
 		if(in.isUnresolved()){
