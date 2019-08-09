@@ -62,6 +62,8 @@ A Small Library
     * warning
     * log Object and List<?>
     * set Logging Levels
+    * set File Path for Log File
+    * set if should log to File
   * MathUtils
     * odd / even
     * almostEqual
