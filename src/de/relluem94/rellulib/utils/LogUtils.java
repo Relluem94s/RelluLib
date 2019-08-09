@@ -1,5 +1,8 @@
 package de.relluem94.rellulib.utils;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.List;
 
 public class LogUtils {
@@ -11,6 +14,7 @@ public class LogUtils {
 	public static void log(Object o){
 		if(LOGUTILS_LEVEL_OTHER){
 			System.out.println("\t\t" + o);
+			log(o, true);
 		}
 	}
 	
@@ -48,7 +52,7 @@ public class LogUtils {
 	public static void debugInLine(Object o, boolean shouldlog){
 		if(LOGUTILS_LEVEL_OTHER){
 			if(shouldlog){
-				System.out.print(o);
+				log(o, false);
 			}
 		}
 	}
@@ -61,7 +65,7 @@ public class LogUtils {
 	 */
 	public static void error(Object o){
 		if(LOGUTILS_LEVEL_ERROR){
-			System.out.println("[ERROR]\t\t" + o);
+			log("[ERROR]\t\t" + o, true);
 		}
 		
 	}
@@ -73,7 +77,7 @@ public class LogUtils {
 	 */
 	public static void info(Object o){
 		if(LOGUTILS_LEVEL_INFO){
-			System.out.println("[INFO]\t\t" + o);
+			log("[INFO]\t\t" + o, true);
 		}
 		
 	}
@@ -85,7 +89,7 @@ public class LogUtils {
 	 */
 	public static void warning(Object o){
 		if(LOGUTILS_LEVEL_WARNING){
-			System.out.println("[WARNING]\t" + o);
+			log("[WARNING]\t" + o, true);
 		}
 	}
 	
@@ -96,7 +100,7 @@ public class LogUtils {
 	 */
 	public static void line(Object o){
 		if(LOGUTILS_LEVEL_OTHER){
-			System.out.print(o);
+			log(o, false);
 		}
 	}
 	
@@ -136,11 +140,36 @@ public class LogUtils {
 		}
 	}
 	
+	private static void log(Object o, boolean line) {
+		if(line) {
+			System.out.println(o);
+		}
+		else {
+			System.out.print(o);
+		}
+		
+		if(LOGUTILS_LOG_IN_FILE) {
+			try(PrintWriter out = new PrintWriter( new FileOutputStream(LOGUTILS_LOGFILE + "/RelluLib.log", true))){
+				if(line) {
+					out.println(o);
+				}
+				else {
+					out.print(o);
+				}
+			    
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	
 	private static boolean LOGUTILS_LEVEL_OTHER = true;
 	private static boolean LOGUTILS_LEVEL_INFO = true;
 	private static boolean LOGUTILS_LEVEL_WARNING = true;
 	private static boolean LOGUTILS_LEVEL_ERROR = true;
+	private static boolean LOGUTILS_LOG_IN_FILE = false;
+	private static String LOGUTILS_LOGFILE = ".";
 	
 	/**
 	 * Sets Log Level for Info
@@ -200,5 +229,21 @@ public class LogUtils {
 	 */
 	public static boolean getOther(){
 		return LogUtils.LOGUTILS_LEVEL_OTHER;
+	}
+	
+	public static boolean getLog2File() {
+		return LOGUTILS_LOG_IN_FILE;
+	}
+	
+	public static void setLog2File(boolean enable) {
+		LOGUTILS_LOG_IN_FILE = enable;
+	}
+	
+	public static String getLogFilePath() {
+		return LOGUTILS_LOGFILE;
+	}
+	
+	public static void setLogFilePath(String path) {
+		LOGUTILS_LOGFILE = path;
 	}
 }

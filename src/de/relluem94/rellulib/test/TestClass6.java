@@ -9,6 +9,8 @@ public class TestClass6{
 	}
 	
 	public static void logUtilsLogLevelTest(){
+		LogUtils.setLog2File(true);
+		
 		LogUtils.error("Test22");
 		LogUtils.setError(false);
 		LogUtils.error("Test44");

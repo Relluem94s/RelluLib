@@ -2,6 +2,7 @@ package de.relluem94.rellulib.events;
 
 import de.relluem94.rellulib.FixedSizeList;
 import de.relluem94.rellulib.ID;
+import de.relluem94.rellulib.exceptions.EventException;
 
 public class EventExecutor{
 	
@@ -33,7 +34,7 @@ public class EventExecutor{
 	}
 
 	/**
-	 * Put this in a forloop
+	 * Put this in a loop in a thread
 	 * 
 	 * 
 	 */
@@ -50,21 +51,29 @@ public class EventExecutor{
 	}
 
 	public void removeEvent(ID id) {
-		//events.remove(e);
 		events.set(id.getID(), null);
 	}
 	
 	public void removeEvent(IEvent e) {
-		//events.remove(e);
 		events.set(e.getID().getID(), null);
 	}
 	
-	public IEvent getEvent(ID id){
-		return events.get(id.getID());
+	public IEvent getEvent(ID id) throws EventException{
+		if(!(events.get(id.getID()) == null)) {
+			return events.get(id.getID());
+		}
+		else {
+			throw new EventException("No Event Found for this ID.");
+		}
 	}
 	
-	public IEvent getEvent(IEvent e){
-		return events.get(e.getID().getID());
+	public IEvent getEvent(IEvent e) throws EventException{
+		if(!(events.get(e.getID().getID()) == null)) {
+			return events.get(e.getID().getID());
+		}
+		else {
+			throw new EventException("No Event Found for this ID.");
+		}
 	}
 	
 	/**
