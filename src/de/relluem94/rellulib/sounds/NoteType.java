@@ -15,14 +15,21 @@ public enum NoteType {
 
     public static int getType(NoteType s) {
         int type = 0;
-        if (s == NoteType.Sinus) {
-            type = 0;
-        } else if (s == NoteType.Linear) {
-            type = 1;
-        } else if (s == NoteType.Square) {
-            type = 2;
-        } else if (s == NoteType.Saw) {
-            type = 3;
+        if (null != s) switch (s) {
+            case Sinus:
+                type = 0;
+                break;
+            case Linear:
+                type = 1;
+                break;
+            case Square:
+                type = 2;
+                break;
+            case Saw:
+                type = 3;
+                break;
+            default:
+                break;
         }
 
         return type;
