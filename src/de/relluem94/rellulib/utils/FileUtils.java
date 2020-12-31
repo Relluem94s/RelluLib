@@ -22,7 +22,7 @@ import de.relluem94.rellulib.stores.DoubleStore;
 public class FileUtils {
 
     public static void writeDoubleStoreTextFile(File file, List<DoubleStore> content) throws IOException {
-        List<String> str = new ArrayList<String>();
+        List<String> str = new ArrayList<>();
 
         for (int i = 0; i < content.size(); i++) {
             if (content.get(i).getSecondValue() == null) {
@@ -46,9 +46,9 @@ public class FileUtils {
         for (int i = 0; i < content.size(); i++) {
             temp = content.get(i).split(" = ");
             if (temp.length == 2) {
-                out.add(new DoubleStore(temp[0].toString().replace("\n", "").replace("\r", ""), temp[1].toString().replace("\n", "").replace("\r", "")));
+                out.add(new DoubleStore(temp[0].replace("\n", "").replace("\r", ""), temp[1].replace("\n", "").replace("\r", "")));
             } else {
-                out.add(new DoubleStore(temp[0].toString().replace("\n", "").replace("\r", ""), null));
+                out.add(new DoubleStore(temp[0].replace("\n", "").replace("\r", ""), null));
             }
         }
 
@@ -141,7 +141,7 @@ public class FileUtils {
     public static List<File> listFiles(String directoryName, String type) {
         File directory = new File(directoryName);
 
-        List<File> resultList = new ArrayList<File>();
+        List<File> resultList = new ArrayList<>();
 
         File[] fList = directory.listFiles();
 
