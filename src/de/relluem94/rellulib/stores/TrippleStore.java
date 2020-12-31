@@ -26,10 +26,12 @@ public class TrippleStore implements IStore {
         this.tvalue = thirdvalue;
     }
 
+    @Override
     public Object getValue() {
         return this.value;
     }
 
+    @Override
     public void setValue(Object value) {
         this.value = value;
     }
@@ -50,6 +52,7 @@ public class TrippleStore implements IStore {
         return this.tvalue;
     }
 
+    @Override
     public String toString() {
         return "First Value: " + this.value + "\nSecond Value: " + this.svalue + "\nThird Value: " + this.tvalue;
     }
