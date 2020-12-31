@@ -83,7 +83,7 @@ public class Tests extends SplashScreen {
         LogUtils.log(Json.toJson(stores));
     }
 
-    @Test
+    //@Test
     public void frameTest() {
         Frame f = new Frame("TestClass", new Dimension(500, 500), new Dimension(500, 500), new Dimension(500, 500), new Dimension(500, 500), false, false, true);
 
