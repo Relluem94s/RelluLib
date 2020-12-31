@@ -6,8 +6,8 @@ import java.net.Socket;
 
 public class Client {
 
-    private Socket socket = new Socket();
-    private int timeout = 60;
+    private final Socket socket = new Socket();
+    private final int timeout = 60;
 
     public boolean connect(String host, int port) throws IOException {
         socket.connect(new InetSocketAddress(host, port), timeout);
