@@ -5,10 +5,10 @@ import java.util.List;
 
 public class ThreadMaster {
 
-    private List<ThreadWorker> threads;
+    private final List<ThreadWorker> threads;
 
     public ThreadMaster() {
-        threads = new ArrayList<ThreadWorker>();
+        threads = new ArrayList<>();
     }
 
     public int addThread(ThreadWorker worker) {
