@@ -19,22 +19,34 @@ public enum NoteLength {
 
     public static int getLength(NoteLength s) {
         int length = 0;
-        if (s == NoteLength.None) {
-            length = 0;
-        } else if (s == NoteLength.Quarter) {
-            length = 286;
-        } else if (s == NoteLength.Dotted_Quarter) {
-            length = 429;
-        } else if (s == NoteLength.Whole) {
-            length = 1144;
-        } else if (s == NoteLength.Dotted_Half) {
-            length = 858;
-        } else if (s == NoteLength.Half) {
-            length = 572;
-        } else if (s == NoteLength.Eighth) {
-            length = 143;
-        } else if (s == NoteLength.Sixteenth) {
-            length = 72;
+
+        if (null != s) switch (s) {
+            case None:
+                length = 0;
+                break;
+            case Quarter:
+                length = 286;
+                break;
+            case Dotted_Quarter:
+                length = 429;
+                break;
+            case Whole:
+                length = 1144;
+                break;
+            case Dotted_Half:
+                length = 858;
+                break;
+            case Half:
+                length = 572;
+                break;
+            case Eighth:
+                length = 143;
+                break;
+            case Sixteenth:
+                length = 72;
+                break;
+            default:
+                break;
         }
 
         return length;
