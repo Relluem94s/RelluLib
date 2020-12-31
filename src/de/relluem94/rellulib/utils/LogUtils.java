@@ -165,7 +165,7 @@ public class LogUtils {
                 }
 
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                System.err.println(e.getMessage());
             }
         }
     }
@@ -188,6 +188,7 @@ public class LogUtils {
 
     /**
      * Gets Log Level for Info
+     * @return boolean level enabled
      */
     public static boolean getInfo() {
         return LogUtils.LOGUTILS_LEVEL_WARNING;
@@ -204,6 +205,7 @@ public class LogUtils {
 
     /**
      * Gets Log Level for Warning
+     * @return boolean level enabled
      */
     public static boolean getWarning() {
         return LogUtils.LOGUTILS_LEVEL_WARNING;
@@ -220,6 +222,7 @@ public class LogUtils {
 
     /**
      * Gets Log Level for Error
+     * @return boolean level enabled
      */
     public static boolean getError() {
         return LogUtils.LOGUTILS_LEVEL_ERROR;
@@ -236,6 +239,7 @@ public class LogUtils {
 
     /**
      * Gets Log Level for Other
+     * @return boolean level enabled
      */
     public static boolean getOther() {
         return LogUtils.LOGUTILS_LEVEL_OTHER;
