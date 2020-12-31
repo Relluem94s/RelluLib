@@ -64,64 +64,96 @@ public enum TextureSize {
 
     public static int getSize(TextureSize s) {
         int length = 0;
-        if (s == TextureSize.NANO) {
-            length = 2;
-        } else if (s == TextureSize.MICRO) {
-            length = 4;
-        } else if (s == TextureSize.ZENTI) {
-            length = 8;
-        } else if (s == TextureSize.KILO) {
-            length = 16;
-        } else if (s == TextureSize.SMALL) {
-            length = 32;
-        } else if (s == TextureSize.NORMAL) {
-            length = 64;
-        } else if (s == TextureSize.DOUBLE) {
-            length = 128;
-        } else if (s == TextureSize.TRIPPLE) {
-            length = 256;
-        } else if (s == TextureSize.QUADRUPLE) {
-            length = 512;
-        } else if (s == TextureSize.QUINTUPLE) {
-            length = 1024;
-        } else if (s == TextureSize.SEXTUPLE) {
-            length = 2048;
-        } else if (s == TextureSize.SEPTUPLE) {
-            length = 4096;
-        } else if (s == TextureSize.OCTUPLE) {
-            length = 8192;
+        if (null != s) switch (s) {
+            case NANO:
+                length = 2;
+                break;
+            case MICRO:
+                length = 4;
+                break;
+            case ZENTI:
+                length = 8;
+                break;
+            case KILO:
+                length = 16;
+                break;
+            case SMALL:
+                length = 32;
+                break;
+            case NORMAL:
+                length = 64;
+                break;
+            case DOUBLE:
+                length = 128;
+                break;
+            case TRIPPLE:
+                length = 256;
+                break;
+            case QUADRUPLE:
+                length = 512;
+                break;
+            case QUINTUPLE:
+                length = 1024;
+                break;
+            case SEXTUPLE:
+                length = 2048;
+                break;
+            case SEPTUPLE:
+                length = 4096;
+                break;
+            case OCTUPLE:
+                length = 8192;
+                break;
+            default:
+                break;
         }
         return length;
     }
 
     public static TextureSize getTextureSize(int length) {
         TextureSize s = TextureSize.NANO;
-        if (length == 2) {
-            s = TextureSize.NANO;
-        } else if (length == 4) {
-            s = TextureSize.MICRO;
-        } else if (length == 8) {
-            s = TextureSize.ZENTI;
-        } else if (length == 16) {
-            s = TextureSize.KILO;
-        } else if (length == 32) {
-            s = TextureSize.SMALL;
-        } else if (length == 64) {
-            s = TextureSize.NORMAL;
-        } else if (length == 128) {
-            s = TextureSize.DOUBLE;
-        } else if (length == 256) {
-            s = TextureSize.TRIPPLE;
-        } else if (length == 512) {
-            s = TextureSize.QUADRUPLE;
-        } else if (length == 1024) {
-            s = TextureSize.QUINTUPLE;
-        } else if (length == 2048) {
-            s = TextureSize.SEXTUPLE;
-        } else if (length == 4096) {
-            s = TextureSize.SEPTUPLE;
-        } else if (length == 8192) {
-            s = TextureSize.OCTUPLE;
+        switch (length) {
+            case 2:
+                s = TextureSize.NANO;
+                break;
+            case 4:
+                s = TextureSize.MICRO;
+                break;
+            case 8:
+                s = TextureSize.ZENTI;
+                break;
+            case 16:
+                s = TextureSize.KILO;
+                break;
+            case 32:
+                s = TextureSize.SMALL;
+                break;
+            case 64:
+                s = TextureSize.NORMAL;
+                break;
+            case 128:
+                s = TextureSize.DOUBLE;
+                break;
+            case 256:
+                s = TextureSize.TRIPPLE;
+                break;
+            case 512:
+                s = TextureSize.QUADRUPLE;
+                break;
+            case 1024:
+                s = TextureSize.QUINTUPLE;
+                break;
+            case 2048:
+                s = TextureSize.SEXTUPLE;
+                break;
+            case 4096:
+                s = TextureSize.SEPTUPLE;
+                break;
+            case 8192:
+                s = TextureSize.OCTUPLE;
+                break;
+            default:
+                break;
         }
         return s;
     }
