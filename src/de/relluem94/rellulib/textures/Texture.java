@@ -8,7 +8,7 @@ import de.relluem94.rellulib.color.Color3i;
 
 public class Texture {
 
-    private static Random random = new Random();
+    private static final Random random = new Random();
     private static final double FEATURE_SIZE = 24;
 
     public static BufferedImage generateRGB(BufferedImage img) {
@@ -92,11 +92,9 @@ public class Texture {
                 if (fx) {
                     image.setRGB(x, y, (color1.r << 16) | (color1.g << 8) | color1.b);
                     fx = !fx;
-                    //Utils.log("Ich bin Lila " + x + "," + y, 0);
                 } else {
                     image.setRGB(x, y, (color2.r << 16) | (color2.g << 8) | color2.b);
                     fx = !fx;
-                    //Utils.log("Ich bin Schwarz " + x + "," + y, 0);
                 }
             }
         }
