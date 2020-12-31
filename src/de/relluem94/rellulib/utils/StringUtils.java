@@ -20,8 +20,8 @@ public class StringUtils {
      */
     public static String toString(String[] input) {
         String output = "";
-        for (int i = 0; i < input.length; i++) {
-            output = output + " " + input[i];
+        for (String input1 : input) {
+            output = output + " " + input1;
         }
         return output;
     }
@@ -46,6 +46,8 @@ public class StringUtils {
      * [SONNE] [RTM] [COPY] [OMEGA] [LAMBDA] [RUND] [^^] [TM]  <br>
      * <br>
      * etc..
+     * @param sym
+     * @return 
      */
     public static String symbole(String sym) {
         sym = sym.replaceAll("[<3]", "\u2764");
