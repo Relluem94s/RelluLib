@@ -4,7 +4,7 @@ import de.relluem94.rellulib.utils.LogUtils;
 
 public class ThreadWorker extends ThreadSleeper implements Runnable {
 
-    private Thread worker;
+    private final Thread worker;
 
     public ThreadWorker(int... priority) {
         worker = new Thread(this);
