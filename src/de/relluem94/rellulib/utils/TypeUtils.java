@@ -40,14 +40,8 @@ public class TypeUtils {
     }
 
     public static boolean toBoolean(String input) {
-        boolean x;
         input = input.replaceAll("[\\\t|\\\n|\\\r]", "");
-        if (input.equalsIgnoreCase("true")) {
-            x = true;
-        } else {
-            x = false;
-        }
-        return x;
+        return input.equalsIgnoreCase("true");
     }
 
     public static Vector2f toVector2f(String input) {
