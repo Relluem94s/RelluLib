@@ -81,7 +81,7 @@ public class NetworkUtils {
                 FileUtils.writeImage(new Image(ImageIO.read(url), new File(path + "/" + filename)));
                 url = null;
                 return true;
-            } catch (Exception e) {
+            } catch (IOException e) {
                 LogUtils.error(e.getMessage());
                 url = null;
                 return false;
@@ -105,7 +105,7 @@ public class NetworkUtils {
             socket.connect(new InetSocketAddress(host, port), timeout);
             socket.close();
             return true;
-        } catch (Exception e) {
+        } catch (IOException e) {
             return false;
         }
     }
