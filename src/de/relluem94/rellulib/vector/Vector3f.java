@@ -48,7 +48,7 @@ public class Vector3f implements IVector {
 
     @Override
     public String toString() {
-        return new String("X:" + x + " Y:" + y + " Z:" + z);
+        return "X:" + x + " Y:" + y + " Z:" + z;
     }
 
     @Override
