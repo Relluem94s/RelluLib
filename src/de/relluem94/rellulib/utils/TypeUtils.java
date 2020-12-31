@@ -231,7 +231,7 @@ public class TypeUtils {
         }
     }
 
-    private static DecimalFormat df = new DecimalFormat();
+    private static final DecimalFormat df = new DecimalFormat();
 
     public static String longToKB(long l) {
         return df.format((float) l / 1000) + "kb";
