@@ -12,14 +12,17 @@ public class Store implements IStore {
         this.value = value;
     }
 
+    @Override
     public Object getValue() {
         return this.value;
     }
 
+    @Override
     public void setValue(Object value) {
         this.value = value;
     }
 
+    @Override
     public String toString() {
         return "Value: " + this.value;
     }
