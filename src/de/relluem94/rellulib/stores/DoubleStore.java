@@ -19,10 +19,12 @@ public class DoubleStore implements IStore {
         this.svalue = secondvalue;
     }
 
+    @Override
     public Object getValue() {
         return this.value;
     }
 
+    @Override
     public void setValue(Object value) {
         this.value = value;
     }
@@ -35,6 +37,7 @@ public class DoubleStore implements IStore {
         return this.svalue;
     }
 
+    @Override
     public String toString() {
         return "First Value: " + this.value + "\nSecond Value: " + this.svalue;
     }
