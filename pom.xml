@@ -4,6 +4,7 @@
     <artifactId>RelluLib</artifactId>
     <version>0.7</version>
     <name>RelluLib</name>
+    <url>https://github.com/Relluem94/RelluLib</url>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>  
