@@ -5,6 +5,13 @@
     <version>0.7</version>
     <name>RelluLib</name>
     <url>https://github.com/Relluem94/RelluLib</url>
+    
+    <scm>
+        <connection>scm:git:git@github.com:Relluem94/RelluLib.git</connection>
+        <developerConnection>scm:git:git@github.com:Relluem94/RelluLib.git</developerConnection>
+        <url>https://github.com/Relluem94/RelluLib</url>
+    </scm>
+    
     <dependencies>
         <dependency>
             <groupId>junit</groupId>  
