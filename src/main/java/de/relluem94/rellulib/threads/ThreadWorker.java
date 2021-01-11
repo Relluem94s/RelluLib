@@ -17,7 +17,7 @@ public class ThreadWorker extends ThreadSleeper implements Runnable {
 
     @Override
     public void run() {
-        LogUtils.warning("Please Override this Methode!");
+        LogUtils.warning("Please Override this Method!");
     }
 
     public void start() {
