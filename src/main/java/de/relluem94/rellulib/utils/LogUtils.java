@@ -85,7 +85,7 @@ public class LogUtils {
         }
 
     }
-    
+
     /**
      *
      * Prints an Object with an line break and [TEST] <br>
@@ -98,8 +98,6 @@ public class LogUtils {
         }
 
     }
-    
-    
 
     /**
      *
@@ -172,7 +170,7 @@ public class LogUtils {
         }
 
         if (LOGUTILS_LOG_IN_FILE) {
-            try ( PrintWriter out = new PrintWriter(new FileOutputStream(LOGUTILS_LOGFILE + "/RelluLib.log", true))) {
+            try (PrintWriter out = new PrintWriter(new FileOutputStream(LOGUTILS_LOGFILE + "/RelluLib.log", true))) {
                 if (line) {
                     out.println(o);
                 } else {
@@ -204,6 +202,7 @@ public class LogUtils {
 
     /**
      * Gets Log Level for Info
+     *
      * @return boolean level enabled
      */
     public static boolean getInfo() {
@@ -221,6 +220,7 @@ public class LogUtils {
 
     /**
      * Gets Log Level for Warning
+     *
      * @return boolean level enabled
      */
     public static boolean getWarning() {
@@ -238,6 +238,7 @@ public class LogUtils {
 
     /**
      * Gets Log Level for Error
+     *
      * @return boolean level enabled
      */
     public static boolean getError() {
@@ -255,6 +256,7 @@ public class LogUtils {
 
     /**
      * Gets Log Level for Other
+     *
      * @return boolean level enabled
      */
     public static boolean getOther() {
