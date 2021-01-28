@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -41,10 +42,10 @@ public class Tests extends SplashScreen {
     private static EventExecutor ee = new EventExecutor();
 
     @Test
-    public void symbolsTest(){
+    public void symbolsTest() {
         LogUtils.test(StringUtils.replaceSymbols("[PICKAXE]"));
     }
-    
+
     @Test
     public void logUtilsTest() {
         List<Object> list = new ArrayList<>();
@@ -212,7 +213,7 @@ public class Tests extends SplashScreen {
         ReflectionUtils.setValue(ReflectionUtils.getMemberField(id_test2, "id"), id_test2, 1994);
         LogUtils.info("ID 2: " + id_test2.getID());
     }
-    
+
     @Test
     public void logUtilsLogLevelTest() {
         LogUtils.setLog2File(true);
