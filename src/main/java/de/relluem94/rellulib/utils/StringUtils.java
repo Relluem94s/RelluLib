@@ -26,7 +26,7 @@ public class StringUtils {
     }
 
     /**
-     * 
+     *
      * @param start int where to start in the args param
      * @param input String[] array of strings to implode
      * @return String with all words with offset of start
@@ -41,7 +41,7 @@ public class StringUtils {
         }
         return message;
     }
-    
+
     /**
      *
      * @param input List Object
@@ -57,11 +57,12 @@ public class StringUtils {
 
     /**
      *
-     * [&lt;3] [NINJA] [PFEIL] [PFEIL2] [TICK] [X] [STAR] [PUNKT] <br> [BLUME] [XD]
-     * [ACHTUNG] [MAIL] [STERN] [SUIT] [+] [KREIS] <br>
+     * [&lt;3] [NINJA] [PFEIL] [PFEIL2] [TICK] [X] [STAR] [PUNKT] <br> [BLUME]
+     * [XD] [ACHTUNG] [MAIL] [STERN] [SUIT] [+] [KREIS] <br>
      * [SONNE] [RTM] [COPY] [OMEGA] [LAMBDA] [RUND] [^^] [TM]  <br>
      * <br>
      * etc..
+     *
      * @param message String to replace Symbols from
      * @return String with unicode chars
      */
@@ -71,9 +72,9 @@ public class StringUtils {
         }
         return message;
     }
-    
-    
+
     private static Map<String, String> symbols = new HashMap<>();
+
     static {
         Map<String, String> staticMap = new HashMap<>();
         staticMap.put("[~]", "\u0020");
@@ -144,5 +145,5 @@ public class StringUtils {
         staticMap.put("[xD]", "\u16DD\u16A6");
         symbols = Collections.unmodifiableMap(staticMap);
     }
-    
+
 }
