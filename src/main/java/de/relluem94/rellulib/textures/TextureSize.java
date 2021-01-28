@@ -64,48 +64,50 @@ public enum TextureSize {
 
     public static int getSize(TextureSize s) {
         int length = 0;
-        if (null != s) switch (s) {
-            case NANO:
-                length = 2;
-                break;
-            case MICRO:
-                length = 4;
-                break;
-            case ZENTI:
-                length = 8;
-                break;
-            case KILO:
-                length = 16;
-                break;
-            case SMALL:
-                length = 32;
-                break;
-            case NORMAL:
-                length = 64;
-                break;
-            case DOUBLE:
-                length = 128;
-                break;
-            case TRIPPLE:
-                length = 256;
-                break;
-            case QUADRUPLE:
-                length = 512;
-                break;
-            case QUINTUPLE:
-                length = 1024;
-                break;
-            case SEXTUPLE:
-                length = 2048;
-                break;
-            case SEPTUPLE:
-                length = 4096;
-                break;
-            case OCTUPLE:
-                length = 8192;
-                break;
-            default:
-                break;
+        if (null != s) {
+            switch (s) {
+                case NANO:
+                    length = 2;
+                    break;
+                case MICRO:
+                    length = 4;
+                    break;
+                case ZENTI:
+                    length = 8;
+                    break;
+                case KILO:
+                    length = 16;
+                    break;
+                case SMALL:
+                    length = 32;
+                    break;
+                case NORMAL:
+                    length = 64;
+                    break;
+                case DOUBLE:
+                    length = 128;
+                    break;
+                case TRIPPLE:
+                    length = 256;
+                    break;
+                case QUADRUPLE:
+                    length = 512;
+                    break;
+                case QUINTUPLE:
+                    length = 1024;
+                    break;
+                case SEXTUPLE:
+                    length = 2048;
+                    break;
+                case SEPTUPLE:
+                    length = 4096;
+                    break;
+                case OCTUPLE:
+                    length = 8192;
+                    break;
+                default:
+                    break;
+            }
         }
         return length;
     }
