@@ -18,8 +18,13 @@ import javax.imageio.ImageIO;
 
 import de.relluem94.rellulib.Image;
 import de.relluem94.rellulib.stores.DoubleStore;
+import java.nio.file.OpenOption;
+import java.nio.file.StandardOpenOption;
+import java.util.Arrays;
 
 public class FileUtils {
+
+    private static final OpenOption openOptions[] = {StandardOpenOption.WRITE, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING};
 
     public static void writeDoubleStoreTextFile(File file, List<DoubleStore> content) throws IOException {
         List<String> str = new ArrayList<>();
@@ -56,31 +61,39 @@ public class FileUtils {
     }
 
     public static void writeText(File file, List<String> content) throws IOException {
+        writeText(file, content, "UTF-8");
+    }
+
+    public static void writeText(File file, List<String> content, String encoding) throws IOException {
         Path file2 = Paths.get(file.getPath());
-        Files.write(file2, content, Charset.forName("UTF-8"));
+        Files.write(file2, content, Charset.forName(encoding));
+    }
+
+    public static void writeText(File file, String content, String encoding) throws IOException {
+        Path file2 = Paths.get(file.getPath());
+        Files.write(file2, content.getBytes(Charset.forName(encoding)), openOptions);
     }
 
     public static void writeTextLine(String filepath, String content) {
-        try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(filepath, true));
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filepath, true))) {
             bw.append(content);
             bw.newLine();
-            bw.close();
-
         } catch (IOException e) {
-            LogUtils.log("File not found. Can't write File.");
+            LogUtils.error(e.getMessage());
         }
     }
 
     public static List<String> readText(String path, Charset encoding) throws IOException {
+        String output = readTextString(path, encoding);
+        List<String> out = new ArrayList<>();
+        out.addAll(Arrays.asList(output.split(System.lineSeparator())));
+        return out;
+    }
+
+    public static String readTextString(String path, Charset encoding) throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         String output = new String(encoded, encoding);
-        List<String> out = new ArrayList<>();
-        String[] temp = output.split("\n");
-        for (int i = 0; i < temp.length; i++) {
-            out.add(temp[i]);
-        }
-        return out;
+        return output;
     }
 
     public static void writeImage(BufferedImage input, String format, File output) throws IOException {
@@ -93,25 +106,23 @@ public class FileUtils {
      * @param image
      */
     public static void writeImage(Image image) {
-        try {
-            BufferedOutputStream imageOutputStream = new BufferedOutputStream(new FileOutputStream(image.getFile()));
-
+        try (BufferedOutputStream imageOutputStream = new BufferedOutputStream(new FileOutputStream(image.getFile()))) {
             String name = image.getFile().getName();
             String format = name.substring(name.lastIndexOf("."), name.length()).replace(".", "").toUpperCase();
 
             ImageIO.write(image.getImage(), format, imageOutputStream);
 
             imageOutputStream.flush();
-            imageOutputStream.close();
         } catch (IOException e) {
-            LogUtils.log("File not found. Can't write File.");
+            LogUtils.error(e.getMessage());
         }
     }
 
     public static BufferedImage readImage(File file) {
         try {
             return ImageIO.read(file);
-        } catch (Exception e) {
+        } catch (IOException e) {
+            LogUtils.error(e.getMessage());
             return null;
         }
     }
@@ -119,12 +130,11 @@ public class FileUtils {
     public static List<File> listFiles(String directoryName, String[] types) {
         File directory = new File(directoryName);
 
-        List<File> resultList = new ArrayList<File>();
+        List<File> resultList = new ArrayList<>();
 
         File[] fList = directory.listFiles();
 
         for (File file : fList) {
-
             if (file.isFile()) {
                 for (String typ : types) {
                     if (getFileExtension(file).equals(typ)) {
