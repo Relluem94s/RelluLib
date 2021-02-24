@@ -5,21 +5,24 @@ import java.text.DecimalFormat;
 public class Vector3f implements IVector {
 
     public float x;
-
     public float y;
-
     public float z;
 
     public Vector3f(float x, float y, float z) {
-        setTo(x, y, z);
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
     public Vector3f(Vector3f v) {
-        setTo(v);
+        this.x = v.x;
+        this.y = v.y;
     }
 
     public Vector3f() {
-        setZero();
+        this.x = 0.0f;
+        this.y = 0.0f;
+        this.z = 0.0f;
     }
 
     public void setTo(Vector3f v) {
