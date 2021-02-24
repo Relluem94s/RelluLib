@@ -1,5 +1,7 @@
 package de.relluem94.rellulib.stores;
 
+import java.util.Objects;
+
 public class DoubleStore implements IStore {
 
     private Object value;
@@ -40,5 +42,28 @@ public class DoubleStore implements IStore {
     @Override
     public String toString() {
         return "First Value: " + this.value + "\nSecond Value: " + this.svalue;
+    }
+    
+    @Override
+    public int hashCode(){
+        return (int) 42 * value.hashCode() * svalue.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DoubleStore other = (DoubleStore) obj;
+        if (!Objects.equals(this.value, other.value)) {
+            return false;
+        }
+        return Objects.equals(this.svalue, other.svalue);
     }
 }
