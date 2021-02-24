@@ -5,15 +5,16 @@ import java.text.DecimalFormat;
 public class Vector2f implements IVector {
 
     public float x;
-
     public float y;
 
     public Vector2f(float x, float y) {
-        setTo(x, y);
+        this.x = x;
+        this.y = y;
     }
 
     public Vector2f(Vector2f v) {
-        setTo(v);
+        this.x = v.x;
+        this.y = v.y;
     }
 
     public Vector2f() {
