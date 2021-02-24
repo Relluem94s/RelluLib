@@ -15,7 +15,7 @@ public class Frame extends JFrame {
     private final Dimension maxSize;
     private final Dimension prefSize;
     private final Dimension size;
-    private final boolean resizable;
+    private final boolean isResizable;
     private final boolean dispose;
     private final boolean snapper;
 
@@ -23,12 +23,12 @@ public class Frame extends JFrame {
     private final JPanel p;
 
     public Frame(String title, Dimension minSize, Dimension maxSize, Dimension prefSize, Dimension size,
-            boolean resizable, boolean dispose, boolean snapper) {
+            boolean isResizable, boolean dispose, boolean snapper) {
         this.minSize = minSize;
         this.maxSize = maxSize;
         this.prefSize = prefSize;
         this.size = size;
-        this.resizable = resizable;
+        this.isResizable = isResizable;
         this.dispose = dispose;
         this.snapper = snapper;
         this.frame = new JFrame(title);
@@ -51,7 +51,7 @@ public class Frame extends JFrame {
         frame.setMinimumSize(minSize);
         frame.add(pane);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(resizable);
+        frame.setResizable(isResizable);
         frame.setVisible(true);
         if (snapper) {
             frame.addComponentListener(new WindowSnapper());
