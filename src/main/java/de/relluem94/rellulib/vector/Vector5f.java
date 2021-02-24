@@ -15,15 +15,27 @@ public class Vector5f implements IVector {
     public float v;
 
     public Vector5f(float x, float y, float z, float w, float v) {
-        setTo(x, y, z, w, v);
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+        this.v = v;
     }
 
     public Vector5f(Vector5f v) {
-        setTo(v);
+        this.x = v.x;
+        this.y = v.y;
+        this.z = v.z;
+        this.w = v.w;
+        this.v = v.v;
     }
 
     public Vector5f() {
-        setZero();
+        this.x = 0.0f;
+        this.y = 0.0f;
+        this.z = 0.0f;
+        this.w = 0.0f;
+        this.v = 0.0f;
     }
 
     public void setTo(Vector5f v) {
@@ -60,7 +72,7 @@ public class Vector5f implements IVector {
 
     @Override
     public String toString() {
-        return new String("X:" + x + " Y:" + y + " Z:" + z + " W:" + w + " V:" + v);
+        return "X:" + x + " Y:" + y + " Z:" + z + " W:" + w + " V:" + v;
     }
 
     @Override
