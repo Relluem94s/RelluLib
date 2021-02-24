@@ -39,7 +39,6 @@ public class NetworkUtils {
         try {
             InputStream input = url.openStream();
             input.close();
-            input = null;
             result = true;
         } catch (IOException ex) {
             result = false;
@@ -79,11 +78,9 @@ public class NetworkUtils {
         if (exists(url)) {
             try {
                 FileUtils.writeImage(new Image(ImageIO.read(url), new File(path + "/" + filename)));
-                url = null;
                 return true;
             } catch (IOException e) {
                 LogUtils.error(e.getMessage());
-                url = null;
                 return false;
             }
 
