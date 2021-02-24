@@ -5,19 +5,21 @@ import java.text.DecimalFormat;
 public class Vector2i implements IVector {
 
     public int x;
-
     public int y;
 
     public Vector2i(int x, int y) {
-        setTo(x, y);
+        this.x = x;
+        this.y = y;
     }
 
     public Vector2i(Vector2i v) {
-        setTo(v);
+        this.x = v.x;
+        this.y = v.y;
     }
 
     public Vector2i() {
-        setZero();
+        this.x = 0;
+        this.y = 0;
     }
 
     public void setTo(Vector2i v) {
