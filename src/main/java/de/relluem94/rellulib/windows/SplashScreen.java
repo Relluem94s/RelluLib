@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 
 import de.relluem94.rellulib.color.Color4i;
+import de.relluem94.rellulib.utils.LogUtils;
 
 public class SplashScreen {
 
@@ -60,7 +61,9 @@ public class SplashScreen {
     }
 
     public void start() {
-        Thread t = new Thread() {
+        Thread t;
+        t = new Thread() {
+            @Override
             public void run() {
                 int i = 0;
                 while (i <= 100) {
@@ -70,7 +73,7 @@ public class SplashScreen {
                     try {
                         sleep(90);
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        LogUtils.error(e.getMessage());
                     }
                     i++;
                 }
@@ -79,11 +82,11 @@ public class SplashScreen {
                 }
 
                 /*
-				Method[] m = getClass().getMethods();
-				for(Method me: m){
-					LogUtils.log(me.getName());
-				}
-                 */
+                Method[] m = getClass().getMethods();
+                for(Method me: m){
+                LogUtils.log(me.getName());
+                }
+                */
                 new SplashScreen().onFinish();
             }
         };
