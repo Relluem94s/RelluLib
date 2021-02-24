@@ -5,21 +5,25 @@ import java.text.DecimalFormat;
 public class Vector3i implements IVector {
 
     public int x;
-
     public int y;
-
     public int z;
 
     public Vector3i(int x, int y, int z) {
-        setTo(x, y, z);
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
     public Vector3i(Vector3i v) {
-        setTo(v);
+        this.x = v.x;
+        this.y = v.y;
+        this.z = v.z;
     }
 
     public Vector3i() {
-        setZero();
+        this.x = 0;
+        this.y = 0;
+        this.z = 0;
     }
 
     public void setTo(Vector3i v) {
@@ -48,7 +52,7 @@ public class Vector3i implements IVector {
 
     @Override
     public String toString() {
-        return new String("X:" + x + " Y:" + y + " Z:" + z);
+        return "X:" + x + " Y:" + y + " Z:" + z;
     }
 
     @Override
