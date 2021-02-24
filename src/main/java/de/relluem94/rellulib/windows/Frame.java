@@ -11,16 +11,16 @@ public class Frame extends JFrame {
 
     private static final long serialVersionUID = 1L;
 
-    private Dimension minSize;
-    private Dimension maxSize;
-    private Dimension prefSize;
-    private Dimension size;
-    private boolean resizable;
-    private boolean dispose;
-    private boolean snapper;
+    private final Dimension minSize;
+    private final Dimension maxSize;
+    private final Dimension prefSize;
+    private final Dimension size;
+    private final boolean resizable;
+    private final boolean dispose;
+    private final boolean snapper;
 
-    private JFrame frame;
-    private JPanel p;
+    private final JFrame frame;
+    private final JPanel p;
 
     public Frame(String title, Dimension minSize, Dimension maxSize, Dimension prefSize, Dimension size,
             boolean resizable, boolean dispose, boolean snapper) {
@@ -66,8 +66,9 @@ public class Frame extends JFrame {
         return frame;
     }
 
+    @Override
     public Dimension getSize() {
-        return size;
+        return size; //TODO is this needed?
     }
 
     public JPanel getPanel() {
