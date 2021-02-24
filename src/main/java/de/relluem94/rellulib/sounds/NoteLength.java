@@ -11,7 +11,7 @@ public enum NoteLength {
     Eighth,
     Sixteenth;
 
-    private static NoteLength[] vals = values();
+    private static final NoteLength[] vals = values();
 
     public NoteLength next() {
         return vals[(this.ordinal() + 1) % vals.length];
