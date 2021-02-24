@@ -13,15 +13,24 @@ public class Vector4f implements IVector {
     public float w;
 
     public Vector4f(float x, float y, float z, float w) {
-        setTo(x, y, z, w);
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
     }
 
     public Vector4f(Vector4f v) {
-        setTo(v);
+        this.x = v.x;
+        this.y = v.y;
+        this.z = v.z;
+        this.w = v.w;
     }
 
     public Vector4f() {
-        setZero();
+        this.x = 0.0f;
+        this.y = 0.0f;
+        this.z = 0.0f;
+        this.w = 0.0f;
     }
 
     public void setTo(Vector4f v) {
@@ -54,7 +63,7 @@ public class Vector4f implements IVector {
 
     @Override
     public String toString() {
-        return new String("X:" + x + " Y:" + y + " Z:" + z + " W:" + w);
+        return "X:" + x + " Y:" + y + " Z:" + z + " W:" + w;
     }
 
     @Override
