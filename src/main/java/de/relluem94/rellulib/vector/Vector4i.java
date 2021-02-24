@@ -13,15 +13,24 @@ public class Vector4i implements IVector {
     public int w;
 
     public Vector4i(int x, int y, int z, int w) {
-        setTo(x, y, z, w);
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
     }
 
     public Vector4i(Vector4i v) {
-        setTo(v);
+        this.x = v.x;
+        this.y = v.y;
+        this.z = v.z;
+        this.w = v.w;
     }
 
     public Vector4i() {
-        setZero();
+        this.x = 0;
+        this.y = 0;
+        this.z = 0;
+        this.w = 0;
     }
 
     public void setTo(Vector4i v) {
@@ -54,7 +63,7 @@ public class Vector4i implements IVector {
 
     @Override
     public String toString() {
-        return new String("X:" + x + " Y:" + y + " Z:" + z + " W:" + w);
+        return "X:" + x + " Y:" + y + " Z:" + z + " W:" + w;
     }
 
     @Override
