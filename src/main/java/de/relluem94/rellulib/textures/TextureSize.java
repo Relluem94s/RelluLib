@@ -55,7 +55,7 @@ public enum TextureSize {
      */
     OCTUPLE;
 
-    private static TextureSize[] vals = values();
+    private static final TextureSize[] vals = values();
 
     public TextureSize next() {
         return vals[(this.ordinal() + 1) % vals.length];
