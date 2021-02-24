@@ -10,26 +10,26 @@ public class InternalFrame extends JInternalFrame {
 
     private static final long serialVersionUID = 1L;
 
-    private Dimension minSize;
-    private Dimension maxSize;
-    private Dimension prefSize;
-    private Dimension size;
-    private boolean iconifiable;
-    private boolean resizable;
-    private boolean closeable;
-    private boolean dispose;
-    private boolean snapper;
+    private final Dimension minSize;
+    private final Dimension maxSize;
+    private final Dimension prefSize;
+    private final Dimension size;
+    private final boolean iconifiable;
+    private final boolean isResizable;
+    private final boolean closeable;
+    private final boolean dispose;
+    private final boolean snapper;
 
-    private JInternalFrame frame;
+    private final JInternalFrame frame;
 
     public InternalFrame(String title, Dimension minSize, Dimension maxSize, Dimension prefSize, Dimension size,
-            boolean iconifiable, boolean resizable, boolean closeable, boolean dispose, boolean snapper) {
+            boolean iconifiable, boolean isResizable, boolean closeable, boolean dispose, boolean snapper) {
         this.minSize = minSize;
         this.maxSize = maxSize;
         this.prefSize = prefSize;
         this.size = size;
         this.iconifiable = iconifiable;
-        this.resizable = resizable;
+        this.isResizable = isResizable;
         this.closeable = closeable;
         this.dispose = dispose;
         this.snapper = snapper;
@@ -48,7 +48,7 @@ public class InternalFrame extends JInternalFrame {
         frame.add(pane);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.setIconifiable(iconifiable);
-        frame.setResizable(resizable);
+        frame.setResizable(isResizable);
         frame.setClosable(closeable);
         frame.setVisible(true);
         if (snapper) {
@@ -64,7 +64,8 @@ public class InternalFrame extends JInternalFrame {
         return frame;
     }
 
+    @Override
     public Dimension getSize() {
-        return size;
+        return size; //TODO is this needed?
     }
 }
