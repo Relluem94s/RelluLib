@@ -100,10 +100,8 @@ public class NetworkUtils {
      * @return boolean true if port is open
      */
     public static boolean checkPort(String host, int port, int timeout) {
-        try {
-            Socket socket = new Socket();
+        try (Socket socket = new Socket()) {
             socket.connect(new InetSocketAddress(host, port), timeout);
-            socket.close();
             return true;
         } catch (IOException e) {
             return false;
