@@ -29,6 +29,7 @@ import de.relluem94.rellulib.threads.ThreadWorker;
 import de.relluem94.rellulib.utils.FileUtils;
 import de.relluem94.rellulib.utils.InfoUtils;
 import de.relluem94.rellulib.utils.LogUtils;
+import de.relluem94.rellulib.utils.NetworkUtils;
 import de.relluem94.rellulib.utils.ReflectionUtils;
 import de.relluem94.rellulib.utils.StringUtils;
 import de.relluem94.rellulib.vector.Vector5f;
@@ -241,6 +242,11 @@ public class Tests extends SplashScreen {
         LogUtils.log("Test44");
         LogUtils.setOther(true);
         LogUtils.log("Test66");
+    }
+    
+    @Test
+    public void pingTest(){
+        LogUtils.info("website port 443 is " + (NetworkUtils.checkPort("https://www.relluem94.de", 443, 90) ? "open" : "closed")  );
     }
 
 }
