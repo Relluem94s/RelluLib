@@ -2,9 +2,6 @@ package de.relluem94.rellulib.vector;
 
 public final class VectorMath {
 
-    private VectorMath() {
-    }
-
     public final static Vector3f add(Vector3f v1, Vector3f v2) {
         return (new Vector3f(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z));
     }
