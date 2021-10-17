@@ -90,3 +90,17 @@ A Small Library
     * convert String to Boolean
     * convert String to Vector or Color
     * convert long to KiloByte, Seconds or minutes 
+
+
+
+
+
+
+
+
+
+
+
+
+
+[![Build Status](https://build.relluem94.de/buildStatus/icon?job=RelluLib)](https://build.relluem94.de/job/RelluLib/)
