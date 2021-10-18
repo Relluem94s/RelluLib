@@ -7,8 +7,8 @@ import de.relluem94.rellulib.utils.FileUtils;
 
 public class Image {
 
-    private BufferedImage img;
-    private File file;
+    private final BufferedImage img;
+    private final File file;
 
     public Image(File file) {
         this.file = file;
