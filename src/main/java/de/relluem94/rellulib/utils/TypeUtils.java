@@ -17,10 +17,10 @@ import de.relluem94.rellulib.vector.Vector5i;
 
 public class TypeUtils {
 
-    public static int convertInt2Hex(int n) {
-        return Integer.valueOf(String.valueOf(n), 16);
+    public static String convertInt2Hex(int n) {
+        return Integer.toHexString(n).toUpperCase();
     }
-
+    
     public static Float toFloat(String input) {
         if (isFloat(input)) {
             float x = Float.parseFloat(input);
