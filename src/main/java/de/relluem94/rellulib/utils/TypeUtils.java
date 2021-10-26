@@ -21,6 +21,10 @@ public class TypeUtils {
         return Integer.toHexString(n).toUpperCase();
     }
     
+    public static int convertHex2Int(int n) throws Exception {
+        return Integer.valueOf(String.valueOf(n), 10);
+    }
+    
     public static Float toFloat(String input) {
         if (isFloat(input)) {
             float x = Float.parseFloat(input);
