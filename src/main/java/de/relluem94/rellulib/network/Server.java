@@ -16,7 +16,8 @@ public class Server {
         socket = serverSocket.accept();
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
+        
+        bufferedReader.close();
     }
 
 }

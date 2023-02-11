@@ -67,7 +67,7 @@ public class StringUtils {
      * @return String with unicode chars
      */
     public static String replaceSymbols(String message) {
-        for (Map.Entry pair : symbols.entrySet()) {
+        for (Map.Entry<String, String> pair : symbols.entrySet()) {
             message = message.replace((String) pair.getKey(), (String) pair.getValue());
         }
         return message;

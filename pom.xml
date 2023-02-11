@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.relluem94</groupId>
     <artifactId>rellulib</artifactId>
-    <version>0.9</version>
+    <version>0.10</version>
     <name>RelluLib</name>
     <url>https://github.com/Relluem94/RelluLib</url>
     <distributionManagement>
@@ -24,6 +24,11 @@
             <artifactId>junit-dep</artifactId>
             <version>4.11</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20220924</version>
         </dependency>
     </dependencies>
     <build>
