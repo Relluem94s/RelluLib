@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.json.JSONObject;
 import org.junit.Test;
 
 import de.relluem94.rellulib.FixedSizeList;
@@ -226,7 +227,8 @@ public class Tests extends SplashScreen {
 
     @Test
     public void typeTest(){
-        
+        JSONObject  js = new JSONObject();
+        LogUtils.info(js);
         LogUtils.info("Int2Hex " + TypeUtils.convertInt2Hex(243));
         LogUtils.info("Hex2Int " + TypeUtils.convertHex2Int(0xF3));
         
