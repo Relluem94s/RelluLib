@@ -4,9 +4,9 @@ import java.text.DecimalFormat;
 
 public class Vector3f implements IVector {
 
-    public float x;
-    public float y;
-    public float z;
+    private float x;
+    private float y;
+    private float z;
 
     public Vector3f(float x, float y, float z) {
         this.x = x;
@@ -62,5 +62,29 @@ public class Vector3f implements IVector {
     @Override
     public String toListString() {
         return "" + x + "," + y + "," + z;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public float getZ() {
+        return z;
+    }
+
+    public void setZ(float z) {
+        this.z = z;
     }
 }
