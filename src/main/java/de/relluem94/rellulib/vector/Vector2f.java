@@ -49,7 +49,7 @@ public class Vector2f implements IVector {
 
     @Override
     public String toShortString() {
-        return "X:" + new DecimalFormat("##.##").format(x) + " Y:" + new DecimalFormat("##.##").format(y);
+        return "X:" + new DecimalFormat(VectorConstants.DECIMAL_FORMAT_PATTERN).format(x) + " Y:" + new DecimalFormat(VectorConstants.DECIMAL_FORMAT_PATTERN).format(y);
     }
 
     @Override

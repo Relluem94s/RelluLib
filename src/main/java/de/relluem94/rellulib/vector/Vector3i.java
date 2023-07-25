@@ -57,7 +57,7 @@ public class Vector3i implements IVector {
 
     @Override
     public String toShortString() {
-        return "X:" + new DecimalFormat("##.##").format(x) + " Y:" + new DecimalFormat("##.##").format(y) + " Z:" + new DecimalFormat("##.##").format(z);
+        return "X:" + new DecimalFormat(VectorConstants.DECIMAL_FORMAT_PATTERN).format(x) + " Y:" + new DecimalFormat(VectorConstants.DECIMAL_FORMAT_PATTERN).format(y) + " Z:" + new DecimalFormat(VectorConstants.DECIMAL_FORMAT_PATTERN).format(z);
     }
 
     @Override
