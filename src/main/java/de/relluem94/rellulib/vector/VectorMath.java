@@ -2,82 +2,87 @@ package de.relluem94.rellulib.vector;
 
 public final class VectorMath {
 
-    public final static Vector3f add(Vector3f v1, Vector3f v2) {
-        return (new Vector3f(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z));
+    public static final Vector3f add(Vector3f v1, Vector3f v2) {
+        return (new Vector3f(v1.getX() + v2.getX(), v1.getY() + v2.getY(), v1.getZ() + v2.getZ()));
     }
 
-    public final static Vector4f add(Vector4f v1, Vector4f v2) {
-        return (new Vector4f(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z, v1.w + v2.w));
+    public static final Vector4f add(Vector4f v1, Vector4f v2) {
+        return (new Vector4f(v1.getX() + v2.getX(), v1.getY() + v2.getY(), v1.getZ() + v2.getZ(), v1.getW() + v2.getW()));
     }
 
-    public final static Vector3f add(Vector3f v1, float x, float y, float z) {
-        return (new Vector3f(v1.x + x, v1.y + y, v1.z + z));
+    public static final Vector3f add(Vector3f v1, float x, float y, float z) {
+        return (new Vector3f(v1.getX() + x, v1.getY() + y, v1.getZ() + z));
     }
 
-    public final static Vector4f add(Vector4f v1, float x, float y, float z, float w) {
-        return (new Vector4f(v1.x + x, v1.y + y, v1.z + z, v1.w + w));
+    public static final Vector4f add(Vector4f v1, float x, float y, float z, float w) {
+        return (new Vector4f(v1.getX() + x, v1.getY() + y, v1.getZ() + z, v1.getW() + w));
     }
 
-    public final static Vector3f subtract(Vector3f v1, Vector3f v2) {
-        return (new Vector3f(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z));
+    public static final Vector3f subtract(Vector3f v1, Vector3f v2) {
+        return (new Vector3f(v1.getX() - v2.getX(), v1.getY() - v2.getY(), v1.getZ() - v2.getZ()));
     }
 
-    public final static Vector3f subtract(Vector3f v1, float x, float y, float z) {
-        return (new Vector3f(v1.x - x, v1.y - y, v1.z - z));
+    public static final Vector3f subtract(Vector3f v1, float x, float y, float z) {
+        return (new Vector3f(v1.getX() - x, v1.getY() - y, v1.getZ() - z));
     }
 
-    public final static Vector4f subtract(Vector4f v1, Vector4f v2) {
-        return (new Vector4f(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z, v1.w - v2.w));
+    public static final Vector4f subtract(Vector4f v1, Vector4f v2) {
+        return (new Vector4f(v1.getX() - v2.getX(), v1.getY() - v2.getY(), v1.getZ() - v2.getZ(), v1.getW() - v2.getW()));
     }
 
-    public final static Vector4f subtract(Vector4f v1, float x, float y, float z, float w) {
-        return (new Vector4f(v1.x - x, v1.y - y, v1.z - z, v1.w - w));
+    public static final Vector4f subtract(Vector4f v1, float x, float y, float z, float w) {
+        return (new Vector4f(v1.getX() - x, v1.getY() - y, v1.getZ() - z, v1.getW() - w));
     }
 
-    public final static Vector3f multiply(Vector3f v1, float m) {
-        return (new Vector3f(v1.x * m, v1.y * m, v1.z * m));
+    public static final Vector3f multiply(Vector3f v1, float m) {
+        return (new Vector3f(v1.getX() * m, v1.getY() * m, v1.getZ() * m));
     }
 
-    public final static Vector4f multiply(Vector4f v1, float m) {
-        return (new Vector4f(v1.x * m, v1.y * m, v1.z * m, v1.w * m));
+    public static final Vector4f multiply(Vector4f v1, float m) {
+        return (new Vector4f(v1.getX() * m, v1.getY() * m, v1.getZ() * m, v1.getW() * m));
     }
 
-    public final static Vector3f divide(Vector3f v1, float m) {
-        return (new Vector3f(v1.x / m, v1.y / m, v1.z / m));
+    public static final Vector3f divide(Vector3f v1, float m) {
+        return (new Vector3f(v1.getX() / m, v1.getY() / m, v1.getZ() / m));
     }
 
-    public final static Vector4f divide(Vector4f v1, float m) {
-        return (new Vector4f(v1.x / m, v1.y / m, v1.z / m, v1.w / m));
+    public static final Vector4f divide(Vector4f v1, float m) {
+        return (new Vector4f(v1.getX() / m, v1.getY() / m, v1.getZ() / m, v1.getW() / m));
     }
 
-    public final static Vector3f cross_product(Vector3f v1, Vector3f v2) {
+    public static final Vector3f crossProduct(Vector3f v1, Vector3f v2) {
         Vector3f v3 = new Vector3f();
-        v3.x = (v1.y * v2.z) - (v1.z * v2.y);
-        v3.y = (v1.z * v2.x) - (v1.x * v2.z);
-        v3.z = (v1.x * v2.y) - (v1.y * v2.x);
+        v3.setX((v1.getY() * v2.getZ()) - (v1.getZ() * v2.getY()));
+        v3.setY((v1.getZ() * v2.getX()) - (v1.getX() * v2.getZ()));
+        v3.setZ((v1.getX() * v2.getY()) - (v1.getY() * v2.getX()));
         return v3;
     }
 
-    public final static Vector3f normal(Vector3f triangle[]) {
+    public static final Vector3f normal(Vector3f[] triangle) {
         Vector3f vector1 = subtract(triangle[2], triangle[0]);
         Vector3f vector2 = subtract(triangle[1], triangle[0]);
-        Vector3f normal = cross_product(vector1, vector2);
+        Vector3f normal = crossProduct(vector1, vector2);
 
         normalize(normal);
         return normal;
     }
 
-    public final static float getDotProduct(Vector3f v1, Vector3f v2) {
-        return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
+    public static final float getDotProduct(Vector3f v1, Vector3f v2) {
+        return (v1.getX() * v2.getX() + v1.getY() * v2.getY() + v1.getZ() * v2.getZ());
     }
 
-    public final static float getDotProduct(Vector4f v1, Vector4f v2) {
-        return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w);
+    public static final float getDotProduct(Vector4f v1, Vector4f v2) {
+        return (v1.getX() * v2.getX() + v1.getY() * v2.getY() + v1.getZ() * v2.getZ() + v1.getW() * v2.getW());
     }
 
-    public final static double angleBetweenVectors(Vector3f Vector1, Vector3f Vector2) {
-        float dotProduct = getDotProduct(Vector1, Vector2);
-        float vectorsMagnitude = magnitude(Vector1) * magnitude(Vector2);
+    public static final double angleBetweenVectors(Vector3f vector1, Vector3f vector2) {
+        float dotProduct = getDotProduct(vector1, vector2);
+        float vectorsMagnitude = magnitude(vector1) * magnitude(vector2);
+
+        if(vectorsMagnitude == 0){
+            return 0;
+        }
+
         double angle = Math.acos(dotProduct / vectorsMagnitude);
         if (angle == Float.NaN) {
             return 0;
@@ -85,34 +90,33 @@ public final class VectorMath {
         return (angle);
     }
 
-    public final static Vector4f cross_product(Vector4f v1, Vector4f v2, Vector4f v3) {
+    public static final Vector4f crossProduct(Vector4f v1, Vector4f v2, Vector4f v3) {
         Vector4f v4 = new Vector4f();
 
-        float x = (v1.y * v2.z * v3.w) + (v1.z * v2.w * v3.y) + (v1.w * v2.y * v3.z)
-                - (v1.y * v2.w * v3.z) - (v1.z * v2.y * v3.w) - (v1.w * v2.z * v3.y);
+        float x = (v1.getY() * v2.getZ() * v3.getW()) + (v1.getZ() * v2.getW() * v3.getY()) + (v1.getW() * v2.getY() * v3.getZ())
+                - (v1.getY() * v2.getW() * v3.getZ()) - (v1.getZ() * v2.getY() * v3.getW()) - (v1.getW() * v2.getZ() * v3.getY());
 
-        float y = (v1.x * v2.w * v3.z) + (v1.z * v2.x * v3.w) + (v1.w * v2.z * v3.x)
-                - (v1.x * v2.z * v3.w) - (v1.z * v2.w * v3.x) - (v1.w * v2.x * v3.z);
+        float y = (v1.getX() * v2.getW() * v3.getZ()) + (v1.getZ() * v2.getX() * v3.getW()) + (v1.getW() * v2.getZ() * v3.getX())
+                - (v1.getX() * v2.getZ() * v3.getW()) - (v1.getZ() * v2.getW() * v3.getX()) - (v1.getW() * v2.getX() * v3.getZ());
 
-        float z = (v1.x * v2.y * v3.w) + (v1.y * v2.w * v3.x) + (v1.w * v2.x * v3.y)
-                - (v1.x * v2.w * v3.y) - (v1.y * v2.x * v3.w) - (v1.w * v2.y * v3.x);
+        float z = (v1.getX() * v2.getY() * v3.getW()) + (v1.getY() * v2.getW() * v3.getX()) + (v1.getW() * v2.getX() * v3.getY())
+                - (v1.getX() * v2.getW() * v3.getY()) - (v1.getY() * v2.getX() * v3.getW()) - (v1.getW() * v2.getY() * v3.getX());
 
-        float w = (v1.x * v2.z * v3.y) + (v1.y * v2.x * v3.z) + (v1.z * v2.y * v3.x)
-                - (v1.x * v2.y * v3.z) - (v1.y * v2.z * v3.x) - (v1.z * v2.x * v3.y);
+        float w = (v1.getX() * v2.getZ() * v3.getY()) + (v1.getY() * v2.getX() * v3.getZ()) + (v1.getZ() * v2.getY() * v3.getX())
+                - (v1.getX() * v2.getY() * v3.getZ()) - (v1.getY() * v2.getZ() * v3.getX()) - (v1.getZ() * v2.getX() * v3.getY());
 
         v4.setTo(x, y, z, w);
         return v4;
 
     }
 
-    public final static float distance(Vector3f v1, Vector3f v2) {
-        Vector3f res = VectorMath.subtract(v2, v1);
-        float distance = VectorMath.magnitude(res);
-        return distance;
+    public static final float distance(Vector3f v1, Vector3f v2) {
+        Vector3f res = VectorMath.subtract(v1, v2);
+        return VectorMath.magnitude(res);
     }
 
-    public final static float magnitude(Vector3f v1) {
-        float r = (float) Math.sqrt((v1.x * v1.x) + (v1.y * v1.y) + (v1.z * v1.z));
+    public static final float magnitude(Vector3f v1) {
+        float r = (float) Math.sqrt((v1.getX() * v1.getX()) + (v1.getY() * v1.getY()) + (v1.getZ() * v1.getZ()));
         if (r <= 0.00001) {
             return 0f;
         } else {
@@ -120,41 +124,53 @@ public final class VectorMath {
         }
     }
 
-    public final static float magnitude(Vector4f v1) {
-        return (float) Math.sqrt((v1.x * v1.x) + (v1.y * v1.y)
-                + (v1.z * v1.z) + (v1.w * v1.w));
+    public static final float magnitude(Vector4f v1) {
+        return (float) Math.sqrt((v1.getX() * v1.getX()) + (v1.getY() * v1.getY())
+                + (v1.getZ() * v1.getZ()) + (v1.getW() * v1.getW()));
     }
 
-    public final static void normalize(Vector3f v1) {
+    public static final Vector3f normalize(Vector3f v1) {
         float f = magnitude(v1);
 
-        v1.x /= f;
-        v1.y /= f;
-        v1.z /= f;
+        if(f == 0){
+            return new Vector3f();
+        }
+
+        v1.setX(v1.getX() / f);
+        v1.setY(v1.getY()/ f);
+        v1.setZ(v1.getZ()/ f);
+
+        return v1;
     }
 
-    public final static void normalize(Vector4f v1) {
+    public static final Vector4f normalize(Vector4f v1) {
         float f = magnitude(v1);
+        
+        if(f == 0){
+            return new Vector4f();
+        }
 
-        v1.x /= f;
-        v1.y /= f;
-        v1.z /= f;
-        v1.w /= f;
+        v1.setX(v1.getX() / f);
+        v1.setY(v1.getY()/ f);
+        v1.setZ(v1.getZ()/ f);
+        v1.setW(v1.getW()/ f);
+
+        return v1;
     }
 
-    public final static boolean equals(Vector3f v1, float x, float y, float z) {
-        return (v1.x == x && v1.y == y && v1.z == z);
+    public static final boolean equals(Vector3f v1, float x, float y, float z) {
+        return (v1.getX() == x && v1.getY() == y && v1.getZ() == z);
     }
 
-    public final static boolean equals(Vector3f v1, Vector3f v2) {
-        return (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z);
+    public static final boolean equals(Vector3f v1, Vector3f v2) {
+        return (v1.getX() == v2.getX() && v1.getY() == v2.getY() && v1.getZ() == v2.getZ());
     }
 
-    public final static boolean equals(Vector4f v1, Vector4f v2) {
-        return (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z && v1.w == v2.w);
+    public static final boolean equals(Vector4f v1, Vector4f v2) {
+        return (v1.getX() == v2.getX() && v1.getY() == v2.getY() && v1.getZ() == v2.getZ() && v1.getW() == v2.getW());
     }
 
     public boolean equals(Vector4f v1, float x, float y, float z, float w) {
-        return (v1.x == x && v1.y == y && v1.z == z && v1.w == w);
+        return (v1.getX() == x && v1.getY() == y && v1.getZ() == z && v1.getW() == w);
     }
 }
