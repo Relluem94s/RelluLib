@@ -9,11 +9,11 @@ public class EventExecutor {
     private FixedSizeList<IEvent> events;
 
     public EventExecutor() {
-        events = new FixedSizeList<IEvent>(100);
+        events = new FixedSizeList<>(100);
     }
 
     public EventExecutor(int eventAmount) {
-        events = new FixedSizeList<IEvent>(eventAmount);
+        events = new FixedSizeList<>(eventAmount);
     }
 
     public boolean registerEvent(IEvent e) {
@@ -59,7 +59,7 @@ public class EventExecutor {
     }
 
     public IEvent getEvent(ID id) throws EventException {
-        if (!(events.get(id.getID()) == null)) {
+        if (events.get(id.getID()) != null) {
             return events.get(id.getID());
         } else {
             throw new EventException("No Event Found for this ID.");
@@ -67,7 +67,7 @@ public class EventExecutor {
     }
 
     public IEvent getEvent(IEvent e) throws EventException {
-        if (!(events.get(e.getID().getID()) == null)) {
+        if (events.get(e.getID().getID()) != null) {
             return events.get(e.getID().getID());
         } else {
             throw new EventException("No Event Found for this ID.");
