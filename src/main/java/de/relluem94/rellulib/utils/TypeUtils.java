@@ -17,6 +17,10 @@ import de.relluem94.rellulib.vector.Vector5i;
 
 public class TypeUtils {
 
+    private TypeUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static String convertInt2Hex(int n) {
         return Integer.toHexString(n).toUpperCase();
     }
@@ -27,8 +31,7 @@ public class TypeUtils {
     
     public static Float toFloat(String input) {
         if (isFloat(input)) {
-            float x = Float.parseFloat(input);
-            return x;
+            return Float.parseFloat(input);
         } else {
             return 0f;
         }
@@ -36,8 +39,7 @@ public class TypeUtils {
 
     public static Integer toInt(String input) {
         if (isInt(input)) {
-            int x = Integer.parseInt(input);
-            return x;
+            return Integer.parseInt(input);
         } else {
             return 0;
         }

@@ -7,6 +7,10 @@ import java.util.Map;
 
 public class StringUtils {
 
+    private StringUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
     /**
      *
      * @param object

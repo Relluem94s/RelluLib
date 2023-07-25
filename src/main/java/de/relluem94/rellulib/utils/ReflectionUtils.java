@@ -4,6 +4,10 @@ import java.lang.reflect.Field;
 
 public class ReflectionUtils {
 
+    private ReflectionUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static Field[] getMemberFields(Object obj) {
         Class<?> objClass = obj.getClass();
         LogUtils.info("Class: " + obj.getClass().getName());

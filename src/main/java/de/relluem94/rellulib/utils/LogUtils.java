@@ -7,6 +7,10 @@ import java.util.List;
 
 public class LogUtils {
 
+    private LogUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
     /**
      * Prints an Object with an line break <br>
      *

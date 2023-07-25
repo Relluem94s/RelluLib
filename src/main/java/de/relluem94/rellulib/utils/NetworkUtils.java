@@ -20,6 +20,10 @@ import de.relluem94.rellulib.Image;
 
 public class NetworkUtils {
 
+    private NetworkUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
     /**
      *
      * @param http String with Hyperlink

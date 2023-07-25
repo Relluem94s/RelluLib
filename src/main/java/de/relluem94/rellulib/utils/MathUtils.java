@@ -2,6 +2,10 @@ package de.relluem94.rellulib.utils;
 
 public class MathUtils {
 
+    private MathUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
     /**
      *
      * @param dividend

@@ -2,6 +2,10 @@ package de.relluem94.rellulib.utils;
 
 public class InfoUtils {
 
+    private InfoUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
     /**
      *
      * @return Operating System Name
