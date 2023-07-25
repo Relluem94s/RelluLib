@@ -4,15 +4,11 @@ import java.text.DecimalFormat;
 
 public class Vector5f implements IVector {
 
-    public float x;
-
-    public float y;
-
-    public float z;
-
-    public float w;
-
-    public float v;
+    private float x;
+    private float y;
+    private float z;
+    private float w;
+    private float v;
 
     public Vector5f(float x, float y, float z, float w, float v) {
         this.x = x;
@@ -87,4 +83,43 @@ public class Vector5f implements IVector {
         return "" + x + "," + y + "," + z + "," + w + "," + v;
     }
 
+    public float getX() {
+        return x;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public float getZ() {
+        return z;
+    }
+
+    public void setZ(float z) {
+        this.z = z;
+    }
+
+    public float getW() {
+        return w;
+    }
+
+    public void setW(float w) {
+        this.w = w;
+    }
+
+    public float getV() {
+        return v;
+    }
+
+    public void setV(float v) {
+        this.v = v;
+    }
 }
