@@ -36,14 +36,14 @@ public class StringUtils {
      * @return String with all words with offset of start
      */
     public static String implode(int start, String[] input) {
-        String message = "";
+        StringBuilder message = new StringBuilder();
         for (int i = start; input.length > i; i++) {
             if (input[i] == null) {
                 break;
             }
-            message += input[i] + " ";
+            message.append(input[i] + " ");
         }
-        return message;
+        return message.toString();
     }
 
     /**
@@ -52,11 +52,11 @@ public class StringUtils {
      * @return appends every Object in one line
      */
     public static String toString(List<Object> input) {
-        String output = "";
+        StringBuilder output = new StringBuilder();
         for (int i = 0; i < input.size(); i++) {
-            output = output + " " + input.get(i);
+            output.append(" " + input.get(i));
         }
-        return output;
+        return output.toString();
     }
 
     /**
@@ -72,7 +72,7 @@ public class StringUtils {
      */
     public static String replaceSymbols(String message) {
         for (Map.Entry<String, String> pair : symbols.entrySet()) {
-            message = message.replace((String) pair.getKey(), (String) pair.getValue());
+            message = message.replace(pair.getKey(), pair.getValue());
         }
         return message;
     }
