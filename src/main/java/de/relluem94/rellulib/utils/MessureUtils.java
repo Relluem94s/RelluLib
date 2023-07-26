@@ -2,7 +2,9 @@ package de.relluem94.rellulib.utils;
 
 public class MessureUtils {
 
-    private long startTime, endTime, completeTime;
+    private long startTime;
+    private long endTime;
+    private long completeTime;
 
     /**
      * Starts Timer

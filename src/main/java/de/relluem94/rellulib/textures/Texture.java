@@ -8,6 +8,11 @@ import de.relluem94.rellulib.color.Color3i;
 
 public class Texture {
 
+    private Texture() {
+        throw new IllegalStateException("Utility class");
+    }
+
+
     private static final Random random = new Random();
     private static final double FEATURE_SIZE = 24;
 
@@ -32,10 +37,10 @@ public class Texture {
             for (int x = 0; x < resolution; x++) {
                 double value = noise.eval(x / FEATURE_SIZE, y / FEATURE_SIZE);
 
-                int r = color.r * (int) ((value + 1));
-                int g = color.g * (int) ((value + 1));
-                int b = color.b * (int) ((value + 1));
-                int a = 255 * (int) ((value + 1));
+                int r = color.r * (int) (value + 1);
+                int g = color.g * (int) (value + 1);
+                int b = color.b * (int) (value + 1);
+                int a = 255 * (int) (value + 1);
                 if (a == 0) {
                     image.setRGB(x, y, (alpha << 28) | (color2.r << 16) | (color2.g << 8) | color2.b);
                 } else {
@@ -122,20 +127,10 @@ public class Texture {
         for (int x = 0; x < resolution; x++) {
             for (int y = 0; y < resolution; y++) {
                 if (x <= res) {
-                    if (y <= res) {
-                        image.setRGB(x, y, (color2.r << 16) | (color2.g << 8) | color2.b);
-                    } else {
-                        image.setRGB(x, y, (color2.r << 16) | (color2.g << 8) | color2.b);
-                    }
+                    image.setRGB(x, y, (color2.r << 16) | (color2.g << 8) | color2.b);
                 } else {
-                    if (y <= res) {
-                        image.setRGB(x, y, (color1.r << 16) | (color1.g << 8) | color1.b);
-                    } else {
-                        image.setRGB(x, y, (color1.r << 16) | (color1.g << 8) | color1.b);
-
-                    }
+                    image.setRGB(x, y, (color1.r << 16) | (color1.g << 8) | color1.b);
                 }
-
             }
         }
         return image;
@@ -148,18 +143,9 @@ public class Texture {
         for (int x = 0; x < resolution; x++) {
             for (int y = 0; y < resolution; y++) {
                 if (x <= res) {
-                    if (y <= res) {
-                        image.setRGB(x, y, (0xFF << 28) | (color2.r << 16) | (color2.g << 8) | color2.b);
-                    } else {
-                        image.setRGB(x, y, (0xFF << 28) | (color2.r << 16) | (color2.g << 8) | color2.b);
-                    }
+                    image.setRGB(x, y, (0xFF << 28) | (color2.r << 16) | (color2.g << 8) | color2.b);
                 } else {
-                    if (y <= res) {
-                        image.setRGB(x, y, (0xFF << 28) | (color1.r << 16) | (color1.g << 8) | color1.b);
-                    } else {
-                        image.setRGB(x, y, (0xFF << 28) | (color1.r << 16) | (color1.g << 8) | color1.b);
-
-                    }
+                    image.setRGB(x, y, (0xFF << 28) | (color1.r << 16) | (color1.g << 8) | color1.b);
                 }
 
             }
@@ -190,5 +176,4 @@ public class Texture {
         }
         return image;
     }
-
 }

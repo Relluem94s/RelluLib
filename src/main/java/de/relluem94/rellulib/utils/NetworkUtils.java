@@ -44,15 +44,14 @@ public class NetworkUtils {
      * @return boolean true if HTTP OK
      */
     public static boolean exists(URL url) {
-        boolean result;
         try {
             InputStream input = url.openStream();
             input.close();
-            result = true;
+            return true;
         } catch (IOException ex) {
-            result = false;
+            LogUtils.error(ex.getMessage());
+            return false;
         }
-        return result;
     }
 
     /**
@@ -130,7 +129,7 @@ public class NetworkUtils {
     }
 
     public static JSONObject getJSON(String geturl){
-        String jsonString = "";
+        StringBuilder jsonString = new StringBuilder();
         try {
             URL url = new URL(geturl);
             URLConnection uc = url.openConnection();
@@ -138,7 +137,7 @@ public class NetworkUtils {
             
             String inputLine;
             while ((inputLine = in.readLine()) != null){
-                jsonString += inputLine + " ";
+                jsonString.append(inputLine + " ");
             }
                 
             in.close();
@@ -147,8 +146,8 @@ public class NetworkUtils {
             LogUtils.error(e.getMessage());
         }
         if(jsonString.length() == 0){
-            jsonString = "{}";
+            jsonString.append("{}");
         }
-        return new JSONObject(jsonString);
+        return new JSONObject(jsonString.toString());
     }
 }
