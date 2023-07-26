@@ -7,14 +7,18 @@ import javax.sound.sampled.SourceDataLine;
 
 public class NotePlayer {
 
-    private static int bpm_modif = 1;
-
-    public static int getBpm_modif() {
-        return bpm_modif;
+    private NotePlayer() {
+        throw new IllegalStateException("Utility class");
     }
 
-    public static void setBpm_modif(int bpm_modif) {
-        NotePlayer.bpm_modif = bpm_modif;
+    private static int bpmModif = 1;
+
+    public static int getBpmModif() {
+        return bpmModif;
+    }
+
+    public static void setBpmModif(int bpmModif) {
+        NotePlayer.bpmModif = bpmModif;
     }
 
     public static void play(NoteTone[] tone, NoteLength[] length, float volume) throws LineUnavailableException {
@@ -27,7 +31,6 @@ public class NotePlayer {
             af = new AudioFormat(frequency, 16, 2, true, false);
 
             SourceDataLine sdl = AudioSystem.getSourceDataLine(af);
-            sdl = AudioSystem.getSourceDataLine(af);
             sdl.open(af);
             sdl.start();
 
@@ -55,7 +58,7 @@ public class NotePlayer {
         float hz = NoteTone.getTone(tone);
         int ms = NoteLength.getLength(length);
 
-        ms = ms - bpm_modif;
+        ms = ms - bpmModif;
 
         float frequency = 44100;
         byte[] buf;
@@ -68,7 +71,6 @@ public class NotePlayer {
             af = new AudioFormat(frequency, 8, 1, true, false);
         }
         SourceDataLine sdl = AudioSystem.getSourceDataLine(af);
-        sdl = AudioSystem.getSourceDataLine(af);
         sdl.open(af);
         sdl.start();
         for (int i = 0; i < ms * frequency / 1000; i++) {
@@ -93,7 +95,7 @@ public class NotePlayer {
         float hz = NoteTone.getTone(tone);
         int ms = NoteLength.getLength(length);
 
-        ms = ms - bpm_modif;
+        ms = ms - bpmModif;
 
         float frequency = 44100;
         byte[] buf;
@@ -101,7 +103,6 @@ public class NotePlayer {
         buf = new byte[1];
         af = new AudioFormat(frequency, 8, 1, true, false);
         SourceDataLine sdl = AudioSystem.getSourceDataLine(af);
-        sdl = AudioSystem.getSourceDataLine(af);
         sdl.open(af);
         sdl.start();
         for (int i = 0; i < ms * frequency / 1000; i++) {

@@ -2,10 +2,10 @@ package de.relluem94.rellulib.sounds;
 
 public enum NoteType {
 
-    Sinus,
-    Linear,
-    Square,
-    Saw;
+    SINUS,
+    LINEAR,
+    SQUARE,
+    SAW;
 
     private static NoteType[] vals = values();
 
@@ -17,16 +17,16 @@ public enum NoteType {
         int type = 0;
         if (null != s) {
             switch (s) {
-                case Sinus:
+                case SINUS:
                     type = 0;
                     break;
-                case Linear:
+                case LINEAR:
                     type = 1;
                     break;
-                case Square:
+                case SQUARE:
                     type = 2;
                     break;
-                case Saw:
+                case SAW:
                     type = 3;
                     break;
                 default:

@@ -46,7 +46,7 @@ public class DoubleStore implements IStore {
     
     @Override
     public int hashCode(){
-        return (int) 42 * value.hashCode() * svalue.hashCode();
+        return 42 * value.hashCode() * svalue.hashCode();
     }
 
     @Override

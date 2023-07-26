@@ -2,14 +2,14 @@ package de.relluem94.rellulib.sounds;
 
 public enum NoteLength {
 
-    None,
-    Quarter,
-    Dotted_Quarter,
-    Whole,
-    Dotted_Half,
-    Half,
-    Eighth,
-    Sixteenth;
+    NONE,
+    QUARTER,
+    DOTTED_QUARTER,
+    WHOLE,
+    DOTTED_HALF,
+    HALF,
+    EIGHTH,
+    SIXTEENTH;
 
     private static final NoteLength[] vals = values();
 
@@ -22,28 +22,28 @@ public enum NoteLength {
 
         if (null != s) {
             switch (s) {
-                case None:
+                case NONE:
                     length = 0;
                     break;
-                case Quarter:
+                case QUARTER:
                     length = 286;
                     break;
-                case Dotted_Quarter:
+                case DOTTED_QUARTER:
                     length = 429;
                     break;
-                case Whole:
+                case WHOLE:
                     length = 1144;
                     break;
-                case Dotted_Half:
+                case DOTTED_HALF:
                     length = 858;
                     break;
-                case Half:
+                case HALF:
                     length = 572;
                     break;
-                case Eighth:
+                case EIGHTH:
                     length = 143;
                     break;
-                case Sixteenth:
+                case SIXTEENTH:
                     length = 72;
                     break;
                 default:

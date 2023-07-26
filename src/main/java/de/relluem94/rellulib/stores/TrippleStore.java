@@ -61,7 +61,7 @@ public class TrippleStore implements IStore {
     
     @Override
     public int hashCode(){
-        return (int) 94 * value.hashCode() * svalue.hashCode() * tvalue.hashCode();
+        return 94 * value.hashCode() * svalue.hashCode() * tvalue.hashCode();
     }
 
     @Override

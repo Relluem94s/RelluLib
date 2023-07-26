@@ -10,7 +10,7 @@ public class InfoUtils {
      *
      * @return Operating System Name
      */
-    public static String OSname() {
+    public static String osName() {
         return System.getProperty("os.name");
     }
 
@@ -18,7 +18,7 @@ public class InfoUtils {
      *
      * @return Operating System Version
      */
-    public static String OSversion() {
+    public static String osVersion() {
         return System.getProperty("os.version");
     }
 
@@ -26,7 +26,7 @@ public class InfoUtils {
      *
      * @return Operating System Architecture
      */
-    public static String OsArch() {
+    public static String osArch() {
         return System.getProperty("os.arch");
     }
 
@@ -34,7 +34,7 @@ public class InfoUtils {
      *
      * @return CPU Identifer
      */
-    public static String CPU_Identifer() {
+    public static String cpuIndentifier() {
         return System.getenv("PROCESSOR_IDENTIFIER");
     }
 
@@ -42,7 +42,7 @@ public class InfoUtils {
      *
      * @return CPU Architecture
      */
-    public static String CPU_Arch() {
+    public static String cpuArch() {
         return System.getenv("PROCESSOR_ARCHITECTURE");
     }
 
@@ -50,7 +50,7 @@ public class InfoUtils {
      *
      * @return CPU Number of Cores
      */
-    public static String CPU_NumberOfCores() {
+    public static String cpuNumberOfCores() {
         return System.getenv("NUMBER_OF_PROCESSORS");
     }
 
@@ -58,7 +58,7 @@ public class InfoUtils {
      *
      * @return Java Name
      */
-    public static String JAVA_Name() {
+    public static String javaName() {
         return System.getProperty("java.vm.name");
     }
 
@@ -66,7 +66,7 @@ public class InfoUtils {
      *
      * @return Java Version
      */
-    public static String JAVA_Version() {
+    public static String javaVersion() {
         return System.getProperty("java.vm.version");
     }
 
@@ -74,7 +74,7 @@ public class InfoUtils {
      *
      * @return User Home Directory
      */
-    public static String USER_home() {
+    public static String userHome() {
         return System.getProperty("user.home");
     }
 }
