@@ -5,19 +5,23 @@ import org.jetbrains.annotations.NotNull;
 
 public final class VectorMath {
 
-    public static Vector3f add(Vector3f v1, Vector3f v2) {
+    @Contract("_, _ -> new")
+    public static @NotNull Vector3f add(@NotNull Vector3f v1, @NotNull Vector3f v2) {
         return (new Vector3f(v1.getX() + v2.getX(), v1.getY() + v2.getY(), v1.getZ() + v2.getZ()));
     }
 
-    public static Vector4f add(Vector4f v1, Vector4f v2) {
+    @Contract("_, _ -> new")
+    public static @NotNull Vector4f add(@NotNull Vector4f v1, @NotNull Vector4f v2) {
         return (new Vector4f(v1.getX() + v2.getX(), v1.getY() + v2.getY(), v1.getZ() + v2.getZ(), v1.getW() + v2.getW()));
     }
 
-    public static Vector3f add(Vector3f v1, float x, float y, float z) {
+    @Contract("_, _, _, _ -> new")
+    public static @NotNull Vector3f add(@NotNull Vector3f v1, float x, float y, float z) {
         return (new Vector3f(v1.getX() + x, v1.getY() + y, v1.getZ() + z));
     }
 
-    public static Vector4f add(Vector4f v1, float x, float y, float z, float w) {
+    @Contract("_, _, _, _, _ -> new")
+    public static @NotNull Vector4f add(@NotNull Vector4f v1, float x, float y, float z, float w) {
         return (new Vector4f(v1.getX() + x, v1.getY() + y, v1.getZ() + z, v1.getW() + w));
     }
 
