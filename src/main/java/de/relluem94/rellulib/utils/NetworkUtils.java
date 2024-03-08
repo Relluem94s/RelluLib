@@ -14,6 +14,8 @@ import java.net.URLConnection;
 
 import javax.imageio.ImageIO;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.json.JSONObject;
 
 import de.relluem94.rellulib.Image;
@@ -29,6 +31,7 @@ public class NetworkUtils {
      * @param http String with Hyperlink
      * @return URL Resource
      */
+    @NotNull
     private static URL getURL(String http) {
         try {
             return new URL(http);
@@ -59,7 +62,7 @@ public class NetworkUtils {
      * @param http String with Hyperlink
      * @return BufferedImage from Hyperlink
      */
-    public static BufferedImage downloadImage(String http) {
+    public static @Nullable BufferedImage downloadImage(String http) {
         URL url = getURL(http);
         if (exists(url)) {
             try {
@@ -99,7 +102,7 @@ public class NetworkUtils {
 
     /**
      *
-     * @param host
+     * @param host String
      * @param port to check
      * @param timeout in ms
      * @return boolean true if port is open
@@ -115,8 +118,8 @@ public class NetworkUtils {
 
     /**
      *
-     * @param host
-     * @return IP Address as an String
+     * @param host String
+     * @return IP Address as a String
      */
     public static String getIP(String host) {
         InetSocketAddress in = new InetSocketAddress(host, 0);
@@ -128,16 +131,16 @@ public class NetworkUtils {
         }
     }
 
-    public static JSONObject getJSON(String geturl){
+    public static JSONObject getJSON(String getUrl){
         StringBuilder jsonString = new StringBuilder();
         try {
-            URL url = new URL(geturl);
+            URL url = new URL(getUrl);
             URLConnection uc = url.openConnection();
             BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
             
             String inputLine;
             while ((inputLine = in.readLine()) != null){
-                jsonString.append(inputLine + " ");
+                jsonString.append(inputLine).append(" ");
             }
                 
             in.close();
@@ -145,7 +148,7 @@ public class NetworkUtils {
         } catch (IOException e) {
             LogUtils.error(e.getMessage());
         }
-        if(jsonString.length() == 0){
+        if(jsonString.isEmpty()){
             jsonString.append("{}");
         }
         return new JSONObject(jsonString.toString());

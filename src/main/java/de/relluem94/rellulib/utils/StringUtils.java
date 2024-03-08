@@ -1,5 +1,8 @@
 package de.relluem94.rellulib.utils;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -13,10 +16,11 @@ public class StringUtils {
 
     /**
      *
-     * @param object
+     * @param object Object
      * @return object as String
      */
-    public static String toString(Object object) {
+    @Contract(pure = true)
+    public static @NotNull String toString(Object object) {
         return "" + object;
     }
 
@@ -25,7 +29,7 @@ public class StringUtils {
      * @param input String Array
      * @return appends every String in one line
      */
-    public static String toString(String[] input) {
+    public static @NotNull String toString(String[] input) {
         return implode(0, input);
     }
 
@@ -35,13 +39,13 @@ public class StringUtils {
      * @param input String[] array of strings to implode
      * @return String with all words with offset of start
      */
-    public static String implode(int start, String[] input) {
+    public static @NotNull String implode(int start, String @NotNull [] input) {
         StringBuilder message = new StringBuilder();
         for (int i = start; input.length > i; i++) {
             if (input[i] == null) {
                 break;
             }
-            message.append(input[i] + " ");
+            message.append(input[i]).append(" ");
         }
         return message.toString();
     }
@@ -51,10 +55,10 @@ public class StringUtils {
      * @param input List Object
      * @return appends every Object in one line
      */
-    public static String toString(List<Object> input) {
+    public static @NotNull String toString(@NotNull List<Object> input) {
         StringBuilder output = new StringBuilder();
-        for (int i = 0; i < input.size(); i++) {
-            output.append(" " + input.get(i));
+        for (Object o : input) {
+            output.append(" ").append(o);
         }
         return output.toString();
     }
@@ -149,5 +153,4 @@ public class StringUtils {
         staticMap.put("[xD]", "\u16DD\u16A6");
         symbols = Collections.unmodifiableMap(staticMap);
     }
-
 }

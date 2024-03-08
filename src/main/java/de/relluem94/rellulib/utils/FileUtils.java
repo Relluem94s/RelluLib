@@ -21,6 +21,8 @@ import javax.imageio.ImageIO;
 
 import de.relluem94.rellulib.Image;
 import de.relluem94.rellulib.stores.DoubleStore;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class FileUtils {
 
@@ -68,14 +70,14 @@ public class FileUtils {
         writeText(file, content, "UTF-8");
     }
 
-    public static void writeText(File file, List<String> content, String encoding) throws IOException {
+    public static void writeText(@NotNull File file, List<String> content, String encoding) throws IOException {
         Path file2 = Paths.get(file.getPath());
         Files.write(file2, content, Charset.forName(encoding));
     }
 
-    public static void writeText(File file, String content, String encoding) throws IOException {
+    public static void writeText(@NotNull File file, @NotNull String content, String encoding) throws IOException {
         Path file2 = Paths.get(file.getPath());
-        Files.write(file2, content.getBytes(Charset.forName(encoding)), openOptions);
+        Files.writeString(file2, content, Charset.forName(encoding), openOptions);
     }
 
     public static void writeTextLine(String filepath, String content) {
@@ -87,17 +89,14 @@ public class FileUtils {
         }
     }
 
-    public static List<String> readText(String path, Charset encoding) throws IOException {
+    public static @NotNull List<String> readText(String path, Charset encoding) throws IOException {
         String output = readTextString(path, encoding);
-        List<String> out = new ArrayList<>();
-        out.addAll(Arrays.asList(output.split(System.lineSeparator())));
-        return out;
+        return new ArrayList<>(Arrays.asList(output.split(System.lineSeparator())));
     }
 
-    public static String readTextString(String path, Charset encoding) throws IOException {
+    public static @NotNull String readTextString(String path, Charset encoding) throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
-        String output = new String(encoded, encoding);
-        return output;
+        return new String(encoded, encoding);
     }
 
     public static void writeImage(BufferedImage input, String format, File output) throws IOException {
@@ -107,9 +106,9 @@ public class FileUtils {
     /**
      * BufferedOutputStream (Much Faster)
      *
-     * @param image
+     * @param image Image
      */
-    public static void writeImage(Image image) {
+    public static void writeImage(@NotNull Image image) {
         try (BufferedOutputStream imageOutputStream = new BufferedOutputStream(new FileOutputStream(image.getFile()))) {
             String name = image.getFile().getName();
             String format = name.substring(name.lastIndexOf("."), name.length()).replace(".", "").toUpperCase();
@@ -122,7 +121,7 @@ public class FileUtils {
         }
     }
 
-    public static BufferedImage readImage(File file) {
+    public static @Nullable BufferedImage readImage(File file) {
         try {
             return ImageIO.read(file);
         } catch (IOException e) {
@@ -131,7 +130,7 @@ public class FileUtils {
         }
     }
 
-    public static List<File> listFiles(String directoryName, String[] types) {
+    public static @NotNull List<File> listFiles(String directoryName, String[] types) {
         File directory = new File(directoryName);
 
         List<File> resultList = new ArrayList<>();
@@ -152,7 +151,7 @@ public class FileUtils {
         return resultList;
     }
 
-    public static List<File> listFiles(String directoryName, String type) {
+    public static @NotNull List<File> listFiles(String directoryName, String type) {
         File directory = new File(directoryName);
 
         List<File> resultList = new ArrayList<>();
@@ -172,7 +171,7 @@ public class FileUtils {
         return resultList;
     }
 
-    public static String getFileExtension(File file) {
+    public static @NotNull String getFileExtension(@NotNull File file) {
         String name = file.getName();
         int lastIndexOf = name.lastIndexOf(".");
         if (lastIndexOf == -1) {

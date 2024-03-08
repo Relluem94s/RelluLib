@@ -1,12 +1,15 @@
 package de.relluem94.rellulib;
 
+import java.io.Serial;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class FixedSizeList<T> extends ArrayList<T> {
 
     /**
      *
      */
+    @Serial
     private static final long serialVersionUID = 1L;
 
     public FixedSizeList(int capacity) {
@@ -18,9 +21,7 @@ public class FixedSizeList<T> extends ArrayList<T> {
 
     public FixedSizeList(T[] initialElements) {
         super(initialElements.length);
-        for (T loopElement : initialElements) {
-            super.add(loopElement);
-        }
+        super.addAll(Arrays.asList(initialElements));
     }
 
     @Override

@@ -8,8 +8,8 @@ public class MathUtils {
 
     /**
      *
-     * @param dividend
-     * @param divisor
+     * @param dividend int
+     * @param divisor int
      * @return remainder
      */
     public static Integer getRemainder(int dividend, int divisor) {
@@ -18,10 +18,10 @@ public class MathUtils {
 
     /**
      *
-     * @param a
-     * @param b
-     * @param eps
-     * @return
+     * @param a double
+     * @param b double
+     * @param eps double
+     * @return boolean
      */
     public static boolean almostEqual(double a, double b, double eps) {
         return Math.abs(a - b) < eps;
@@ -29,7 +29,7 @@ public class MathUtils {
 
     /**
      *
-     * @param number
+     * @param number int
      * @return boolean
      */
     public static boolean isOdd(int number) {
@@ -38,7 +38,7 @@ public class MathUtils {
 
     /**
      *
-     * @param number
+     * @param number int
      * @return boolean
      */
     public static boolean isEven(int number) {

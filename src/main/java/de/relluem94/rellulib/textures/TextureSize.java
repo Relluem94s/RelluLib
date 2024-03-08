@@ -113,51 +113,20 @@ public enum TextureSize {
     }
 
     public static TextureSize getTextureSize(int length) {
-        TextureSize s = TextureSize.NANO;
-        switch (length) {
-            case 2:
-                s = TextureSize.NANO;
-                break;
-            case 4:
-                s = TextureSize.MICRO;
-                break;
-            case 8:
-                s = TextureSize.ZENTI;
-                break;
-            case 16:
-                s = TextureSize.KILO;
-                break;
-            case 32:
-                s = TextureSize.SMALL;
-                break;
-            case 64:
-                s = TextureSize.NORMAL;
-                break;
-            case 128:
-                s = TextureSize.DOUBLE;
-                break;
-            case 256:
-                s = TextureSize.TRIPPLE;
-                break;
-            case 512:
-                s = TextureSize.QUADRUPLE;
-                break;
-            case 1024:
-                s = TextureSize.QUINTUPLE;
-                break;
-            case 2048:
-                s = TextureSize.SEXTUPLE;
-                break;
-            case 4096:
-                s = TextureSize.SEPTUPLE;
-                break;
-            case 8192:
-                s = TextureSize.OCTUPLE;
-                break;
-            default:
-                break;
-        }
-        return s;
+        return switch (length) {
+            case 4 -> TextureSize.MICRO;
+            case 8 -> TextureSize.ZENTI;
+            case 16 -> TextureSize.KILO;
+            case 32 -> TextureSize.SMALL;
+            case 64 -> TextureSize.NORMAL;
+            case 128 -> TextureSize.DOUBLE;
+            case 256 -> TextureSize.TRIPPLE;
+            case 512 -> TextureSize.QUADRUPLE;
+            case 1024 -> TextureSize.QUINTUPLE;
+            case 2048 -> TextureSize.SEXTUPLE;
+            case 4096 -> TextureSize.SEPTUPLE;
+            case 8192 -> TextureSize.OCTUPLE;
+            default -> TextureSize.NANO;
+        };
     }
-
 }

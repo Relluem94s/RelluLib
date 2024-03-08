@@ -17,6 +17,7 @@ public class Vector3f implements IVector {
     public Vector3f(Vector3f v) {
         this.x = v.x;
         this.y = v.y;
+        this.z = v.z;
     }
 
     public Vector3f() {

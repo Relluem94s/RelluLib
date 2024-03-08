@@ -111,10 +111,10 @@ public class Texture {
         BufferedImage image = new BufferedImage(resolution, resolution, BufferedImage.TYPE_INT_RGB);
         for (int x = 0; x < resolution; x++) {
             for (int y = 0; y < resolution; y++) {
-                int rot = random.nextInt(30) * (color.r - 0 * 1) + 0;
-                int gruen = random.nextInt(30) * (color.g - 0 * 1) + 0;
-                int blau = random.nextInt(30) * (color.b - 0 * 1) + 0;
-                image.setRGB(x, y, (rot << 16) | (gruen << 8) | blau);
+                int red = random.nextInt(30) * (color.r);
+                int green = random.nextInt(30) * (color.g);
+                int blue = random.nextInt(30) * (color.b);
+                image.setRGB(x, y, (red << 16) | (green << 8) | blue);
             }
         }
         return image;

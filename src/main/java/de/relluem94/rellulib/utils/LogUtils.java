@@ -198,7 +198,7 @@ public class LogUtils {
     /**
      * Sets Log Level for Info
      *
-     * @param enable
+     * @param enable boolean
      */
     public static void setInfo(boolean enable) {
         LogUtils.LOGUTILS_LEVEL_INFO = enable;
@@ -216,7 +216,7 @@ public class LogUtils {
     /**
      * Sets Log Level for Warning
      *
-     * @param enable
+     * @param enable boolean
      */
     public static void setWarning(boolean enable) {
         LogUtils.LOGUTILS_LEVEL_WARNING = enable;
@@ -234,7 +234,7 @@ public class LogUtils {
     /**
      * Sets Log Level for Error
      *
-     * @param enable
+     * @param enable boolean
      */
     public static void setError(boolean enable) {
         LogUtils.LOGUTILS_LEVEL_ERROR = enable;
@@ -252,7 +252,7 @@ public class LogUtils {
     /**
      * Sets Log Level for Other
      *
-     * @param enable
+     * @param enable boolean
      */
     public static void setOther(boolean enable) {
         LogUtils.LOGUTILS_LEVEL_OTHER = enable;

@@ -8,8 +8,6 @@ public class WindowSnapper extends ComponentAdapter {
 
     private boolean locked = false;
 
-    private int sd = 10;
-
     public void componentMoved(ComponentEvent evt) {
         if (locked) {
             return;
@@ -19,12 +17,13 @@ public class WindowSnapper extends ComponentAdapter {
         int nx = evt.getComponent().getX();
         int ny = evt.getComponent().getY();
         // top
-        if (ny < 0 + sd) {
+        int sd = 10;
+        if (ny < sd) {
             ny = 0;
             evt.getComponent().repaint();
         }
         // left
-        if (nx < 0 + sd) {
+        if (nx < sd) {
             nx = 0;
             evt.getComponent().repaint();
         }

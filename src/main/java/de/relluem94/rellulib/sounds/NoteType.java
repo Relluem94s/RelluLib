@@ -14,26 +14,15 @@ public enum NoteType {
     }
 
     public static int getType(NoteType s) {
-        int type = 0;
-        if (null != s) {
-            switch (s) {
-                case SINUS:
-                    type = 0;
-                    break;
-                case LINEAR:
-                    type = 1;
-                    break;
-                case SQUARE:
-                    type = 2;
-                    break;
-                case SAW:
-                    type = 3;
-                    break;
-                default:
-                    break;
-            }
+        if (null == s) {
+            return 0;
         }
 
-        return type;
+        return switch (s) {
+            case LINEAR -> 1;
+            case SQUARE -> 2;
+            case SAW -> 3;
+            default -> 0;
+        };
     }
 }
