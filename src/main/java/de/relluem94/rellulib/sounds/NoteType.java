@@ -7,10 +7,10 @@ public enum NoteType {
     SQUARE,
     SAW;
 
-    private static NoteType[] vals = values();
+    private static final NoteType[] values = values();
 
     public NoteType next() {
-        return vals[(this.ordinal() + 1) % vals.length];
+        return values[(this.ordinal() + 1) % values.length];
     }
 
     public static int getType(NoteType s) {

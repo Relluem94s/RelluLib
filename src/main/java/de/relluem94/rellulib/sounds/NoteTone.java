@@ -64,10 +64,10 @@ public enum NoteTone {
     A_SHARP_6,
     B_6;
 
-    private static NoteTone[] vals = values();
+    private static final NoteTone[] values = values();
 
     public NoteTone next() {
-        return vals[(this.ordinal() + 1) % vals.length];
+        return values[(this.ordinal() + 1) % values.length];
     }
 
     public static float getTone(NoteTone s) {
