@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.relluem94</groupId>
     <artifactId>rellulib</artifactId>
-    <version>0.12</version>
+    <version>0.13</version>
     <name>RelluLib</name>
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
@@ -55,7 +55,7 @@
         <dependency>
             <groupId>junit</groupId>  
             <artifactId>junit-dep</artifactId>
-            <version>4.11</version>
+            <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
