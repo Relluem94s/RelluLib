@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.json.JSONObject;
-import org.junit.Test;
 
 import de.relluem94.rellulib.FixedSizeList;
 import de.relluem94.rellulib.ID;
@@ -28,10 +27,52 @@ import de.relluem94.rellulib.utils.StringUtils;
 import de.relluem94.rellulib.utils.TypeUtils;
 import de.relluem94.rellulib.vector.Vector5f;
 import de.relluem94.rellulib.windows.SplashScreen;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UnitTests extends SplashScreen {
 
-    private static final EventExecutor ee = new EventExecutor();
+    private static  EventExecutor eventExecutor;
+
+    @BeforeAll
+    static void setUpExecutor() {
+        eventExecutor = new EventExecutor();
+    }
+
+    @AfterEach
+    void cleanUp() {
+        eventExecutor.cleanUp();
+    }
+
+    @Test
+    @DisplayName("Replace symbols in string")
+    void testReplaceSymbols() {
+        String input = "[PICKAXE]";
+        String expected = "⛏";
+        String result = StringUtils.replaceSymbols(input);
+        assertEquals(expected, result, "Symbols should be replaced correctly");
+    }
+
+    @Test
+    @DisplayName("Log various object types")
+    void testLogUtilsList() {
+        List<Object> list = new ArrayList<>();
+        list.add(123);
+        list.add("Hello");
+        list.add(new Vector5f(1.0f, 0.4f, 5.3f, 0.123456789f, 0.0f));
+        list.add(true);
+        list.add(Color3i.RELLU_ORANGE);
+        list.add(new TrippleStore("Das ist ein Test", 22, Color4f.GRAY));
+        list.add(123);
+
+        assertDoesNotThrow(() -> LogUtils.list(list), "Logging list should not throw an exception");
+    }
+
 
     @Test
     public void symbolsTest() {
@@ -87,47 +128,42 @@ public class UnitTests extends SplashScreen {
         
         List<TestEvent> events = Arrays.asList(new TestEvent(), new TestEvent(), new TestEvent(), new TestEvent(), new TestEvent());
 
-        events.forEach(e -> {
-            ee.registerEvent(e);
-        });
+        events.forEach(eventExecutor::registerEvent);
 
-        ee.removeEvent(events.get(3).getID()); // Event 3 Wird entfernt
-        ee.removeEvent(events.get(4)); // Event 5 wird entfernt
+        eventExecutor.removeEvent(events.get(3).getID()); // Event 3 Wird entfernt
+        eventExecutor.removeEvent(events.get(4)); // Event 5 wird entfernt
 
-        ee.registerEvent(events.get(4)); // Event 5 wird neu registriert und ist jetzt Event 3 da in Slot 3 wieder Platz ist
+        eventExecutor.registerEvent(events.get(4)); // Event 5 wird neu registriert und ist jetzt Event 3 da in Slot 3 wieder Platz ist
 
-        ee.executeEvents(); // Führt alle Registrierten Events aus
+        eventExecutor.executeEvents(); // Führt alle registrierten Events aus
 
         String m1;
         String m2;
 
-        if (ee.getEventsAmount() > 1) {
+        if (eventExecutor.getEventsAmount() > 1) {
             m1 = "n ";
             m2 = "s ";
         } else {
             m1 = " ";
             m2 = " ";
         }
-        LogUtils.test("Es wurde" + m1 + ee.getEventsAmount() + " Event" + m2 + "ausgeführt. Es sind noch " + ee.getEventsFreeAmount() + " von " + ee.getEventsSizeAmount() + " Slots frei.");
+        LogUtils.test("Es wurde" + m1 + eventExecutor.getEventsAmount() + " Event" + m2 + "ausgeführt. Es sind noch " + eventExecutor.getEventsFreeAmount() + " von " + eventExecutor.getEventsSizeAmount() + " Slots frei.");
         
     }
 
     @Test
     public void exit() {
         
-        Thread t = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    sleep(50);
-                    LogUtils.debug("Rellu", true);
-                    ee.cleanUp();
-                    System.exit(0);
-                } catch (InterruptedException e) {
-                    LogUtils.error(e.getMessage());
-                }
+        Thread t = new Thread(() -> {
+            try {
+                Thread.sleep(50);
+                LogUtils.debug("Rellu", true);
+                eventExecutor.cleanUp();
+                System.exit(0);
+            } catch (InterruptedException e) {
+                LogUtils.error(e.getMessage());
             }
-        };
+        });
         t.start();
         
     }

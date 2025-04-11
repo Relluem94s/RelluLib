@@ -6,10 +6,10 @@ import de.relluem94.rellulib.utils.LogUtils;
 
 public class TestEvent extends Event {
 
-    private Random r = new Random();
+    private final Random random = new Random();
 
     @Override
     public void update() {
-        LogUtils.test("Test Event with ID: " + getID().getID() + " Executed and generated following Integer: " + r.nextInt(345678));
+        LogUtils.test("Test Event with ID: " + getID().getID() + " Executed and generated following Integer: " + random.nextInt(345678));
     }
 }
