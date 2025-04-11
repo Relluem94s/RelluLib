@@ -4,9 +4,11 @@ import de.relluem94.rellulib.FixedSizeList;
 import de.relluem94.rellulib.ID;
 import de.relluem94.rellulib.exceptions.EventException;
 
+import java.util.Collections;
+
 public class EventExecutor {
 
-    private FixedSizeList<IEvent> events;
+    private final FixedSizeList<IEvent> events;
 
     public EventExecutor() {
         events = new FixedSizeList<>(100);
@@ -16,21 +18,18 @@ public class EventExecutor {
         events = new FixedSizeList<>(eventAmount);
     }
 
-    public boolean registerEvent(IEvent e) {
+    public void registerEvent(IEvent e) {
         for (int i = 0; i < events.size(); i++) {
             if (events.get(i) == null) {
                 events.set(i, e);
                 events.get(i).setID(i);
-                return false;
+                return;
             }
         }
-        return false;
     }
 
     public void cleanUp() {
-        for (int i = 0; i < events.size(); i++) {
-            events.set(i, null);
-        }
+        Collections.fill(events, null);
     }
 
     /**
@@ -40,9 +39,9 @@ public class EventExecutor {
      */
     public void executeEvents() {
         IEvent e;
-        for (int i = 0; i < events.size(); i++) {
-            if (events.get(i) != null) {
-                e = events.get(i);
+        for (IEvent event : events) {
+            if (event != null) {
+                e = event;
                 if (!e.isCanceled()) {
                     e.update();
                 }
@@ -80,8 +79,8 @@ public class EventExecutor {
      */
     public int getEventsAmount() {
         int a = 0;
-        for (int i = 0; i < events.size(); i++) {
-            if (events.get(i) != null) {
+        for (IEvent event : events) {
+            if (event != null) {
                 a++;
             }
         }

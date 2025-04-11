@@ -4,11 +4,13 @@ import de.relluem94.rellulib.ID;
 
 public interface IEvent {
 
-    public void update();
+    void update();
 
-    public ID getID();
+    ID getID();
 
-    public void setID(int id);
+    void setID(int id);
 
-    public boolean isCanceled();
+    boolean isCanceled();
+
+    void setCanceled(boolean setCanceled);
 }

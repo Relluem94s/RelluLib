@@ -5,7 +5,7 @@ import de.relluem94.rellulib.ID;
 public abstract class Event implements IEvent {
 
     private boolean isCanceled = false;
-    private ID id = new ID();
+    private final ID id = new ID();
 
     @Override
     public boolean isCanceled() {
@@ -22,6 +22,7 @@ public abstract class Event implements IEvent {
         this.id.setID(id);
     }
 
+    @Override
     public void setCanceled(boolean setCanceled) {
         this.isCanceled = setCanceled;
     }
