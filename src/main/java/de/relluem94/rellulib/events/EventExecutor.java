@@ -3,10 +3,11 @@ package de.relluem94.rellulib.events;
 import de.relluem94.rellulib.FixedSizeList;
 import de.relluem94.rellulib.ID;
 import de.relluem94.rellulib.exceptions.EventException;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 
-public class EventExecutor {
+public class EventExecutor implements IEventExecutor {
 
     private final FixedSizeList<IEvent> events;
 
@@ -37,27 +38,30 @@ public class EventExecutor {
      *
      *
      */
-    public void executeEvents() {
+    public int executeEvents() {
+        int executed = 0;
         IEvent e;
         for (IEvent event : events) {
             if (event != null) {
                 e = event;
                 if (!e.isCanceled()) {
                     e.update();
+                    executed++;
                 }
             }
         }
+        return executed;
     }
 
-    public void removeEvent(ID id) {
+    public void removeEvent(@NotNull ID id) {
         events.set(id.getID(), null);
     }
 
-    public void removeEvent(IEvent e) {
+    public void removeEvent(@NotNull IEvent e) {
         events.set(e.getID().getID(), null);
     }
 
-    public IEvent getEvent(ID id) throws EventException {
+    public IEvent getEvent(@NotNull ID id) throws EventException {
         if (events.get(id.getID()) != null) {
             return events.get(id.getID());
         } else {
@@ -65,7 +69,7 @@ public class EventExecutor {
         }
     }
 
-    public IEvent getEvent(IEvent e) throws EventException {
+    public IEvent getEvent(@NotNull IEvent e) throws EventException {
         if (events.get(e.getID().getID()) != null) {
             return events.get(e.getID().getID());
         } else {

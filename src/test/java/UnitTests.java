@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import de.relluem94.rellulib.exceptions.EventException;
 import org.json.JSONObject;
 
 import de.relluem94.rellulib.FixedSizeList;
@@ -27,10 +28,7 @@ import de.relluem94.rellulib.utils.StringUtils;
 import de.relluem94.rellulib.utils.TypeUtils;
 import de.relluem94.rellulib.vector.Vector5f;
 import de.relluem94.rellulib.windows.SplashScreen;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -268,5 +266,46 @@ public class UnitTests extends SplashScreen {
         LogUtils.info("Int2Hex " + TypeUtils.convertInt2Hex(243));
         LogUtils.info("Hex2Int " + TypeUtils.convertHex2Int(0xF3));
         
+    }
+
+    @Test
+    void testEventExecutorSize(){
+        int eventSize = 50;
+        EventExecutor lEventExecutor = new EventExecutor(eventSize);
+        Assertions.assertEquals(eventSize, lEventExecutor.getEventsSizeAmount());
+    }
+
+    @Test
+    void testEventExecutorEventCanceled() throws EventException {
+        TestEvent testEvent = new TestEvent();
+        eventExecutor.registerEvent(testEvent);
+
+        int preExecute = eventExecutor.getEventsAmount();
+
+        testEvent.setCanceled(true);
+        int executed = eventExecutor.executeEvents();
+
+        int postExecute = eventExecutor.getEventsAmount();
+
+        Assertions.assertNotEquals(preExecute, executed);
+        Assertions.assertNotEquals(postExecute, executed);
+        Assertions.assertEquals(preExecute, postExecute);
+        Assertions.assertEquals(1, preExecute);
+        Assertions.assertEquals(1, postExecute);
+
+        Assertions.assertTrue(testEvent.isCanceled());
+
+        ID idOfEvent = testEvent.getID();
+
+        Assertions.assertNotNull(idOfEvent);
+        eventExecutor.getEvent(idOfEvent).setCanceled(false);
+
+        Assertions.assertFalse(eventExecutor.getEvent(testEvent).isCanceled());
+
+        executed = eventExecutor.executeEvents();
+        Assertions.assertEquals(executed, preExecute);
+
+
+
     }
 }
