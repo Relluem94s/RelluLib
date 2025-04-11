@@ -2,66 +2,40 @@ package de.relluem94.rellulib.stores;
 
 import java.util.Objects;
 
-public class TrippleStore implements IStore {
+public class TrippleStore extends DoubleStore implements ITrippleStore {
 
-    private Object value;
-    private Object svalue;
-    private Object tvalue;
+    private Object thirdValue;
 
-    public TrippleStore(Object value, Object secondvalue, Object thirdvalue) {
+    public TrippleStore(Object value, Object secondValue, Object thirdValue) {
+        super(value, secondValue);
         if (value == null) {
             return;
         }
 
-        this.value = value;
-
-        if (secondvalue == null) {
+        if (thirdValue == null) {
             return;
         }
 
-        this.svalue = secondvalue;
-
-        if (thirdvalue == null) {
-            return;
-        }
-
-        this.tvalue = thirdvalue;
+        this.thirdValue = thirdValue;
     }
 
-    @Override
-    public Object getValue() {
-        return this.value;
-    }
-
-    @Override
-    public void setValue(Object value) {
-        this.value = value;
-    }
-
-    public void setSecondValue(Object value) {
-        this.svalue = value;
-    }
-
-    public Object getSecondValue() {
-        return this.svalue;
-    }
 
     public void setThirdValue(Object value) {
-        this.tvalue = value;
+        this.thirdValue = value;
     }
 
     public Object getThirdValue() {
-        return this.tvalue;
+        return this.thirdValue;
     }
 
     @Override
     public String toString() {
-        return "First Value: " + this.value + "\nSecond Value: " + this.svalue + "\nThird Value: " + this.tvalue;
+        return "First Value: " + getValue() + "\nSecond Value: " + getSecondValue() + "\nThird Value: " + this.thirdValue;
     }
     
     @Override
     public int hashCode(){
-        return 94 * value.hashCode() * svalue.hashCode() * tvalue.hashCode();
+        return 94 * getValue().hashCode() * getSecondValue().hashCode() * thirdValue.hashCode();
     }
 
     @Override
@@ -76,12 +50,12 @@ public class TrippleStore implements IStore {
             return false;
         }
         final TrippleStore other = (TrippleStore) obj;
-        if (!Objects.equals(this.value, other.value)) {
+        if (!Objects.equals(this.getValue(), other.getValue())) {
             return false;
         }
-        if (!Objects.equals(this.svalue, other.svalue)) {
+        if (!Objects.equals(this.getSecondValue(), other.getSecondValue())) {
             return false;
         }
-        return Objects.equals(this.tvalue, other.tvalue);
+        return Objects.equals(this.getThirdValue(), other.getThirdValue());
     }
 }

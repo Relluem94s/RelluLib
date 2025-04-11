@@ -46,6 +46,6 @@ public class Store implements IStore {
             return false;
         }
         final Store other = (Store) obj;
-        return Objects.equals(this.value, other.value);
+        return Objects.equals(this.getValue(), other.getValue());
     }
 }

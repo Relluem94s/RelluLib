@@ -22,9 +22,6 @@ public enum NoteLength {
 
         if (null != s) {
             switch (s) {
-                case NONE:
-                    length = 0;
-                    break;
                 case QUARTER:
                     length = 286;
                     break;
