@@ -51,7 +51,7 @@ public class Texture {
         return image;
     }
 
-    //TODO Nicht akurat.. fixxen.. 
+    //TODO Nicht akkurat.. fixen..
     public static BufferedImage generateChessImage(Color3i color1, Color3i color2, TextureSize size) {
         int resolution = TextureSize.getSize(size);
         BufferedImage image = new BufferedImage(resolution, resolution, BufferedImage.TYPE_INT_RGB);
