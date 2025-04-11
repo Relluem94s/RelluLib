@@ -114,7 +114,12 @@ public class UnitTests extends SplashScreen {
         stores.set(8, new DoubleStore("Test", new DoubleStore("Test2", new DoubleStore("Test3", num))));
         try {
             FileUtils.writeDoubleStoreTextFile(new File(InfoUtils.userHome() + "/RelluLib.txt"), stores);
-            LogUtils.test(Json.toJson(FileUtils.readDoubleStoreTextFile(new File(InfoUtils.userHome() + "/RelluLib.txt").getAbsolutePath(), Charset.defaultCharset())));
+            Json json = new Json(FileUtils.readDoubleStoreTextFile(new File(InfoUtils.userHome() + "/RelluLib.txt").getAbsolutePath(), Charset.defaultCharset()));
+            String jsonString = Json.toJson(FileUtils.readDoubleStoreTextFile(new File(InfoUtils.userHome() + "/RelluLib.txt").getAbsolutePath(), Charset.defaultCharset()));
+
+            Assertions.assertEquals(json.getJson(), jsonString);
+
+            LogUtils.test(jsonString);
         } catch (IOException e) {
             LogUtils.error(e.getMessage());
         }

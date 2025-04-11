@@ -7,7 +7,7 @@ import de.relluem94.rellulib.utils.TypeUtils;
 
 public class Json {
 
-    private String json;
+    private final String json;
 
     public Json(List<DoubleStore> json) {
         this.json = convert(json);
@@ -26,7 +26,7 @@ public class Json {
         int i = 0;
         for (DoubleStore ds : json) {
             i++;
-            out.append(searcharray(ds));
+            out.append(searchArray(ds));
             if (ds != null && json.size() != i) {
                 out.append(",");
             }
@@ -39,16 +39,16 @@ public class Json {
 
     private static int dragon_helper = 0;
 
-    private static String searcharray(DoubleStore ds) {
+    private static String searchArray(DoubleStore ds) {
         StringBuilder out = new StringBuilder();
         if (ds != null) {
 
             if (ds.getSecondValue() instanceof DoubleStore) {
                 dragon_helper++;
                 if (dragon_helper == 1) {
-                    out.append("\"").append(ds.getValue()).append(searcharray((DoubleStore) ds.getSecondValue()));
+                    out.append("\"").append(ds.getValue()).append(searchArray((DoubleStore) ds.getSecondValue()));
                 } else {
-                    out.append(" => ").append(ds.getValue()).append(searcharray((DoubleStore) ds.getSecondValue()));
+                    out.append(" => ").append(ds.getValue()).append(searchArray((DoubleStore) ds.getSecondValue()));
                 }
 
             } else {
@@ -66,9 +66,8 @@ public class Json {
                         || TypeUtils.isFloat("" + ds.getSecondValue())
                         || ds.getSecondValue() instanceof Boolean) {
                     out.append(ds.getSecondValue());
-                } else if (ds.getSecondValue() instanceof Integer[]) {
+                } else if (ds.getSecondValue() instanceof Integer[] in) {
                     out.append("[");
-                    Integer[] in = (Integer[]) ds.getSecondValue();
                     int b = 0;
                     for (int a : in) {
                         b++;
@@ -78,9 +77,8 @@ public class Json {
                         }
                     }
                     out.append("]");
-                } else if (ds.getSecondValue() instanceof int[]) {
+                } else if (ds.getSecondValue() instanceof int[] in) {
                     out.append("[");
-                    int[] in = (int[]) ds.getSecondValue();
                     int b = 0;
                     for (int a : in) {
                         b++;
@@ -90,9 +88,8 @@ public class Json {
                         }
                     }
                     out.append("]");
-                } else if (ds.getSecondValue() instanceof Float[]) {
+                } else if (ds.getSecondValue() instanceof Float[] fl) {
                     out.append("[");
-                    Float[] fl = (Float[]) ds.getSecondValue();
                     int b = 0;
                     for (float a : fl) {
                         b++;
@@ -102,9 +99,8 @@ public class Json {
                         }
                     }
                     out.append("]");
-                } else if (ds.getSecondValue() instanceof String[]) {
+                } else if (ds.getSecondValue() instanceof String[] st) {
                     out.append("[");
-                    String[] st = (String[]) ds.getSecondValue();
                     int b = 0;
                     for (String a : st) {
                         b++;
