@@ -1,6 +1,7 @@
 package de.relluem94.rellulib.color;
 
-public class Color3f {
+@SuppressWarnings("unused")
+public class Color3f implements ColorF<Color3f> {
 
     public static final Color3f BLACK = new Color3f(0.0F, 0.0F, 0.0F);
     public static final Color3f WHITE = new Color3f(1.0F, 1.0F, 1.0F);
@@ -31,19 +32,20 @@ public class Color3f {
         return this;
     }
 
-    public float[] toFloatArray() {
-        float[] array = new float[3];
-        array[0] = r;
-        array[1] = g;
-        array[2] = b;
-        return array;
-    }
-
     public String toString() {
         return "r" + r + ", g" + g + ", b" + b;
     }
 
     public String toIntString() {
-        return "" + r + "," + g + "," + b;
+        return r + "," + g + "," + b;
+    }
+
+    @Override
+    public float[] toArray() {
+        float[] array = new float[3];
+        array[0] = r;
+        array[1] = g;
+        array[2] = b;
+        return array;
     }
 }

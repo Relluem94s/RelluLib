@@ -4,12 +4,12 @@
   <groupId>de.relluem94</groupId>
   <artifactId>rellulib</artifactId>
   <name>RelluLib</name>
-  <version>0.12</version>
-  <url>https://github.com/Relluem94/RelluLib</url>
+  <version>0.16</version>
+  <url>https://github.com/Relluem94s/RelluLib</url>
   <scm>
-    <connection>scm:git:git@github.com:Relluem94/RelluLib.git</connection>
-    <developerConnection>scm:git:git@github.com:Relluem94/RelluLib.git</developerConnection>
-    <url>https://github.com/Relluem94/RelluLib</url>
+    <connection>scm:git:git@github.com:Relluem94s/RelluLib.git</connection>
+    <developerConnection>scm:git:git@github.com:Relluem94s/RelluLib.git</developerConnection>
+    <url>https://github.com/Relluem94s/RelluLib</url>
   </scm>
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
@@ -58,13 +58,6 @@
           <id>central</id>
           <url>https://repo1.maven.org/maven2</url>
         </repository>
-        <repository>
-          <releases />
-          <snapshots />
-          <id>github</id>
-          <name>RelluEssentials</name>
-          <url>https://maven.pkg.github.com/Relluem94s/RelluLib</url>
-        </repository>
       </repositories>
     </profile>
   </profiles>
@@ -82,16 +75,22 @@
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
-      <artifactId>junit-dep</artifactId>
-      <version>4.11</version>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
       <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>hamcrest-core</artifactId>
+          <groupId>org.hamcrest</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
   <distributionManagement>
     <repository>
       <id>github</id>
       <name>GitHub Relluem94 Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/Relluem94/RelluLib</url>
+      <url>https://maven.pkg.github.com/Relluem94s/RelluLib</url>
     </repository>
   </distributionManagement>
   <properties>

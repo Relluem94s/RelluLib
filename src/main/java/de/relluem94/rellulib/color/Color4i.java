@@ -1,6 +1,7 @@
 package de.relluem94.rellulib.color;
 
-public class Color4i {
+@SuppressWarnings("unused")
+public class Color4i implements ColorI<Color4i>{
 
     public static final Color4i BLACK = new Color4i(0, 0, 0, 0);
     public static final Color4i WHITE = new Color4i(255, 255, 255, 0);
@@ -32,15 +33,28 @@ public class Color4i {
     public int b;
     public int a;
 
+    @Override
     public Color4i getColor() {
         return this;
     }
 
+    @Override
+    public int[] toArray() {
+        int[] array = new int[4];
+        array[0] = r;
+        array[1] = g;
+        array[2] = b;
+        array[3] = a;
+        return array;
+    }
+
+    @Override
     public String toString() {
         return "r" + r + " g" + g + " b" + b + " a" + a;
     }
 
+    @Override
     public String toIntString() {
-        return "" + r + "," + g + "," + b + "," + a;
+        return r + "," + g + "," + b + "," + a;
     }
 }

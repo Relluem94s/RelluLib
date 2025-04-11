@@ -1,6 +1,7 @@
 package de.relluem94.rellulib.color;
 
-public class Color4f {
+@SuppressWarnings("unused")
+public class Color4f implements ColorF<Color4f> {
 
     public static final Color4f BLACK = new Color4f(0.0F, 0.0F, 0.0F, 1.0F);
     public static final Color4f WHITE = new Color4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -21,15 +22,28 @@ public class Color4f {
     public float b;
     public float a;
 
+    @Override
     public Color4f getColor() {
         return this;
     }
 
+    @Override
     public String toString() {
         return "r" + r + " g" + g + " b" + b + " a" + a;
     }
 
+    @Override
     public String toIntString() {
-        return "" + r + "," + g + "," + b + "," + a;
+        return r + "," + g + "," + b + "," + a;
+    }
+
+    @Override
+    public float[] toArray() {
+        float[] array = new float[4];
+        array[0] = r;
+        array[1] = g;
+        array[2] = b;
+        array[3] = a;
+        return array;
     }
 }
