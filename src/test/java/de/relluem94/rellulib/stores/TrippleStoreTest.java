@@ -5,21 +5,29 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class TrippleStoreTest {
-    TrippleStore trippleStore;
+    TrippleStore<String, Integer, Boolean> trippleStore;
+    TrippleStore<?, ?, ?> trippleStoreRandom;
 
     @BeforeEach
     void setUp(){
-        trippleStore = new TrippleStore("Test", 1994, true);
+        trippleStore = new TrippleStore<>("Test", 1994, true);
+        trippleStoreRandom = new TrippleStore<>("Test", 1994, true);
     }
 
     @Test
     void setThirdValue() {
         Assertions.assertInstanceOf(Boolean.class, trippleStore.getThirdValue());
-        Assertions.assertTrue((Boolean) trippleStore.getThirdValue());
+        Assertions.assertTrue(trippleStore.getThirdValue());
 
         trippleStore.setThirdValue(false);
 
         Assertions.assertInstanceOf(Boolean.class, trippleStore.getThirdValue());
-        Assertions.assertFalse((Boolean) trippleStore.getThirdValue());
+        Assertions.assertFalse(trippleStore.getThirdValue());
+    }
+
+    @Test
+    void getThirdValueRandom() {
+        Assertions.assertInstanceOf(Boolean.class, trippleStoreRandom.getThirdValue());
+        Assertions.assertTrue((Boolean) trippleStoreRandom.getThirdValue());
     }
 }

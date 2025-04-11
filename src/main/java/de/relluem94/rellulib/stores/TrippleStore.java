@@ -2,11 +2,11 @@ package de.relluem94.rellulib.stores;
 
 import java.util.Objects;
 
-public class TrippleStore extends DoubleStore implements ITrippleStore {
+public class TrippleStore<T, T2, T3> extends DoubleStore<T, T2> implements ITrippleStore<T, T2, T3> {
 
-    private Object thirdValue;
+    private T3 thirdValue;
 
-    public TrippleStore(Object value, Object secondValue, Object thirdValue) {
+    public TrippleStore(T value, T2 secondValue, T3 thirdValue) {
         super(value, secondValue);
         if (value == null) {
             return;
@@ -19,12 +19,11 @@ public class TrippleStore extends DoubleStore implements ITrippleStore {
         this.thirdValue = thirdValue;
     }
 
-
-    public void setThirdValue(Object value) {
-        this.thirdValue = value;
+    public void setThirdValue(T3 thirdValue) {
+        this.thirdValue = thirdValue;
     }
 
-    public Object getThirdValue() {
+    public T3 getThirdValue() {
         return this.thirdValue;
     }
 
@@ -49,7 +48,7 @@ public class TrippleStore extends DoubleStore implements ITrippleStore {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final TrippleStore other = (TrippleStore) obj;
+        final TrippleStore<?,?,?> other = (TrippleStore<?,?,?>) obj;
         if (!Objects.equals(this.getValue(), other.getValue())) {
             return false;
         }

@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 
 class DoubleStoreTest {
 
-    DoubleStore doubleStore;
+    DoubleStore<String, Integer> doubleStore;
 
     @BeforeEach
     void setUp(){
-        doubleStore = new DoubleStore("Test", 1994);
+        doubleStore = new DoubleStore<>("Test", 1994);
     }
 
     @Test
@@ -25,9 +25,8 @@ class DoubleStoreTest {
     @Test
     void setSecondValue() {
         Assertions.assertEquals(1994, doubleStore.getSecondValue());
-        doubleStore.setSecondValue("relluLib");
+        doubleStore.setSecondValue(1998);
         Assertions.assertNotEquals(1994, doubleStore.getSecondValue());
-        Assertions.assertNotEquals("noTest", doubleStore.getSecondValue());
-        Assertions.assertEquals("relluLib", doubleStore.getSecondValue());
+        Assertions.assertEquals(1998, doubleStore.getSecondValue());
     }
 }

@@ -9,7 +9,7 @@ public class Json {
 
     private final String json;
 
-    public Json(List<DoubleStore> json) {
+    public Json(List<DoubleStore<?,?>> json) {
         this.json = convert(json);
     }
 
@@ -17,14 +17,14 @@ public class Json {
         return json;
     }
 
-    public static String toJson(List<DoubleStore> json) {
+    public static String toJson(List<DoubleStore<?,?>> json) {
         return convert(json);
     }
 
-    private static String convert(List<DoubleStore> json) {
+    private static String convert(List<DoubleStore<?,?>> json) {
         StringBuilder out = new StringBuilder("[{");
         int i = 0;
-        for (DoubleStore ds : json) {
+        for (DoubleStore<?,?> ds : json) {
             i++;
             out.append(searchArray(ds));
             if (ds != null && json.size() != i) {
@@ -39,16 +39,16 @@ public class Json {
 
     private static int dragon_helper = 0;
 
-    private static String searchArray(DoubleStore ds) {
+    private static String searchArray(DoubleStore<?,?> ds) {
         StringBuilder out = new StringBuilder();
         if (ds != null) {
 
             if (ds.getSecondValue() instanceof DoubleStore) {
                 dragon_helper++;
                 if (dragon_helper == 1) {
-                    out.append("\"").append(ds.getValue()).append(searchArray((DoubleStore) ds.getSecondValue()));
+                    out.append("\"").append(ds.getValue()).append(searchArray((DoubleStore<?,?>) ds.getSecondValue()));
                 } else {
-                    out.append(" => ").append(ds.getValue()).append(searchArray((DoubleStore) ds.getSecondValue()));
+                    out.append(" => ").append(ds.getValue()).append(searchArray((DoubleStore<?,?>) ds.getSecondValue()));
                 }
 
             } else {

@@ -23,43 +23,43 @@ import de.relluem94.rellulib.Image;
 import de.relluem94.rellulib.stores.DoubleStore;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+@SuppressWarnings("unused")
 public class FileUtils {
 
     private FileUtils() {
         throw new IllegalStateException("Utility class");
     }
 
-    private static final OpenOption openOptions[] = {StandardOpenOption.WRITE, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING};
+    private static final OpenOption[] openOptions = {StandardOpenOption.WRITE, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING};
 
-    public static void writeDoubleStoreTextFile(File file, List<DoubleStore> content) throws IOException {
+    public static void writeDoubleStoreTextFile(File file, List<DoubleStore<?,?>> content) throws IOException {
         List<String> str = new ArrayList<>();
 
-        for (int i = 0; i < content.size(); i++) {
-            if (content.get(i).getSecondValue() == null) {
-                str.add(content.get(i).getValue().toString().replace("\n", "").replace("\r", ""));
+        for (DoubleStore<?, ?> doubleStore : content) {
+            if (doubleStore.getSecondValue() == null) {
+                str.add(doubleStore.getValue().toString().replace("\n", "").replace("\r", ""));
             } else {
-                str.add(content.get(i).getValue().toString().replace("\n", "").replace("\r", "") + " = " + content.get(i).getSecondValue().toString().replace("\n", "").replace("\r", ""));
+                str.add(doubleStore.getValue().toString().replace("\n", "").replace("\r", "") + " = " + doubleStore.getSecondValue().toString().replace("\n", "").replace("\r", ""));
             }
         }
 
         writeText(file, str);
     }
 
-    public static List<DoubleStore> readDoubleStoreTextFile(String path, Charset encoding) throws IOException {
+    public static List<DoubleStore<?,?>> readDoubleStoreTextFile(String path, Charset encoding) throws IOException {
 
         List<String> content = readText(path, encoding);
 
-        List<DoubleStore> out = new ArrayList<>();
+        List<DoubleStore<?,?>> out = new ArrayList<>();
 
         String[] temp;
 
-        for (int i = 0; i < content.size(); i++) {
-            temp = content.get(i).split(" = ");
+        for (String s : content) {
+            temp = s.split(" = ");
             if (temp.length == 2) {
-                out.add(new DoubleStore(temp[0].replace("\n", "").replace("\r", ""), temp[1].replace("\n", "").replace("\r", "")));
+                out.add(new DoubleStore<>(temp[0].replace("\n", "").replace("\r", ""), temp[1].replace("\n", "").replace("\r", "")));
             } else {
-                out.add(new DoubleStore(temp[0].replace("\n", "").replace("\r", ""), null));
+                out.add(new DoubleStore<>(temp[0].replace("\n", "").replace("\r", ""), null));
             }
         }
 
@@ -111,7 +111,7 @@ public class FileUtils {
     public static void writeImage(@NotNull Image image) {
         try (BufferedOutputStream imageOutputStream = new BufferedOutputStream(new FileOutputStream(image.getFile()))) {
             String name = image.getFile().getName();
-            String format = name.substring(name.lastIndexOf("."), name.length()).replace(".", "").toUpperCase();
+            String format = name.substring(name.lastIndexOf(".")).replace(".", "").toUpperCase();
 
             ImageIO.write(image.getImage(), format, imageOutputStream);
 
@@ -137,6 +137,10 @@ public class FileUtils {
 
         File[] fList = directory.listFiles();
 
+        if(fList == null){
+            return  resultList;
+        }
+
         for (File file : fList) {
             if (file.isFile()) {
                 for (String typ : types) {
@@ -158,8 +162,11 @@ public class FileUtils {
 
         File[] fList = directory.listFiles();
 
-        for (File file : fList) {
+        if(fList == null){
+            return  resultList;
+        }
 
+        for (File file : fList) {
             if (file.isFile()) {
                 if (getFileExtension(file).equals(type)) {
                     resultList.add(file);
@@ -179,5 +186,4 @@ public class FileUtils {
         }
         return name.substring(lastIndexOf).replace(".", "");
     }
-
 }

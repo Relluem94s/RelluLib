@@ -66,7 +66,7 @@ public class UnitTests extends SplashScreen {
         list.add(new Vector5f(1.0f, 0.4f, 5.3f, 0.123456789f, 0.0f));
         list.add(true);
         list.add(Color3i.RELLU_ORANGE);
-        list.add(new TrippleStore("Das ist ein Test", 22, Color4f.GRAY));
+        list.add(new TrippleStore<>("Das ist ein Test", 22, Color4f.GRAY));
         list.add(123);
 
         assertDoesNotThrow(() -> LogUtils.list(list), "Logging list should not throw an exception");
@@ -89,29 +89,28 @@ public class UnitTests extends SplashScreen {
         list.add(new Vector5f(1.0f, 0.4f, 5.3f, 0.123456789f, 0.0f));
         list.add(true);
         list.add(Color3i.RELLU_ORANGE);
-        list.add(new TrippleStore("Das ist ein Test", 22, Color4f.GRAY));
+        list.add(new TrippleStore<>("Das ist ein Test", 22, Color4f.GRAY));
         list.add(123);
 
         LogUtils.list(list);
-        
     }
 
     @Test
     public void jsonTest() {
         
-        FixedSizeList<DoubleStore> stores = new FixedSizeList<>(9);
-        stores.set(0, new DoubleStore("Firstname", "Elon"));
-        stores.set(1, new DoubleStore("Lastname", "Musk"));
-        stores.set(2, new DoubleStore("Age", 42));
-        stores.set(3, new DoubleStore("Married", false));
-        stores.set(4, new DoubleStore("Size", 69.420F));
+        FixedSizeList<DoubleStore<?,?>> stores = new FixedSizeList<>(9);
+        stores.set(0, new DoubleStore<>("Firstname", "Elon"));
+        stores.set(1, new DoubleStore<>("Lastname", "Musk"));
+        stores.set(2, new DoubleStore<>("Age", 42));
+        stores.set(3, new DoubleStore<>("Married", false));
+        stores.set(4, new DoubleStore<>("Size", 69.420F));
         String[] lang = {"Deutsch", "Englisch", "Java", "PHP", "MySQL"};
         Integer[] num = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         int[] num2 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-        stores.set(5, new DoubleStore("Languages", lang));
-        stores.set(6, new DoubleStore("Numbers", num));
-        stores.set(7, new DoubleStore("Numbers2", num2));
-        stores.set(8, new DoubleStore("Test", new DoubleStore("Test2", new DoubleStore("Test3", num))));
+        stores.set(5, new DoubleStore<>("Languages", lang));
+        stores.set(6, new DoubleStore<>("Numbers", num));
+        stores.set(7, new DoubleStore<>("Numbers2", num2));
+        stores.set(8, new DoubleStore<>("Test", new DoubleStore<>("Test2", new DoubleStore<>("Test3", num))));
         try {
             FileUtils.writeDoubleStoreTextFile(new File(InfoUtils.userHome() + "/RelluLib.txt"), stores);
             Json json = new Json(FileUtils.readDoubleStoreTextFile(new File(InfoUtils.userHome() + "/RelluLib.txt").getAbsolutePath(), Charset.defaultCharset()));

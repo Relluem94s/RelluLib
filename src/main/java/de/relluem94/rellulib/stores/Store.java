@@ -2,11 +2,11 @@ package de.relluem94.rellulib.stores;
 
 import java.util.Objects;
 
-public class Store implements IStore {
+public class Store<T> implements IStore<T> {
 
-    private Object value;
+    private T value;
 
-    public Store(Object value) {
+    public Store(T value) {
         if (value == null) {
             return;
         }
@@ -15,12 +15,12 @@ public class Store implements IStore {
     }
 
     @Override
-    public Object getValue() {
+    public T getValue() {
         return this.value;
     }
 
     @Override
-    public void setValue(Object value) {
+    public void setValue(T value) {
         this.value = value;
     }
 
@@ -45,7 +45,7 @@ public class Store implements IStore {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Store other = (Store) obj;
+        final Store<?> other = (Store<?>) obj;
         return Objects.equals(this.getValue(), other.getValue());
     }
 }

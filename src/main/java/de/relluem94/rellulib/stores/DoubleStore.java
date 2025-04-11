@@ -2,11 +2,11 @@ package de.relluem94.rellulib.stores;
 
 import java.util.Objects;
 
-public class DoubleStore extends Store implements IDoubleStore {
+public class DoubleStore<T, T2> extends Store<T> implements IDoubleStore<T, T2> {
 
-    private Object secondValue;
+    private T2 secondValue;
 
-    public DoubleStore(Object value, Object secondValue) {
+    public DoubleStore(T value, T2 secondValue) {
         super(value);
 
         if (secondValue == null) {
@@ -17,12 +17,12 @@ public class DoubleStore extends Store implements IDoubleStore {
     }
 
     @Override
-    public void setSecondValue(Object value) {
-        this.secondValue = value;
+    public void setSecondValue(T2 secondValue) {
+        this.secondValue = secondValue;
     }
 
     @Override
-    public Object getSecondValue() {
+    public T2 getSecondValue() {
         return this.secondValue;
     }
 
@@ -47,7 +47,7 @@ public class DoubleStore extends Store implements IDoubleStore {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final DoubleStore other = (DoubleStore) obj;
+        final DoubleStore<?,?> other = (DoubleStore<?,?>) obj;
         if (!Objects.equals(this.getValue(), other.getValue())) {
             return false;
         }
