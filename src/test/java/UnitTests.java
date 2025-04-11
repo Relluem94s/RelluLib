@@ -5,6 +5,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import de.relluem94.rellulib.exceptions.EventException;
 import org.json.JSONObject;
@@ -213,9 +214,9 @@ public class UnitTests extends SplashScreen {
         ID id_test2 = new ID();
         id_test2.setID(8);
 
-        LogUtils.info("ID 1: " + ReflectionUtils.getValue(ReflectionUtils.getMemberField(id_test, "id"), id_test));
-        LogUtils.info("ID 2: " + ReflectionUtils.getValue(ReflectionUtils.getMemberField(id_test2, "id"), id_test2));
-        ReflectionUtils.setValue(ReflectionUtils.getMemberField(id_test2, "id"), id_test2, 1994);
+        LogUtils.info("ID 1: " + ReflectionUtils.getValue(Objects.requireNonNull(ReflectionUtils.getMemberField(id_test, "id")), id_test));
+        LogUtils.info("ID 2: " + ReflectionUtils.getValue(Objects.requireNonNull(ReflectionUtils.getMemberField(id_test2, "id")), id_test2));
+        ReflectionUtils.setValue(Objects.requireNonNull(ReflectionUtils.getMemberField(id_test2, "id")), id_test2, 1994);
         LogUtils.info("ID 2: " + id_test2.getID());
         
     }
