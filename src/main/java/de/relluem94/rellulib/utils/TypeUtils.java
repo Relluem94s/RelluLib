@@ -7,6 +7,8 @@ import de.relluem94.rellulib.color.Color3i;
 import de.relluem94.rellulib.color.Color4f;
 import de.relluem94.rellulib.color.Color4i;
 import de.relluem94.rellulib.vector.*;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 public class TypeUtils {
 
@@ -39,61 +41,63 @@ public class TypeUtils {
     }
 
     public static boolean toBoolean(String input) {
-        input = input.replaceAll("[\t|\r|\n]", "");
-        return input.equalsIgnoreCase("true");
+        if (input == null) {
+            return false;
+        }
+        return input.trim().equalsIgnoreCase("true");
     }
 
-    public static Vector1<Float> toVector1f(String input) {
+    public static @NotNull Vector1<Float> toVector1f(String input) {
         float[] vals = toFloatArray(input, 1);
         return vals.length == 1 ? new Vector1<>(vals[0]) : new Vector1<>(0f);
     }
 
-    public static Vector2<Float> toVector2f(String input) {
+    public static @NotNull Vector2<Float> toVector2f(String input) {
         float[] vals = toFloatArray(input, 2);
         return vals.length == 2 ? new Vector2<>(vals[0], vals[1]) : new Vector2<>(0f, 0f);
     }
 
-    public static Vector3<Float> toVector3f(String input) {
+    public static @NotNull Vector3<Float> toVector3f(String input) {
         float[] vals = toFloatArray(input, 3);
         return vals.length == 3 ? new Vector3<>(vals[0], vals[1], vals[2]) : new Vector3<>(0f, 0f, 0f);
     }
 
-    public static Vector4<Float> toVector4f(String input) {
+    public static @NotNull Vector4<Float> toVector4f(String input) {
         float[] vals = toFloatArray(input, 4);
         return vals.length == 4 ? new Vector4<>(vals[0], vals[1], vals[2], vals[3]) : new Vector4<>(0f, 0f, 0f, 0f);
     }
 
-    public static Vector5<Float> toVector5f(String input) {
+    public static @NotNull Vector5<Float> toVector5f(String input) {
         float[] vals = toFloatArray(input, 5);
         return vals.length == 5 ? new Vector5<>(vals[0], vals[1], vals[2], vals[3], vals[4]) : new Vector5<>(0f, 0f, 0f, 0f, 0f);
     }
 
-    public static Vector1<Integer> toVector1i(String input) {
+    public static @NotNull Vector1<Integer> toVector1i(String input) {
         int[] vals = toIntArray(input, 1);
         return vals.length == 1 ? new Vector1<>(vals[0]) : new Vector1<>(0);
     }
 
-    public static Vector2<Integer> toVector2i(String input) {
+    public static @NotNull Vector2<Integer> toVector2i(String input) {
         int[] vals = toIntArray(input, 2);
         return vals.length == 2 ? new Vector2<>(vals[0], vals[1]) : new Vector2<>(0, 0);
     }
 
-    public static Vector3<Integer> toVector3i(String input) {
+    public static @NotNull Vector3<Integer> toVector3i(String input) {
         int[] vals = toIntArray(input, 3);
         return vals.length == 3 ? new Vector3<>(vals[0], vals[1], vals[2]) : new Vector3<>(0, 0, 0);
     }
 
-    public static Vector4<Integer> toVector4i(String input) {
+    public static @NotNull Vector4<Integer> toVector4i(String input) {
         int[] vals = toIntArray(input, 4);
         return vals.length == 4 ? new Vector4<>(vals[0], vals[1], vals[2], vals[3]) : new Vector4<>(0, 0, 0, 0);
     }
 
-    public static Vector5<Integer> toVector5i(String input) {
+    public static @NotNull Vector5<Integer> toVector5i(String input) {
         int[] vals = toIntArray(input, 5);
         return vals.length == 5 ? new Vector5<>(vals[0], vals[1], vals[2], vals[3], vals[4]) : new Vector5<>(0, 0, 0, 0, 0);
     }
 
-    private static int[] toIntArray(String input, int size) {
+    private static int @NotNull [] toIntArray(@NotNull String input, int size) {
         String[] parts = input.split(",");
         if (parts.length != size) {
             return new int[0];
@@ -109,7 +113,7 @@ public class TypeUtils {
         return result;
     }
 
-    private static float[] toFloatArray(String input, int size) {
+    private static float @NotNull [] toFloatArray(@NotNull String input, int size) {
         String[] parts = input.split(",");
         if (parts.length != size) {
             return new float[0];
@@ -127,7 +131,8 @@ public class TypeUtils {
 
 
 
-    public static Color3f toColor3f(String input) {
+    @Contract("_ -> new")
+    public static @NotNull Color3f toColor3f(@NotNull String input) {
         String[] color = input.split(",");
         if (color.length == 3) {
             float r = toFloat(color[0]);
@@ -139,7 +144,8 @@ public class TypeUtils {
         }
     }
 
-    public static Color3f toColor3f(int color) {
+    @Contract(value = "_ -> new", pure = true)
+    public static @NotNull Color3f toColor3f(int color) {
         int b = color & 0xff;
         int g = (color & 0xff00) >> 8;
         int r = (color & 0xff0000) >> 16;
@@ -147,7 +153,8 @@ public class TypeUtils {
         return new Color3f(r, g, b);
     }
 
-    public static Color4f toColor4f(int color) {
+    @Contract(value = "_ -> new", pure = true)
+    public static @NotNull Color4f toColor4f(int color) {
         int b = color & 0xff;
         int g = (color & 0xff00) >> 8;
         int r = (color & 0xff0000) >> 16;
@@ -156,7 +163,8 @@ public class TypeUtils {
         return new Color4f(r, g, b, a);
     }
 
-    public static Color3i toColor3i(String input) {
+    @Contract("_ -> new")
+    public static @NotNull Color3i toColor3i(@NotNull String input) {
         String[] color = input.split(",");
         if (color.length == 3) {
             int r = toInt(color[0]);
@@ -168,7 +176,8 @@ public class TypeUtils {
         }
     }
 
-    public static Color4f toColor4f(String input) {
+    @Contract("_ -> new")
+    public static @NotNull Color4f toColor4f(@NotNull String input) {
         String[] color = input.split(",");
         if (color.length == 4) {
             float r = toFloat(color[0]);
@@ -181,7 +190,8 @@ public class TypeUtils {
         }
     }
 
-    public static Color4i toColor4i(String input) {
+    @Contract("_ -> new")
+    public static @NotNull Color4i toColor4i(@NotNull String input) {
         String[] color = input.split(",");
         if (color.length == 4) {
             int r = toInt(color[0]);
@@ -216,7 +226,7 @@ public class TypeUtils {
 
     private static final DecimalFormat df = new DecimalFormat();
 
-    public static String longToKB(long l) {
+    public static @NotNull String longToKB(long l) {
         return df.format((float) l / 1000) + "kb";
     }
 

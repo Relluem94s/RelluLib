@@ -212,4 +212,46 @@ class TypeUtilsTest {
         assertEquals(0, color.b);
         assertEquals(0, color.a);
     }
+    @Test
+    public void testLongToKB() {
+        String result = TypeUtils.longToKB(1500);
+        assertTrue(result.startsWith("1.5"));
+        assertTrue(result.endsWith("kb"));
+    }
+
+    @Test
+    public void testLongToSeconds() {
+        String result = TypeUtils.longToSeconds(3000);
+        assertTrue(result.startsWith("3"));
+    }
+
+    @Test
+    public void testLongToMin() {
+        String result = TypeUtils.longToMin(120000);
+        assertTrue(result.startsWith("2"));
+    }
+
+    @Test
+    public void testLongToKB_Zero() {
+        String result = TypeUtils.longToKB(0);
+        assertTrue(result.startsWith("0"));
+        assertTrue(result.endsWith("kb"));
+    }
+
+
+    @Test
+    public void testToBooleanTrueVariants() {
+        assertTrue(TypeUtils.toBoolean("true"));
+        assertTrue(TypeUtils.toBoolean(" true "));
+        assertTrue(TypeUtils.toBoolean("\ntrue\r"));
+        assertTrue(TypeUtils.toBoolean("\tTrUe"));
+    }
+
+    @Test
+    public void testToBooleanFalseVariants() {
+        assertFalse(TypeUtils.toBoolean("false"));
+        assertFalse(TypeUtils.toBoolean("yes"));
+        assertFalse(TypeUtils.toBoolean(""));
+        assertFalse(TypeUtils.toBoolean(null));
+    }
 }
