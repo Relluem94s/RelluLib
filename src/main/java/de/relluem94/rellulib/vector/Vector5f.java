@@ -80,7 +80,7 @@ public class Vector5f implements IVector {
 
     @Override
     public String toListString() {
-        return "" + x + "," + y + "," + z + "," + w + "," + v;
+        return x + "," + y + "," + z + "," + w + "," + v;
     }
 
     public float getX() {

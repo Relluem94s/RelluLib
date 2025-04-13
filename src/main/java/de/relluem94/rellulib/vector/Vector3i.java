@@ -62,7 +62,7 @@ public class Vector3i implements IVector {
 
     @Override
     public String toListString() {
-        return "" + x + "," + y + "," + z;
+        return x + "," + y + "," + z;
     }
 
     public int getX() {

@@ -54,7 +54,7 @@ public class Vector2i implements IVector {
 
     @Override
     public String toListString() {
-        return "" + x + "," + y;
+        return x + "," + y;
     }
 
     public int getX() {

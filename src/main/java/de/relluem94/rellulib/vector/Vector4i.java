@@ -71,7 +71,7 @@ public class Vector4i implements IVector {
 
     @Override
     public String toListString() {
-        return "" + x + "," + y + "," + z + "," + w;
+        return x + "," + y + "," + z + "," + w;
     }
 
     public int getX() {
