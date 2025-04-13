@@ -1,5 +1,9 @@
 package de.relluem94.rellulib.utils;
 
+import de.relluem94.rellulib.color.Color3f;
+import de.relluem94.rellulib.color.Color3i;
+import de.relluem94.rellulib.color.Color4f;
+import de.relluem94.rellulib.color.Color4i;
 import de.relluem94.rellulib.vector.*;
 import org.junit.jupiter.api.Test;
 
@@ -121,5 +125,91 @@ class TypeUtilsTest {
         Vector2<Integer> vector = TypeUtils.toVector2i("1");
         assertEquals(0, vector.x().intValue());
         assertEquals(0, vector.y().intValue());
+    }
+
+
+    @Test
+    public void testToColor3fFromString_Valid() {
+        Color3f color = TypeUtils.toColor3f("0.1,0.2,0.3");
+        assertEquals(0.1f, color.r);
+        assertEquals(0.2f, color.g);
+        assertEquals(0.3f, color.b);
+    }
+
+    @Test
+    public void testToColor3fFromString_Invalid() {
+        Color3f color = TypeUtils.toColor3f("invalid");
+        assertEquals(0.0f, color.r);
+        assertEquals(0.0f, color.g);
+        assertEquals(0.0f, color.b);
+    }
+
+    @Test
+    public void testToColor3fFromInt() {
+        Color3f color = TypeUtils.toColor3f(0x112233);
+        assertEquals(0x11, (int) color.r);
+        assertEquals(0x22, (int) color.g);
+        assertEquals(0x33, (int) color.b);
+    }
+
+    @Test
+    public void testToColor4fFromInt() {
+        Color4f color = TypeUtils.toColor4f(0x44112233);
+        assertEquals(0x11, (int) color.r);
+        assertEquals(0x22, (int) color.g);
+        assertEquals(0x33, (int) color.b);
+        assertEquals(0x44, (int) color.a);
+    }
+
+    @Test
+    public void testToColor3iFromString_Valid() {
+        Color3i color = TypeUtils.toColor3i("1,2,3");
+        assertEquals(1, color.r);
+        assertEquals(2, color.g);
+        assertEquals(3, color.b);
+    }
+
+    @Test
+    public void testToColor3iFromString_Invalid() {
+        Color3i color = TypeUtils.toColor3i("1,2");
+        assertEquals(0, color.r);
+        assertEquals(0, color.g);
+        assertEquals(0, color.b);
+    }
+
+    @Test
+    public void testToColor4fFromString_Valid() {
+        Color4f color = TypeUtils.toColor4f("0.1,0.2,0.3,0.4");
+        assertEquals(0.1f, color.r);
+        assertEquals(0.2f, color.g);
+        assertEquals(0.3f, color.b);
+        assertEquals(0.4f, color.a);
+    }
+
+    @Test
+    public void testToColor4fFromString_Invalid() {
+        Color4f color = TypeUtils.toColor4f("1,2,3");
+        assertEquals(0f, color.r);
+        assertEquals(0f, color.g);
+        assertEquals(0f, color.b);
+        assertEquals(0f, color.a);
+    }
+
+    @Test
+    public void testToColor4iFromString_Valid() {
+        Color4i color = TypeUtils.toColor4i("1,2,3,4");
+        assertEquals(1, color.r);
+        assertEquals(2, color.g);
+        assertEquals(3, color.b);
+        assertEquals(4, color.a);
+    }
+
+    @Test
+    public void testToColor4iFromString_Invalid() {
+        Color4i color = TypeUtils.toColor4i("1,2,3");
+        assertEquals(0, color.r);
+        assertEquals(0, color.g);
+        assertEquals(0, color.b);
+        assertEquals(0, color.a);
     }
 }
