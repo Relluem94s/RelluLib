@@ -1,12 +1,10 @@
 package de.relluem94.rellulib.vector;
 
-@Deprecated
-public interface IVector {
+public interface IVector<T extends Number> {
 
-    @Override
     String toString();
-
     String toShortString();
 
-    String toListString();
+    void set(T number);
+    T get();
 }

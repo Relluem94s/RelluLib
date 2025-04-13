@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 import de.relluem94.rellulib.exceptions.EventException;
+import de.relluem94.rellulib.vector.Vector5;
 import org.json.JSONObject;
 
 import de.relluem94.rellulib.FixedSizeList;
@@ -27,7 +28,6 @@ import de.relluem94.rellulib.utils.NetworkUtils;
 import de.relluem94.rellulib.utils.ReflectionUtils;
 import de.relluem94.rellulib.utils.StringUtils;
 import de.relluem94.rellulib.utils.TypeUtils;
-import de.relluem94.rellulib.vector.Vector5f;
 import de.relluem94.rellulib.windows.SplashScreen;
 import org.junit.jupiter.api.*;
 
@@ -63,7 +63,7 @@ public class UnitTests extends SplashScreen {
         List<Object> list = new ArrayList<>();
         list.add(123);
         list.add("Hello");
-        list.add(new Vector5f(1.0f, 0.4f, 5.3f, 0.123456789f, 0.0f));
+        list.add(new Vector5<>(1.0f, 0.4f, 5.3f, 0.123456789f, 0.0f));
         list.add(true);
         list.add(Color3i.RELLU_ORANGE);
         list.add(new TrippleStore<>("Das ist ein Test", 22, Color4f.GRAY));
@@ -86,7 +86,7 @@ public class UnitTests extends SplashScreen {
         List<Object> list = new ArrayList<>();
         list.add(123);
         list.add("Hello");
-        list.add(new Vector5f(1.0f, 0.4f, 5.3f, 0.123456789f, 0.0f));
+        list.add(new Vector5<>(1.0f, 0.4f, 5.3f, 0.123456789f, 0.0f));
         list.add(true);
         list.add(Color3i.RELLU_ORANGE);
         list.add(new TrippleStore<>("Das ist ein Test", 22, Color4f.GRAY));
