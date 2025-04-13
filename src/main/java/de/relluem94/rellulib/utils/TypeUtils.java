@@ -6,14 +6,7 @@ import de.relluem94.rellulib.color.Color3f;
 import de.relluem94.rellulib.color.Color3i;
 import de.relluem94.rellulib.color.Color4f;
 import de.relluem94.rellulib.color.Color4i;
-import de.relluem94.rellulib.vector.Vector2f;
-import de.relluem94.rellulib.vector.Vector2i;
-import de.relluem94.rellulib.vector.Vector3f;
-import de.relluem94.rellulib.vector.Vector3i;
-import de.relluem94.rellulib.vector.Vector4f;
-import de.relluem94.rellulib.vector.Vector4i;
-import de.relluem94.rellulib.vector.Vector5f;
-import de.relluem94.rellulib.vector.Vector5i;
+import de.relluem94.rellulib.vector.*;
 
 public class TypeUtils {
 
@@ -50,104 +43,72 @@ public class TypeUtils {
         return input.equalsIgnoreCase("true");
     }
 
-    public static Vector2f toVector2f(String input) {
-        String[] vector = input.split(",");
-        if (vector.length == 2) {
-            float x = toFloat(vector[0]);
-            float y = toFloat(vector[1]);
-            return new Vector2f(x, y);
-        } else {
-            return new Vector2f();
-        }
+    public static Vector1<Float> toVector1f(String input) {
+        float[] vals = toFloatArray(input, 1);
+        return vals.length == 1 ? new Vector1<>(vals[0]) : new Vector1<>(0f);
     }
 
-    public static Vector3f toVector3f(String input) {
-        String[] vector = input.split(",");
-        if (vector.length == 3) {
-            float x = toFloat(vector[0]);
-            float y = toFloat(vector[1]);
-            float z = toFloat(vector[2]);
-            return new Vector3f(x, y, z);
-        } else {
-            return new Vector3f();
-        }
+    public static Vector2<Float> toVector2f(String input) {
+        float[] vals = toFloatArray(input, 2);
+        return vals.length == 2 ? new Vector2<>(vals[0], vals[1]) : new Vector2<>(0f, 0f);
     }
 
-    public static Vector4f toVector4f(String input) {
-        String[] vector = input.split(",");
-        if (vector.length == 4) {
-            float x = toFloat(vector[0]);
-            float y = toFloat(vector[1]);
-            float z = toFloat(vector[2]);
-            float w = toFloat(vector[3]);
-            return new Vector4f(x, y, z, w);
-        } else {
-            return new Vector4f();
-        }
+    public static Vector3<Float> toVector3f(String input) {
+        float[] vals = toFloatArray(input, 3);
+        return vals.length == 3 ? new Vector3<>(vals[0], vals[1], vals[2]) : new Vector3<>(0f, 0f, 0f);
     }
 
-    public static Vector5f toVector5f(String input) {
-        String[] vector = input.split(",");
-        if (vector.length == 5) {
-            float x = toFloat(vector[0]);
-            float y = toFloat(vector[1]);
-            float z = toFloat(vector[2]);
-            float w = toFloat(vector[3]);
-            float v = toFloat(vector[4]);
-            return new Vector5f(x, y, z, w, v);
-        } else {
-            return new Vector5f();
-        }
+    public static Vector4<Float> toVector4f(String input) {
+        float[] vals = toFloatArray(input, 4);
+        return vals.length == 4 ? new Vector4<>(vals[0], vals[1], vals[2], vals[3]) : new Vector4<>(0f, 0f, 0f, 0f);
     }
 
-    public static Vector2i toVector2i(String input) {
-        String[] vector = input.split(",");
-        if (vector.length == 2) {
-            int x = toInt(vector[0]);
-            int y = toInt(vector[1]);
-            return new Vector2i(x, y);
-        } else {
-            return new Vector2i();
-        }
+    public static Vector5<Float> toVector5f(String input) {
+        float[] vals = toFloatArray(input, 5);
+        return vals.length == 5 ? new Vector5<>(vals[0], vals[1], vals[2], vals[3], vals[4]) : new Vector5<>(0f, 0f, 0f, 0f, 0f);
     }
 
-    public static Vector3i toVector3i(String input) {
-        String[] vector = input.split(",");
-        if (vector.length == 3) {
-            int x = toInt(vector[0]);
-            int y = toInt(vector[1]);
-            int z = toInt(vector[2]);
-            return new Vector3i(x, y, z);
-        } else {
-            return new Vector3i();
-        }
+    public static Vector1<Integer> toVector1i(String input) {
+        int[] vals = toIntArray(input, 1);
+        return vals.length == 1 ? new Vector1<>(vals[0]) : new Vector1<>(0);
     }
 
-    public static Vector4i toVector4i(String input) {
-        String[] vector = input.split(",");
-        if (vector.length == 4) {
-            int x = toInt(vector[0]);
-            int y = toInt(vector[1]);
-            int z = toInt(vector[2]);
-            int w = toInt(vector[3]);
-            return new Vector4i(x, y, z, w);
-        } else {
-            return new Vector4i();
-        }
+    public static Vector2<Integer> toVector2i(String input) {
+        int[] vals = toIntArray(input, 2);
+        return vals.length == 2 ? new Vector2<>(vals[0], vals[1]) : new Vector2<>(0, 0);
     }
 
-    public static Vector5i toVector5i(String input) {
-        String[] vector = input.split(",");
-        if (vector.length == 5) {
-            int x = toInt(vector[0]);
-            int y = toInt(vector[1]);
-            int z = toInt(vector[2]);
-            int w = toInt(vector[3]);
-            int v = toInt(vector[4]);
-            return new Vector5i(x, y, z, w, v);
-        } else {
-            return new Vector5i();
+    public static Vector3<Integer> toVector3i(String input) {
+        int[] vals = toIntArray(input, 3);
+        return vals.length == 3 ? new Vector3<>(vals[0], vals[1], vals[2]) : new Vector3<>(0, 0, 0);
+    }
+
+    public static Vector4<Integer> toVector4i(String input) {
+        int[] vals = toIntArray(input, 4);
+        return vals.length == 4 ? new Vector4<>(vals[0], vals[1], vals[2], vals[3]) : new Vector4<>(0, 0, 0, 0);
+    }
+
+    public static Vector5<Integer> toVector5i(String input) {
+        int[] vals = toIntArray(input, 5);
+        return vals.length == 5 ? new Vector5<>(vals[0], vals[1], vals[2], vals[3], vals[4]) : new Vector5<>(0, 0, 0, 0, 0);
+    }
+
+    private static float[] toFloatArray(String input, int size) {
+        String[] parts = input.split(",");
+        float[] result = new float[size];
+        for (int i = 0; i < parts.length; i++) {
+            result[i] = Float.parseFloat(parts[i].trim());
         }
+        return result;
+    }
+
+    private static int[] toIntArray(String input, int size) {
+        String[] parts = input.split(",");
+        int[] result = new int[size];
+        for (int i = 0; i < parts.length; i++) {
+            result[i] = Integer.parseInt(parts[i].trim());
+        }
+        return result;
     }
 
     public static Color3f toColor3f(String input) {
