@@ -2,6 +2,7 @@ package de.relluem94.rellulib.vector;
 
 import java.text.DecimalFormat;
 
+@Deprecated
 public class Vector5i implements IVector {
 
     private int x;

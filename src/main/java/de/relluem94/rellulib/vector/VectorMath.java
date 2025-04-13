@@ -3,6 +3,7 @@ package de.relluem94.rellulib.vector;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+@Deprecated
 public final class VectorMath {
 
     @Contract("_, _ -> new")

@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.relluem94</groupId>
     <artifactId>rellulib</artifactId>
-    <version>0.17</version>
+    <version>0.18</version>
     <name>RelluLib</name>
     <properties>
         <maven.compiler.release>17</maven.compiler.release>

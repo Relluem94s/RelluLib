@@ -1,5 +1,6 @@
 package de.relluem94.rellulib.vector;
 
+@Deprecated
 public interface IVector {
 
     @Override
