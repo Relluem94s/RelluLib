@@ -3,9 +3,9 @@ package de.relluem94.rellulib.vector;
 public interface IVector {
 
     @Override
-    public String toString();
+    String toString();
 
-    public String toShortString();
+    String toShortString();
 
-    public String toListString();
+    String toListString();
 }
