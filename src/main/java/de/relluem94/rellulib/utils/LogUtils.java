@@ -12,7 +12,7 @@ public class LogUtils {
     }
 
     /**
-     * Prints an Object with an line break <br>
+     * Prints an Object with a line break <br>
      *
      * @param o Object to log
      */
@@ -24,7 +24,7 @@ public class LogUtils {
     }
 
     /**
-     * Prints an Object without an line break <br>
+     * Prints an Object without a line break <br>
      *
      * @param o Object to log
      */
@@ -36,14 +36,14 @@ public class LogUtils {
 
     /**
      *
-     * Prints an Object with an line break if should log is true<br>
+     * Prints an Object with a line break if should log is true<br>
      *
      * @param o Object to log
-     * @param shouldlog boolean if should log
+     * @param shouldLog boolean if should log
      */
-    public static void debug(Object o, boolean shouldlog) {
+    public static void debug(Object o, boolean shouldLog) {
         if (LOGUTILS_LEVEL_OTHER) {
-            if (shouldlog) {
+            if (shouldLog) {
                 System.out.println("\t\t" + o);
             }
         }
@@ -51,14 +51,14 @@ public class LogUtils {
 
     /**
      *
-     * Prints an Object without an line break if should log is true<br>
+     * Prints an Object without a line break if should log is true<br>
      *
      * @param o Object to log
-     * @param shouldlog boolean if should log
+     * @param shouldLog boolean if should log
      */
-    public static void debugInLine(Object o, boolean shouldlog) {
+    public static void debugInLine(Object o, boolean shouldLog) {
         if (LOGUTILS_LEVEL_OTHER) {
-            if (shouldlog) {
+            if (shouldLog) {
                 log(o, false);
             }
         }
@@ -66,7 +66,7 @@ public class LogUtils {
 
     /**
      *
-     * Prints an Object with an line break and [ERROR] <br>
+     * Prints an Object with a line break and [ERROR] <br>
      *
      * @param o Object to log
      */
@@ -79,7 +79,7 @@ public class LogUtils {
 
     /**
      *
-     * Prints an Object with an line break and [INFO] <br>
+     * Prints an Object with a line break and [INFO] <br>
      *
      * @param o Object to log
      */
@@ -92,7 +92,7 @@ public class LogUtils {
 
     /**
      *
-     * Prints an Object with an line break and [TEST] <br>
+     * Prints an Object with a line break and [TEST] <br>
      *
      * @param o Object to log
      */
@@ -105,7 +105,7 @@ public class LogUtils {
 
     /**
      *
-     * Prints an Object with an line break and [WARNING] <br>
+     * Prints an Object with a line break and [WARNING] <br>
      *
      * @param o Object to log
      */
@@ -117,7 +117,7 @@ public class LogUtils {
 
     /**
      *
-     * Prints an Object without an line break <br>
+     * Prints an Object without a line break <br>
      *
      * @param o Object to log
      */
@@ -128,7 +128,7 @@ public class LogUtils {
     }
 
     /**
-     * Prints an List of Objects with an line break
+     * Prints a List of Objects with a line break
      *
      * @param input List of Objects
      */
@@ -141,7 +141,7 @@ public class LogUtils {
     }
 
     /**
-     * Prints an Array of Integers with an line break
+     * Prints an Array of Integers with a line break
      *
      * @param input Array of Integers
      */
@@ -188,7 +188,7 @@ public class LogUtils {
     }
 
     private static boolean LOGUTILS_LEVEL_OTHER = true;
-    private static boolean LOGUTILS_LEVEL_TEST = true;
+    private static final boolean LOGUTILS_LEVEL_TEST = true;
     private static boolean LOGUTILS_LEVEL_INFO = true;
     private static boolean LOGUTILS_LEVEL_WARNING = true;
     private static boolean LOGUTILS_LEVEL_ERROR = true;

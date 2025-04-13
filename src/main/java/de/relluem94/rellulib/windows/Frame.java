@@ -57,11 +57,7 @@ public class Frame extends JFrame {
             frame.addComponentListener(new WindowSnapper());
         }
 
-        if (dispose) {
-            frame.setVisible(false);
-        } else {
-            frame.setVisible(true);
-        }
+        frame.setVisible(!dispose);
 
         return frame;
     }

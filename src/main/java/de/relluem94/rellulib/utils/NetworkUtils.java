@@ -14,7 +14,6 @@ import java.net.URLConnection;
 
 import javax.imageio.ImageIO;
 
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.json.JSONObject;
 
@@ -31,7 +30,6 @@ public class NetworkUtils {
      * @param http String with Hyperlink
      * @return URL Resource
      */
-    @NotNull
     private static URL getURL(String http) {
         try {
             return new URL(http);
@@ -46,14 +44,18 @@ public class NetworkUtils {
      * @param url URL
      * @return boolean true if HTTP OK
      */
-    public static boolean exists(URL url) {
+    public static boolean notExists(@Nullable URL url) {
+        if(url == null){
+            return true;
+        }
+
         try {
             InputStream input = url.openStream();
             input.close();
-            return true;
+            return false;
         } catch (IOException ex) {
             LogUtils.error(ex.getMessage());
-            return false;
+            return true;
         }
     }
 
@@ -64,17 +66,16 @@ public class NetworkUtils {
      */
     public static @Nullable BufferedImage downloadImage(String http) {
         URL url = getURL(http);
-        if (exists(url)) {
-            try {
-                return ImageIO.read(url);
-            } catch (IOException e) {
-                LogUtils.error(e.getMessage());
-                return null;
-            }
-        } else {
+        if(notExists(url)) {
             return null;
         }
 
+        try {
+            return ImageIO.read(url);
+        } catch (IOException e) {
+            LogUtils.error(e.getMessage());
+            return null;
+        }
     }
 
     /**
@@ -86,16 +87,15 @@ public class NetworkUtils {
      */
     public static boolean downloadImage(String http, String path, String filename) {
         URL url = getURL(http);
-        if (exists(url)) {
-            try {
-                FileUtils.writeImage(new Image(ImageIO.read(url), new File(path + "/" + filename)));
-                return true;
-            } catch (IOException e) {
-                LogUtils.error(e.getMessage());
-                return false;
-            }
+        if(notExists(url)) {
+            return false;
+        }
 
-        } else {
+        try {
+            FileUtils.writeImage(new Image(ImageIO.read(url), new File(path + "/" + filename)));
+            return true;
+        } catch (IOException e) {
+            LogUtils.error(e.getMessage());
             return false;
         }
     }
