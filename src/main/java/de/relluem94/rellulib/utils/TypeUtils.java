@@ -39,7 +39,7 @@ public class TypeUtils {
     }
 
     public static boolean toBoolean(String input) {
-        input = input.replaceAll("[\\\t|\\\n|\\\r]", "");
+        input = input.replaceAll("[\t|\r|\n]", "");
         return input.equalsIgnoreCase("true");
     }
 
@@ -93,23 +93,39 @@ public class TypeUtils {
         return vals.length == 5 ? new Vector5<>(vals[0], vals[1], vals[2], vals[3], vals[4]) : new Vector5<>(0, 0, 0, 0, 0);
     }
 
-    private static float[] toFloatArray(String input, int size) {
+    private static int[] toIntArray(String input, int size) {
         String[] parts = input.split(",");
-        float[] result = new float[size];
-        for (int i = 0; i < parts.length; i++) {
-            result[i] = Float.parseFloat(parts[i].trim());
+        if (parts.length != size) {
+            return new int[0];
+        }
+        int[] result = new int[size];
+        for (int i = 0; i < size; i++) {
+            String part = parts[i].trim();
+            if (part.isEmpty()) {
+                return new int[0];
+            }
+            result[i] = Integer.parseInt(part);
         }
         return result;
     }
 
-    private static int[] toIntArray(String input, int size) {
+    private static float[] toFloatArray(String input, int size) {
         String[] parts = input.split(",");
-        int[] result = new int[size];
-        for (int i = 0; i < parts.length; i++) {
-            result[i] = Integer.parseInt(parts[i].trim());
+        if (parts.length != size) {
+            return new float[0];
+        }
+        float[] result = new float[size];
+        for (int i = 0; i < size; i++) {
+            String part = parts[i].trim();
+            if (part.isEmpty()) {
+                return new float[0];
+            }
+            result[i] = Float.parseFloat(part);
         }
         return result;
     }
+
+
 
     public static Color3f toColor3f(String input) {
         String[] color = input.split(",");
