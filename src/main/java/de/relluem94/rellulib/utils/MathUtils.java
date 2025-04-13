@@ -1,5 +1,8 @@
 package de.relluem94.rellulib.utils;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 public class MathUtils {
 
     private MathUtils() {
@@ -12,7 +15,8 @@ public class MathUtils {
      * @param divisor int
      * @return remainder
      */
-    public static Integer getRemainder(int dividend, int divisor) {
+    @Contract(pure = true)
+    public static @NotNull Integer getRemainder(int dividend, int divisor) {
         return dividend % divisor;
     }
 
