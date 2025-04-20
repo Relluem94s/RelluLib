@@ -6,6 +6,7 @@ import java.util.Random;
 
 import de.relluem94.rellulib.color.Color3i;
 
+@SuppressWarnings("unused")
 public class Texture {
 
     private Texture() {
@@ -88,18 +89,18 @@ public class Texture {
         for (int x = 0; x < resolution; x++) {
             for (int y = 0; y < resolution; y++) {
                 if (y == (resolution) - 1) {
-                    fxl = !fxl;
+                    fxl = true;
                 }
                 if (fxl) {
-                    fxl = !fxl;
+                    fxl = false;
                     fx = !fx;
                 }
                 if (fx) {
                     image.setRGB(x, y, (color1.r << 16) | (color1.g << 8) | color1.b);
-                    fx = !fx;
+                    fx = false;
                 } else {
                     image.setRGB(x, y, (color2.r << 16) | (color2.g << 8) | color2.b);
-                    fx = !fx;
+                    fx = true;
                 }
             }
         }
