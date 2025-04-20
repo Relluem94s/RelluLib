@@ -15,8 +15,8 @@ public class OpenSimplexNoise {
 
     private static final long DEFAULT_SEED = 0;
 
-    private final short[] perm;
-    private final short[] permGradIndex3D;
+    protected final short[] perm;
+    protected final short[] permGradIndex3D;
 
     protected OpenSimplexNoise() {
         this(DEFAULT_SEED);
@@ -2068,7 +2068,7 @@ public class OpenSimplexNoise {
 
     //Gradients for 2D. They approximate the directions to the
     //vertices of an octagon from the center.
-    private static final byte[] gradients2D = new byte[]{
+    protected static final byte[] gradients2D = new byte[]{
         5, 2, 2, 5,
         -5, 2, -2, 5,
         5, -2, 2, -5,
@@ -2078,7 +2078,7 @@ public class OpenSimplexNoise {
     //vertices of a rhombicuboctahedron from the center, skewed so
     //that the triangular and square facets can be inscribed inside
     //circles of the same radius.
-    private static final byte[] gradients3D = new byte[]{
+    protected static final byte[] gradients3D = new byte[]{
         -11, 4, 4, -4, 11, 4, -4, 4, 11,
         11, 4, 4, 4, 11, 4, 4, 4, 11,
         -11, -4, 4, -4, -11, 4, -4, -4, 11,
@@ -2092,7 +2092,7 @@ public class OpenSimplexNoise {
     //vertices of a disprismatotesseractihexadecachoron from the center,
     //skewed so that the tetrahedral and cubic facets can be inscribed inside
     //spheres of the same radius.
-    private static final byte[] gradients4D = new byte[]{
+    protected static final byte[] gradients4D = new byte[]{
         3, 1, 1, 1, 1, 3, 1, 1, 1, 1, 3, 1, 1, 1, 1, 3,
         -3, 1, 1, 1, -1, 3, 1, 1, -1, 1, 3, 1, -1, 1, 1, 3,
         3, -1, 1, 1, 1, -3, 1, 1, 1, -1, 3, 1, 1, -1, 1, 3,
