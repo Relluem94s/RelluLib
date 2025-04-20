@@ -9,7 +9,7 @@ import de.relluem94.rellulib.color.Color3i;
 @SuppressWarnings("unused")
 public class Texture {
 
-    private Texture() {
+    public Texture() {
         throw new IllegalStateException("Utility class");
     }
 
