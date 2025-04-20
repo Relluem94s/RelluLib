@@ -7,7 +7,7 @@ import javax.sound.sampled.SourceDataLine;
 
 public class NotePlayer {
 
-    private NotePlayer() {
+    public NotePlayer() {
         throw new IllegalStateException("Utility class");
     }
 
