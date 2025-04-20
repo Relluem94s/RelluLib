@@ -90,3 +90,10 @@ A Small Library
     * convert String to Boolean
     * convert String to Vector or Color
     * convert long to KiloByte, Seconds or minutes 
+
+
+## Build & Code Coverage
+![Build Status](https://github.com/Relluem94s/RelluLib/actions/workflows/maven.yml/badge.svg)
+![Coverage](.github/badges/jacoco.svg)
+![Branches](.github/badges/branches.svg)
+
