@@ -23,9 +23,6 @@ class NotePlayerTest {
     @Mock
     private SourceDataLine sourceDataLine;
 
-    @Mock
-    private AudioFormat audioFormat;
-
     private MockedStatic<AudioSystem> audioSystemMock;
 
     @BeforeEach
