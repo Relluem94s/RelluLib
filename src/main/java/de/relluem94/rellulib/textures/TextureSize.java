@@ -63,53 +63,25 @@ public enum TextureSize {
     }
 
     public static int getSize(TextureSize s) {
-        int length = 0;
-        if (null != s) {
-            switch (s) {
-                case NANO:
-                    length = 2;
-                    break;
-                case MICRO:
-                    length = 4;
-                    break;
-                case ZENTI:
-                    length = 8;
-                    break;
-                case KILO:
-                    length = 16;
-                    break;
-                case SMALL:
-                    length = 32;
-                    break;
-                case NORMAL:
-                    length = 64;
-                    break;
-                case DOUBLE:
-                    length = 128;
-                    break;
-                case TRIPPLE:
-                    length = 256;
-                    break;
-                case QUADRUPLE:
-                    length = 512;
-                    break;
-                case QUINTUPLE:
-                    length = 1024;
-                    break;
-                case SEXTUPLE:
-                    length = 2048;
-                    break;
-                case SEPTUPLE:
-                    length = 4096;
-                    break;
-                case OCTUPLE:
-                    length = 8192;
-                    break;
-                default:
-                    break;
-            }
+        if(s == null){
+            return 0;
         }
-        return length;
+
+        return switch (s) {
+            case NANO -> 2;
+            case MICRO -> 4;
+            case ZENTI -> 8;
+            case KILO -> 16;
+            case SMALL -> 32;
+            case NORMAL -> 64;
+            case DOUBLE -> 128;
+            case TRIPPLE -> 256;
+            case QUADRUPLE -> 512;
+            case QUINTUPLE -> 1024;
+            case SEXTUPLE -> 2048;
+            case SEPTUPLE -> 4096;
+            case OCTUPLE -> 8192;
+        };
     }
 
     public static TextureSize getTextureSize(int length) {
