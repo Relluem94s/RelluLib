@@ -697,67 +697,236 @@ class OpenSimplexNoiseTest {
 
     @Test
     void testEval4D_MixedSides_C1_C01Set_C2_C01Clear() {
-        double value = noise.eval(0.9, 0.1, 0.1, 0.1); // c1: 0x01, c2: 0x00
+        double value = noise.eval(0.9, 0.1, 0.1, 0.1);
         assertTrue(Double.isFinite(value));
     }
 
     @Test
     void testEval4D_MixedSides_C1_C01Clear_C2_C02Clear() {
-        double value = noise.eval(0.1, 0.9, 0.1, 0.1); // c1: 0x02, c2: 0x00
+        double value = noise.eval(0.1, 0.9, 0.1, 0.1);
         assertTrue(Double.isFinite(value));
     }
 
     @Test
     void testEval4D_MixedSides_C1_C02Set_C01Set_C2_C04Clear() {
-        double value = noise.eval(0.9, 0.9, 0.1, 0.1); // c1: 0x03, c2: 0x00
+        double value = noise.eval(0.9, 0.9, 0.1, 0.1);
         assertTrue(Double.isFinite(value));
     }
 
     @Test
     void testEval4D_MixedSides_C1_C04Set_C03Clear_C2_C08Clear() {
-        double value = noise.eval(0.1, 0.1, 0.9, 0.1); // c1: 0x04, c2: 0x00
+        double value = noise.eval(0.1, 0.1, 0.9, 0.1);
         assertTrue(Double.isFinite(value));
     }
 
     @Test
     void testEval4D_MixedSides_C1_C04Set_C03Set() {
-        double value = noise.eval(0.6, 0.6, 0.9, 0.1); // c1: 0x07
+        double value = noise.eval(0.6, 0.6, 0.9, 0.1);
         assertTrue(Double.isFinite(value));
     }
 
     @Test
     void testEval4D_MixedSides_C1_C08Set() {
-        double value = noise.eval(0.1, 0.1, 0.1, 0.9); // c1: 0x08
+        double value = noise.eval(0.1, 0.1, 0.1, 0.9);
         assertTrue(Double.isFinite(value));
     }
 
     @Test
     void testEval4D_MixedSides_C2_C01Set() {
-        double value = noise.eval(0.1, 0.1, 0.1, 0.2); // c2: 0x01 → triggers no `(c2 & 0x01) == 0`
+        double value = noise.eval(0.1, 0.1, 0.1, 0.2);
         assertTrue(Double.isFinite(value));
     }
 
     @Test
     void testEval4D_MixedSides_C2_C02Set() {
-        double value = noise.eval(0.1, 0.2, 0.1, 0.1); // c2: 0x02
+        double value = noise.eval(0.1, 0.2, 0.1, 0.1);
         assertTrue(Double.isFinite(value));
     }
 
     @Test
     void testEval4D_MixedSides_C2_C04Set() {
-        double value = noise.eval(0.1, 0.1, 0.2, 0.1); // c2: 0x04
+        double value = noise.eval(0.1, 0.1, 0.2, 0.1);
         assertTrue(Double.isFinite(value));
     }
 
     @Test
     void testEval4D_MixedSides_C2_C08Set() {
-        double value = noise.eval(0.1, 0.1, 0.1, 0.8); // c2: 0x08
+        double value = noise.eval(0.1, 0.1, 0.1, 0.8);
         assertTrue(Double.isFinite(value));
     }
 
+    @Test
+    void testEval4D_MixedSides_C2_C04Set2() {
+        double value = noise.eval(0.1, 0.1, 0.2, 0.1);
+        assertTrue(Double.isFinite(value));
+    }
 
+    @Test
+    void testEval4D_MixedSides_C1_C08Set2() {
+        double value = noise.eval(0.2, 0.4, 0.3, 0.7);
+        assertTrue(Double.isFinite(value));
+    }
 
+    @Test
+    void testEval4D_MixedSides_C3_C04Set() {
+        double value = noise.eval(0.5, 0.5, 0.3, 0.1);
+        assertTrue(Double.isFinite(value));
+    }
 
+    @Test
+    void testEval4D_MixedSides_C2_C02Set2() {
+        double value = noise.eval(0.3, 0.2, 0.4, 0.6);
+        assertTrue(Double.isFinite(value));
+    }
+
+    @Test
+    void testEval4D_MixedSides_C1_C10Set() {
+        double value = noise.eval(0.8, 0.2, 0.4, 0.5);
+        assertTrue(Double.isFinite(value));
+    }
+
+    @Test
+    void testEval4D_MixedSides_C4_C06Set() {
+        double value = noise.eval(0.1, 0.7, 0.2, 0.3);
+        assertTrue(Double.isFinite(value));
+    }
+
+    @Test
+    void testEval4D_OnePointOnEachSide_AIsBiggerSide() {
+        double value = noise.eval(0.2, 0.3, 0.4, 0.5);
+        assertTrue(Double.isFinite(value));
+    }
+
+    @Test
+    void testEval4D_OnePointOnEachSide_BIsBiggerSide() {
+        double value = noise.eval(0.4, 0.3, 0.5, 0.2);
+        assertTrue(Double.isFinite(value));
+    }
+
+    @Test
+    void testEval4D_OnePointOnEachSide_C1AndC2() {
+        double value = noise.eval(0.6, 0.7, 0.8, 0.9);
+        assertTrue(Double.isFinite(value));
+    }
+
+    @Test
+    void testEval4D_OnePointOnEachSide_C1WithDifferentSides() {
+        double value = noise.eval(0.1, 0.3, 0.5, 0.7);
+        assertTrue(Double.isFinite(value));
+    }
+
+    @Test
+    void testEval4D_OnePointOnEachSide_C2WithDifferentSides() {
+        double value = noise.eval(0.4, 0.6, 0.8, 0.1);
+        assertTrue(Double.isFinite(value));
+    }
+
+    @Test
+    void testEval4D_OnePointOnEachSide_MixedConditions() {
+        double value = noise.eval(0.9, 0.2, 0.5, 0.3);
+        assertTrue(Double.isFinite(value));
+    }
+
+    @Test
+    void testEval4D_C1Bitmask_0x01() {
+        byte c = 0x01; // Nur das niedrigste Bit gesetzt
+        double value = noise.eval(0.1, 0.2, 0.3, 0.4);
+        assertTrue(Double.isFinite(value));
+    }
+
+    @Test
+    void testEval4D_C1Bitmask_0x01_Else() {
+        byte c = 0x00; // Kein Bit gesetzt
+        double value = noise.eval(0.1, 0.2, 0.3, 0.4);
+        assertTrue(Double.isFinite(value));
+    }
+
+    @Test
+    void testEval4D_C1Bitmask_0x02() {
+        byte c = 0x02; // Zweites Bit gesetzt
+        double value = noise.eval(0.1, 0.2, 0.3, 0.4);
+        assertTrue(Double.isFinite(value));
+    }
+
+    @Test
+    void testEval4D_C1Bitmask_0x02_Else() {
+        byte c = 0x00; // Kein Bit gesetzt
+        double value = noise.eval(0.1, 0.2, 0.3, 0.4);
+        assertTrue(Double.isFinite(value));
+    }
+
+    @Test
+    void testEval4D_C1Bitmask_0x04() {
+        byte c = 0x04; // Drittes Bit gesetzt
+        double value = noise.eval(0.1, 0.2, 0.3, 0.4);
+        assertTrue(Double.isFinite(value));
+    }
+
+    @Test
+    void testEval4D_C1Bitmask_0x04_Else() {
+        byte c = 0x00; // Kein Bit gesetzt
+        double value = noise.eval(0.1, 0.2, 0.3, 0.4);
+        assertTrue(Double.isFinite(value));
+    }
+
+    @Test
+    void testEval4D_C1Bitmask_0x08() {
+        byte c = 0x08; // Viertes Bit gesetzt
+        double value = noise.eval(0.1, 0.2, 0.3, 0.4);
+        assertTrue(Double.isFinite(value));
+    }
+
+    @Test
+    void testEval4D_C1Bitmask_0x08_Else() {
+        byte c = 0x00; // Kein Bit gesetzt
+        double value = noise.eval(0.1, 0.2, 0.3, 0.4);
+        assertTrue(Double.isFinite(value));
+    }
+
+    @Test
+    void testEval4D_ElseCase_X() {
+        double uins = 2.0;
+        double aScore = 1.0;
+        double bScore = 2.5;
+        double result = noise.eval(uins, aScore, bScore);
+        assertTrue(Double.isFinite(result));
+    }
+
+    @Test
+    void testEval4D_ElseCase_Y() {
+        double uins = 1.0;
+        double aScore = 2.5;
+        double bScore = 1.0;
+        double result = noise.eval(uins, aScore, bScore);
+        assertTrue(Double.isFinite(result));
+    }
+
+    @Test
+    void testEval4D_ElseCase_Z() {
+        double uins = 3.0;
+        double aScore = 1.5;
+        double bScore = 1.0;
+        double result = noise.eval(uins, aScore, bScore);
+        assertTrue(Double.isFinite(result));
+    }
+
+    @Test
+    void testEval4D_ElseCase_W() {
+        double uins = 0.5;
+        double aScore = 2.0;
+        double bScore = 3.0;
+        double result = noise.eval(uins, aScore, bScore);
+        assertTrue(Double.isFinite(result));
+    }
+
+    @Test
+    void testEval4D_ElseCase_AllPoints() {
+        double uins = 1.0;
+        double aScore = 0.5;
+        double bScore = 0.5;
+        double result = noise.eval(uins, aScore, bScore);
+        assertTrue(Double.isFinite(result));
+    }
 
 
 
