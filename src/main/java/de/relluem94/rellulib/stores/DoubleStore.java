@@ -33,7 +33,7 @@ public class DoubleStore<T, T2> extends Store<T> implements IDoubleStore<T, T2> 
     
     @Override
     public int hashCode(){
-        return 42 * getValue().hashCode() * secondValue.hashCode();
+        return 42 * getValue().hashCode() * Objects.hashCode(secondValue);
     }
 
     @Override
