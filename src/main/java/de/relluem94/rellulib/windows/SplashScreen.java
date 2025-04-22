@@ -14,12 +14,12 @@ import de.relluem94.rellulib.utils.LogUtils;
 
 public class SplashScreen {
 
-    private JProgressBar progressBar;
+    private final JProgressBar progressBar;
     private boolean disposeAfterLoading = true;
     private boolean showProgressBar = true;
-    private JFrame frame;
+    private final JFrame frame;
 
-    public void init(BufferedImage logo, String title, String text, Color4i color) {
+    public SplashScreen(BufferedImage logo, String title, String text, Color4i color) {
         frame = new JFrame();
         frame.setTitle(title);
         frame.setSize(425, 155);
@@ -78,19 +78,28 @@ public class SplashScreen {
                 if (disposeAfterLoading) {
                     frame.dispose();
                 }
-
-                new SplashScreen().onFinish();
             }
         };
         t.start();
+    }
+
+    public JFrame getFrame(){
+        return frame;
+    }
+
+    public JProgressBar getProgressBar(){
+        return progressBar;
     }
 
     public void setVisible(boolean b) {
         frame.setVisible(b);
     }
 
-    public void onFinish() {
-        //Tests t = new Tests();		//Only Temp weil Methode nicht geht.. 
-        //t.onFinish();
+    public boolean isDisposeAfterLoading() {
+        return disposeAfterLoading;
+    }
+
+    public boolean isShowProgressBar() {
+        return showProgressBar;
     }
 }

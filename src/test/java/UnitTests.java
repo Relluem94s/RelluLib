@@ -34,7 +34,7 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UnitTests extends SplashScreen {
+public class UnitTests {
 
     private static  EventExecutor eventExecutor;
 
