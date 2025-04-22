@@ -34,7 +34,7 @@ public class TrippleStore<T, T2, T3> extends DoubleStore<T, T2> implements ITrip
     
     @Override
     public int hashCode(){
-        return 94 * getValue().hashCode() * getSecondValue().hashCode() * thirdValue.hashCode();
+        return 94 * getValue().hashCode() * getSecondValue().hashCode() * Objects.hashCode(thirdValue);
     }
 
     @Override
