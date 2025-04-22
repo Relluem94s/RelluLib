@@ -14,10 +14,12 @@ import de.relluem94.rellulib.utils.LogUtils;
 
 public class SplashScreen {
 
-    private final JProgressBar progressBar;
+    private JProgressBar progressBar;
     private boolean disposeAfterLoading = true;
     private boolean showProgressBar = true;
-    private final JFrame frame;
+    private JFrame frame;
+
+    public SplashScreen(){}
 
     public SplashScreen(BufferedImage logo, String title, String text, Color4i color) {
         frame = new JFrame();
