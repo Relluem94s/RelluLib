@@ -31,7 +31,7 @@ public class Store<T> implements IStore<T> {
     
     @Override
     public int hashCode(){
-        return 69 * value.hashCode();
+        return 69 * Objects.hashCode(value);
     }
 
     @Override
