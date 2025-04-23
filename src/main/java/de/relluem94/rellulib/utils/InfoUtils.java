@@ -1,9 +1,31 @@
 package de.relluem94.rellulib.utils;
 
 public class InfoUtils {
-
-    private InfoUtils() {
+    public InfoUtils() {
         throw new IllegalStateException("Utility class");
+    }
+
+    static EnvironmentProvider envProvider = new SystemEnvironmentProvider();
+
+    static void setEnvironmentProvider(EnvironmentProvider provider) {
+        envProvider = provider;
+    }
+
+    interface EnvironmentProvider {
+        String getEnv(String key);
+        String getProperty(String key);
+    }
+
+    static class SystemEnvironmentProvider implements EnvironmentProvider {
+        @Override
+        public String getEnv(String key) {
+            return System.getenv(key);
+        }
+
+        @Override
+        public String getProperty(String key) {
+            return System.getProperty(key);
+        }
     }
 
     /**
@@ -35,7 +57,7 @@ public class InfoUtils {
      * @return CPU Identifer
      */
     public static String cpuIndentifier() {
-        return System.getenv("PROCESSOR_IDENTIFIER");
+        return envProvider.getEnv("PROCESSOR_IDENTIFIER") == null ? "" : envProvider.getEnv("PROCESSOR_IDENTIFIER");
     }
 
     /**
@@ -43,7 +65,7 @@ public class InfoUtils {
      * @return CPU Architecture
      */
     public static String cpuArch() {
-        return System.getenv("PROCESSOR_ARCHITECTURE");
+        return envProvider.getEnv("PROCESSOR_ARCHITECTURE") == null ? (envProvider.getProperty("PROCESSOR_ARCHITEW6432") == null? "" : envProvider.getProperty("PROCESSOR_ARCHITEW6432")) : envProvider.getEnv("PROCESSOR_ARCHITECTURE");
     }
 
     /**
@@ -51,7 +73,7 @@ public class InfoUtils {
      * @return CPU Number of Cores
      */
     public static String cpuNumberOfCores() {
-        return System.getenv("NUMBER_OF_PROCESSORS");
+        return envProvider.getEnv("NUMBER_OF_PROCESSORS") == null ? Runtime.getRuntime().availableProcessors() + "" : envProvider.getEnv("NUMBER_OF_PROCESSORS");
     }
 
     /**
