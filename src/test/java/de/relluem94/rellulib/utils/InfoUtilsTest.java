@@ -1,6 +1,5 @@
 package de.relluem94.rellulib.utils;
 
-import de.relluem94.rellulib.vector.VectorMath;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
