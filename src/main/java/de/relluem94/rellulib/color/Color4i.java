@@ -28,6 +28,13 @@ public class Color4i implements ColorI<Color4i>{
         this.a = a;
     }
 
+    public Color4i(Color4i color) {
+        this.r = color.r;
+        this.g = color.g;
+        this.b = color.b;
+        this.a = color.a;
+    }
+
     public int r;
     public int g;
     public int b;
@@ -50,7 +57,7 @@ public class Color4i implements ColorI<Color4i>{
 
     @Override
     public String toString() {
-        return "r" + r + " g" + g + " b" + b + " a" + a;
+        return "r" + r + ", g" + g + ", b" + b + ", a" + a;
     }
 
     @Override
