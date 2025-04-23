@@ -17,6 +17,13 @@ public class Color4f implements ColorF<Color4f> {
         this.a = a;
     }
 
+    public Color4f(Color4f color) {
+        this.r = color.r;
+        this.g = color.g;
+        this.b = color.b;
+        this.a = color.a;
+    }
+
     public float r;
     public float g;
     public float b;
@@ -29,7 +36,7 @@ public class Color4f implements ColorF<Color4f> {
 
     @Override
     public String toString() {
-        return "r" + r + " g" + g + " b" + b + " a" + a;
+        return "r" + r + ", g" + g + ", b" + b + ", a" + a;
     }
 
     @Override
