@@ -27,6 +27,12 @@ public class Color3i implements ColorI<Color3i> {
         this.b = b;
     }
 
+    public Color3i(Color3i color) {
+        this.r = color.r;
+        this.g = color.g;
+        this.b = color.b;
+    }
+
     public int r;
     public int g;
     public int b;
