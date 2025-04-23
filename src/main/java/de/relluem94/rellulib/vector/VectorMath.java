@@ -4,6 +4,9 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 public final class VectorMath {
+    public VectorMath() {
+        throw new IllegalStateException("Utility class");
+    }
 
     @Contract("_, _, _ -> new")
     public static <T extends Number> @NotNull Vector1<T> add(@NotNull Vector1<T> v1, @NotNull Vector1<? extends Number> v2, Class<T> clazz) {

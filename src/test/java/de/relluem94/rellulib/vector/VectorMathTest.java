@@ -1,10 +1,26 @@
 package de.relluem94.rellulib.vector;
 
+import de.relluem94.rellulib.textures.Texture;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class VectorMathTest {
+
+
+    @Test
+    void checkForUtilityClass(){
+        Assertions.assertThrows(IllegalStateException.class, VectorMath::new);
+    }
+
+    @Test
+    public void testAddVector1Short() {
+        Vector1<Short> v1 = new Vector1<>((short)1);
+        Vector1<Short> v2 = new Vector1<>((short)2);
+        Vector1<Short> result = VectorMath.add(v1, v2, Short.class);
+        assertEquals((short)3, result.x());
+    }
 
     @Test
     public void testAddVector1Integer() {
@@ -152,5 +168,35 @@ public class VectorMathTest {
         assertEquals(12.1f, result.z(), 0.00001);
         assertEquals(14.3f, result.w(), 0.00001);
         assertEquals(5.5f, result.v(), 0.00001);
+    }
+
+    @Test
+    public void testAddVector1NotANumber() {
+        Vector1<NotANumber> v1 = new Vector1<>(new NotANumber());
+        Vector1<NotANumber> v2 = new Vector1<>(new NotANumber());
+        Assertions.assertThrows(IllegalArgumentException.class, () -> VectorMath.add(v1, v2, NotANumber.class), "IllegalArgumentException error was expected");
+    }
+
+    private static class NotANumber extends Number{
+
+        @Override
+        public int intValue() {
+            return 0;
+        }
+
+        @Override
+        public long longValue() {
+            return 0;
+        }
+
+        @Override
+        public float floatValue() {
+            return 0;
+        }
+
+        @Override
+        public double doubleValue() {
+            return 0;
+        }
     }
 }
