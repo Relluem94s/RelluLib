@@ -142,13 +142,19 @@ public class FileUtils {
         }
 
         for (File file : fList) {
+            if (Files.isSymbolicLink(file.toPath())) {
+                continue;
+            }
+
             if (file.isFile()) {
                 for (String typ : types) {
                     if (getFileExtension(file).equals(typ)) {
                         resultList.add(file);
                     }
                 }
-            } else if (file.isDirectory()) {
+            }
+
+            if (file.isDirectory()) {
                 resultList.addAll(listFiles(file.getAbsolutePath(), types));
             }
         }
@@ -167,11 +173,17 @@ public class FileUtils {
         }
 
         for (File file : fList) {
+            if (Files.isSymbolicLink(file.toPath())) {
+                continue;
+            }
+
             if (file.isFile()) {
                 if (getFileExtension(file).equals(type)) {
                     resultList.add(file);
                 }
-            } else if (file.isDirectory()) {
+            }
+
+            if (file.isDirectory()) {
                 resultList.addAll(listFiles(file.getAbsolutePath(), type));
             }
         }

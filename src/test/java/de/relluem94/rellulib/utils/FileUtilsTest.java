@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,6 +26,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class FileUtilsTest {
 
     private File tempFile;
+    private Path symbolicLink;
+    private Path targetFile;
 
     @BeforeEach
     public void setUp() throws IOException {
@@ -246,4 +250,35 @@ class FileUtilsTest {
         List<File> result = FileUtils.listFiles(invalidDir.getAbsolutePath(), new String[]{"txt"});
         assertTrue(result.isEmpty());
     }
+
+    @Test
+    public void testListFilesHandlesNonFileNonDirectory() throws IOException {
+        File dir = Files.createTempDirectory("testDir").toFile();
+        dir.deleteOnExit();
+
+        targetFile = Files.createTempFile("target", ".txt");
+        symbolicLink = Paths.get(dir.getAbsolutePath(), "target_symlink.txt");
+        Files.createSymbolicLink(symbolicLink, targetFile);
+        assertTrue(Files.isSymbolicLink(symbolicLink));
+
+
+        List<File> result = FileUtils.listFiles(dir.getAbsolutePath(), "txt");
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void testListFilesHandlesNonFileNonDirectory2() throws IOException {
+        File dir = Files.createTempDirectory("testDir").toFile();
+        dir.deleteOnExit();
+
+        targetFile = Files.createTempFile("target", ".txt");
+        symbolicLink = Paths.get(dir.getAbsolutePath(), "target_symlink.txt");
+        Files.createSymbolicLink(symbolicLink, targetFile);
+        assertTrue(Files.isSymbolicLink(symbolicLink));
+
+        List<File> result = FileUtils.listFiles(dir.getAbsolutePath(), new String[]{"txt"});
+        assertTrue(result.isEmpty());
+    }
+
+
 }
