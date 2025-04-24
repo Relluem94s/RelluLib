@@ -5,7 +5,6 @@ import de.relluem94.rellulib.stores.DoubleStore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
@@ -133,7 +132,7 @@ class FileUtilsTest {
         File dir = Files.createTempDirectory("testDir").toFile();
         dir.deleteOnExit();
         File file = new File(dir, "file.test");
-        file.createNewFile();
+        assertTrue(file.createNewFile());
         file.deleteOnExit();
 
         List<File> result = FileUtils.listFiles(dir.getAbsolutePath(), "test");
@@ -156,15 +155,15 @@ class FileUtilsTest {
         dir.deleteOnExit();
 
         File dir2 = new File(dir, "testDir2.test");
-        dir2.mkdir();
+        assertTrue(dir2.mkdir());
         dir2.deleteOnExit();
 
         File file = new File(dir2, "file.test");
-        file.createNewFile();
+        assertTrue(file.createNewFile());
         file.deleteOnExit();
 
         File file2 = new File(dir2, "file.not");
-        file2.createNewFile();
+        assertTrue(file2.createNewFile());
         file2.deleteOnExit();
 
         List<File> result = FileUtils.listFiles(dir.getAbsolutePath(), "test");
@@ -178,15 +177,15 @@ class FileUtilsTest {
         dir.deleteOnExit();
 
         File dir2 = new File(dir, "testDir2.test");
-        dir2.mkdir();
+        assertTrue(dir2.mkdir());
         dir2.deleteOnExit();
 
         File file = new File(dir2, "file.test");
-        file.createNewFile();
+        assertTrue(file.createNewFile());
         file.deleteOnExit();
 
         File file2 = new File(dir2, "file.not");
-        file2.createNewFile();
+        assertTrue(file2.createNewFile());
         file2.deleteOnExit();
 
         List<File> result = FileUtils.listFiles(dir.getAbsolutePath(), new String[]{"test"});
@@ -199,7 +198,7 @@ class FileUtilsTest {
         File dir = Files.createTempDirectory("testDirMulti").toFile();
         dir.deleteOnExit();
         File file = new File(dir, "file.test");
-        file.createNewFile();
+        assertTrue(file.createNewFile());
         file.deleteOnExit();
 
         List<File> result = FileUtils.listFiles(dir.getAbsolutePath(), new String[]{"test"});
@@ -207,7 +206,7 @@ class FileUtilsTest {
     }
 
     @Test
-    public void testGetFileExtension() throws IOException {
+    public void testGetFileExtension() {
         File file = new File("file.txt");
         assertEquals("txt", FileUtils.getFileExtension(file));
     }
@@ -281,9 +280,23 @@ class FileUtilsTest {
     }
 
     @Test
-    public void testWriteTextLineHandlesIOException() throws IOException {
+    public void testWriteTextLineHandlesIOException() {
         try (MockedStatic<LogUtils> mockedLogUtils = mockStatic(LogUtils.class)) {
             FileUtils.writeTextLine("some/filepath.txt", "Hello World");
+            mockedLogUtils.verify(() -> LogUtils.error(Mockito.anyString()));
+        }
+    }
+
+    @Test
+    public void testWriteImageLineHandlesIOException() {
+        BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
+        File imageFile = new File("test", ".png");
+        imageFile.deleteOnExit();
+
+        Image image = new Image(img, imageFile);
+
+        try (MockedStatic<LogUtils> mockedLogUtils = mockStatic(LogUtils.class)) {
+            FileUtils.writeImage(image);
             mockedLogUtils.verify(() -> LogUtils.error(Mockito.anyString()));
         }
     }
