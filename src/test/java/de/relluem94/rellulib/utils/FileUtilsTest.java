@@ -159,7 +159,33 @@ class FileUtilsTest {
         file.createNewFile();
         file.deleteOnExit();
 
+        File file2 = new File(dir2, "file.not");
+        file2.createNewFile();
+        file2.deleteOnExit();
+
         List<File> result = FileUtils.listFiles(dir.getAbsolutePath(), "test");
+        assertEquals(1, result.size());
+        assertEquals(file.getName(), result.get(0).getName());
+    }
+
+    @Test
+    public void testListFilesDir2() throws IOException {
+        File dir = Files.createTempDirectory("testDir").toFile();
+        dir.deleteOnExit();
+
+        File dir2 = new File(dir, "testDir2.test");
+        dir2.mkdir();
+        dir2.deleteOnExit();
+
+        File file = new File(dir2, "file.test");
+        file.createNewFile();
+        file.deleteOnExit();
+
+        File file2 = new File(dir2, "file.not");
+        file2.createNewFile();
+        file2.deleteOnExit();
+
+        List<File> result = FileUtils.listFiles(dir.getAbsolutePath(), new String[]{"test"});
         assertEquals(1, result.size());
         assertEquals(file.getName(), result.get(0).getName());
     }
@@ -201,4 +227,23 @@ class FileUtilsTest {
         assertTrue(result.isEmpty());
     }
 
+    @Test
+    public void testListFilesReturnsEmptyIfListFilesIsNullDueToInvalidPath() {
+        File invalidDir = new File("/definitely/invalid/path/that/does/not/exist");
+
+        assertFalse(invalidDir.exists()); // sicherstellen
+
+        List<File> result = FileUtils.listFiles(invalidDir.getAbsolutePath(), "txt");
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void testListFilesReturnsEmptyIfListFilesIsNullDueToInvalidPath2() {
+        File invalidDir = new File("/definitely/invalid/path/that/does/not/exist");
+
+        assertFalse(invalidDir.exists()); // sicherstellen
+
+        List<File> result = FileUtils.listFiles(invalidDir.getAbsolutePath(), new String[]{"txt"});
+        assertTrue(result.isEmpty());
+    }
 }
