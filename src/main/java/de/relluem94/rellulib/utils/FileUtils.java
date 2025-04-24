@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 @SuppressWarnings("unused")
 public class FileUtils {
 
-    private FileUtils() {
+    public FileUtils() {
         throw new IllegalStateException("Utility class");
     }
 
