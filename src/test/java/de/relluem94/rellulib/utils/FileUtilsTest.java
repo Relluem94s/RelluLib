@@ -5,14 +5,13 @@ import de.relluem94.rellulib.stores.DoubleStore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,6 +21,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class FileUtilsTest {
 
@@ -110,11 +110,11 @@ class FileUtilsTest {
         File imageFile = File.createTempFile("test", ".jpg");
         imageFile.deleteOnExit();
 
-        Image mockImage = Mockito.mock(Image.class);
+        Image mockImage = mock(Image.class);
         Mockito.when(mockImage.getFile()).thenReturn(imageFile);
         Mockito.when(mockImage.getImage()).thenReturn(new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB));
 
-        try (MockedStatic<ImageIO> imageIO = Mockito.mockStatic(ImageIO.class)) {
+        try (MockedStatic<ImageIO> imageIO = mockStatic(ImageIO.class)) {
             imageIO.when(() -> ImageIO.write(Mockito.any(), Mockito.anyString(), Mockito.any(OutputStream.class))).thenReturn(true);
             FileUtils.writeImage(mockImage);
             imageIO.verify(() -> ImageIO.write(Mockito.any(), Mockito.anyString(), Mockito.any(OutputStream.class)));
@@ -278,6 +278,14 @@ class FileUtilsTest {
 
         List<File> result = FileUtils.listFiles(dir.getAbsolutePath(), new String[]{"txt"});
         assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void testWriteTextLineHandlesIOException() throws IOException {
+        try (MockedStatic<LogUtils> mockedLogUtils = mockStatic(LogUtils.class)) {
+            FileUtils.writeTextLine("some/filepath.txt", "Hello World");
+            mockedLogUtils.verify(() -> LogUtils.error(Mockito.anyString()));
+        }
     }
 
 
