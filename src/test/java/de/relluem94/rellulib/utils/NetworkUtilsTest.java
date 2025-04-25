@@ -212,4 +212,9 @@ public class NetworkUtilsTest {
             logUtils.verify(() -> LogUtils.error(anyString()), Mockito.never());
         }
     }
+
+    @Test
+    void testCheckPort_IOException() {
+        assertFalse(NetworkUtils.checkPort("256.256.256.256", 80, 100));
+    }
 }
