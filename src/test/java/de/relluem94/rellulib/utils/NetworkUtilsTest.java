@@ -3,7 +3,9 @@ package de.relluem94.rellulib.utils;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -195,6 +197,19 @@ public class NetworkUtilsTest {
             assertNotNull(result);
             assertTrue(result.isEmpty());
             logUtils.verify(() -> LogUtils.error(anyString()));
+        }
+    }
+
+    @Test
+    void testGetJSON_NULL() {
+        try (MockedStatic<NetworkUtils> utils = mockStatic(NetworkUtils.class, CALLS_REAL_METHODS);
+             MockedStatic<LogUtils> logUtils = mockStatic(LogUtils.class)) {
+
+            utils.when(() -> NetworkUtils.getURL("https://example.com/data.json")).thenReturn(null);
+
+            JSONObject result = NetworkUtils.getJSON("https://example.com/data.json");
+            assertNull(result);
+            logUtils.verify(() -> LogUtils.error(anyString()), Mockito.never());
         }
     }
 }
