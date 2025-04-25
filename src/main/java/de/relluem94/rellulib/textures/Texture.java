@@ -61,17 +61,20 @@ public class Texture {
 
         for (int x = 0; x < resolution; x++) {
             for (int y = 0; y < resolution; y++) {
+                int color1rgb = (color1.r << 16) | (color1.g << 8) | color1.b;
+                int color2rgb = (color2.r << 16) | (color2.g << 8) | color2.b;
+
                 if (x <= res) {
                     if (y <= res) {
-                        image.setRGB(x, y, (color1.r << 16) | (color1.g << 8) | color1.b);
+                        image.setRGB(x, y, color1rgb);
                     } else {
-                        image.setRGB(x, y, (color2.r << 16) | (color2.g << 8) | color2.b);
+                        image.setRGB(x, y, color2rgb);
                     }
                 } else {
                     if (y > res) {
-                        image.setRGB(x, y, (color1.r << 16) | (color1.g << 8) | color1.b);
+                        image.setRGB(x, y, color1rgb);
                     } else {
-                        image.setRGB(x, y, (color2.r << 16) | (color2.g << 8) | color2.b);
+                        image.setRGB(x, y, color2rgb);
                     }
                 }
 

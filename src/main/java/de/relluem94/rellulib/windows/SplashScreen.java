@@ -62,26 +62,23 @@ public class SplashScreen {
 
     public void start() {
         Thread t;
-        t = new Thread() {
-            @Override
-            public void run() {
-                int i = 0;
-                while (i <= 100) {
-                    if (showProgressBar) {
-                        progressBar.setValue(i);
-                    }
-                    try {
-                        sleep(90);
-                    } catch (InterruptedException e) {
-                        LogUtils.error(e.getMessage());
-                    }
-                    i++;
+        t = new Thread(() -> {
+            int i = 0;
+            while (i <= 100) {
+                if (showProgressBar) {
+                    progressBar.setValue(i);
                 }
-                if (disposeAfterLoading) {
-                    frame.dispose();
+                try {
+                    Thread.sleep(90);
+                } catch (InterruptedException e) {
+                    LogUtils.error(e.getMessage());
                 }
+                i++;
             }
-        };
+            if (disposeAfterLoading) {
+                frame.dispose();
+            }
+        });
         t.start();
     }
 
