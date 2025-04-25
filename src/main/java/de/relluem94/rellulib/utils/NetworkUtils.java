@@ -134,23 +134,27 @@ public class NetworkUtils {
     public static JSONObject getJSON(String getUrl){
         StringBuilder jsonString = new StringBuilder();
         try {
-            URL url = new URL(getUrl);
-            URLConnection uc = url.openConnection();
-            BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
-            
-            String inputLine;
-            while ((inputLine = in.readLine()) != null){
-                jsonString.append(inputLine).append(" ");
-            }
-                
-            in.close();
+            URL url = getURL(getUrl);
 
+            if(url == null){
+                return null;
+            }
+
+            URLConnection uc = url.openConnection();
+            try (BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()))) {
+                String inputLine;
+                while ((inputLine = in.readLine()) != null){
+                    jsonString.append(inputLine).append(" ");
+                }
+            }
         } catch (IOException e) {
             LogUtils.error(e.getMessage());
         }
+
         if(jsonString.isEmpty()){
             jsonString.append("{}");
         }
+
         return new JSONObject(jsonString.toString());
     }
 }

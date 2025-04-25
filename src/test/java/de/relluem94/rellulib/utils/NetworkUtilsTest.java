@@ -1,14 +1,15 @@
 package de.relluem94.rellulib.utils;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
+import java.net.URLConnection;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -38,7 +39,7 @@ public class NetworkUtilsTest {
     }
 
     private URL invokeGetURL(String http) {
-        try (MockedStatic<LogUtils> logUtils = mockStatic(LogUtils.class)) {
+        try (MockedStatic<LogUtils> ignored = mockStatic(LogUtils.class)) {
             return (URL) NetworkUtils.class.getDeclaredMethod("getURL", String.class)
                     .invoke(null, http);
         } catch (Exception e) {
@@ -157,5 +158,43 @@ public class NetworkUtilsTest {
     void testGetIP_UnresolvedHost() {
         String ip = NetworkUtils.getIP("invalid.invaliddomain.test");
         assertNull(ip);
+    }
+
+    @Test
+    void testGetJSON_ValidJSON() throws Exception {
+        String expectedJson = "{\"key\":\"value\"}";
+
+        InputStream inputStream = new ByteArrayInputStream(expectedJson.getBytes());
+        URLConnection mockConnection = mock(URLConnection.class);
+        when(mockConnection.getInputStream()).thenReturn(inputStream);
+
+        URL mockUrl = mock(URL.class);
+        when(mockUrl.openConnection()).thenReturn(mockConnection);
+
+        try (MockedStatic<NetworkUtils> networkUtils = mockStatic(NetworkUtils.class, CALLS_REAL_METHODS)) {
+            networkUtils.when(() -> NetworkUtils.getURL("https://example.com/data.json")).thenReturn(mockUrl);
+
+            JSONObject json = NetworkUtils.getJSON("https://example.com/data.json");
+            assertNotNull(json);
+            assertEquals("value", json.getString("key"));
+        }
+    }
+
+
+    @Test
+    void testGetJSON_IOException() throws Exception {
+        URL url = mock(URL.class);
+        when(url.openConnection()).thenThrow(new IOException("fail"));
+
+        try (MockedStatic<NetworkUtils> utils = mockStatic(NetworkUtils.class, CALLS_REAL_METHODS);
+             MockedStatic<LogUtils> logUtils = mockStatic(LogUtils.class)) {
+
+            utils.when(() -> NetworkUtils.getURL("https://example.com/data.json")).thenReturn(url);
+
+            JSONObject result = NetworkUtils.getJSON("https://example.com/data.json");
+            assertNotNull(result);
+            assertTrue(result.isEmpty());
+            logUtils.verify(() -> LogUtils.error(anyString()));
+        }
     }
 }
