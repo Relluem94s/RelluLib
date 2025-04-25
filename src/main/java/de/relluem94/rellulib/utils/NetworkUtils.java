@@ -30,7 +30,7 @@ public class NetworkUtils {
      * @param http String with Hyperlink
      * @return URL Resource
      */
-    private static URL getURL(String http) {
+    protected static URL getURL(String http) {
         try {
             return new URL(http);
         } catch (MalformedURLException e) {
