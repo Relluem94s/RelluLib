@@ -21,7 +21,7 @@ import de.relluem94.rellulib.Image;
 
 public class NetworkUtils {
 
-    private NetworkUtils() {
+    public NetworkUtils() {
         throw new IllegalStateException("Utility class");
     }
 

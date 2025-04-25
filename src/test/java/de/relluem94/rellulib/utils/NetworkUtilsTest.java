@@ -1,31 +1,26 @@
 package de.relluem94.rellulib.utils;
 
-import org.json.JSONObject;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
-import org.mockito.Mockito;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.BufferedReader;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.net.URL;
-import java.net.URLConnection;
-import java.net.SocketImpl;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 public class NetworkUtilsTest {
+
+    @Test
+    void checkForUtilityClass(){
+        Assertions.assertThrows(IllegalStateException.class, NetworkUtils::new);
+    }
 
     @Test
     void testGetURL_ValidURL() {
@@ -109,8 +104,6 @@ public class NetworkUtilsTest {
         }
     }
 
-
-
     @Test
     void testDownloadImageToDisk_InvalidURL() {
         String http = "invalid-url";
@@ -153,8 +146,16 @@ public class NetworkUtilsTest {
         }
     }
 
+    @Test
+    void testGetIP_ResolvedHost() {
+        String ip = NetworkUtils.getIP("google.com");
+        assertNotNull(ip);
+        assertFalse(ip.isEmpty());
+    }
 
-
-
-
+    @Test
+    void testGetIP_UnresolvedHost() {
+        String ip = NetworkUtils.getIP("invalid.invaliddomain.test");
+        assertNull(ip);
+    }
 }
