@@ -3,7 +3,6 @@ package de.relluem94.rellulib.utils;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
@@ -216,5 +215,43 @@ public class NetworkUtilsTest {
     @Test
     void testCheckPort_IOException() {
         assertFalse(NetworkUtils.checkPort("256.256.256.256", 80, 100));
+    }
+
+    @Test
+    void testDownloadImage_IOException() throws IOException {
+        String http = "https://example.com/image.png";
+        URL url = new URL(http);
+
+        try (MockedStatic<NetworkUtils> networkUtils = mockStatic(NetworkUtils.class, CALLS_REAL_METHODS);
+             MockedStatic<ImageIO> imageIO = mockStatic(ImageIO.class);
+             MockedStatic<LogUtils> logUtils = mockStatic(LogUtils.class)) {
+
+            networkUtils.when(() -> NetworkUtils.getURL(http)).thenReturn(url);
+            networkUtils.when(() -> NetworkUtils.notExists(url)).thenReturn(false);
+            imageIO.when(() -> ImageIO.read(url)).thenThrow(new IOException("fail"));
+
+            assertNull(NetworkUtils.downloadImage(http));
+            logUtils.verify(() -> LogUtils.error(anyString()), Mockito.times(2));
+        }
+    }
+
+    @Test
+    void testDownloadImageToDisk_IOException() throws IOException {
+        String http = "https://example.com/image.png";
+        String path = "/path";
+        String filename = "file.png";
+        URL url = new URL(http);
+
+        try (MockedStatic<NetworkUtils> networkUtils = mockStatic(NetworkUtils.class, CALLS_REAL_METHODS);
+             MockedStatic<ImageIO> imageIO = mockStatic(ImageIO.class);
+             MockedStatic<LogUtils> logUtils = mockStatic(LogUtils.class)) {
+
+            networkUtils.when(() -> NetworkUtils.getURL(http)).thenReturn(url);
+            networkUtils.when(() -> NetworkUtils.notExists(url)).thenReturn(false);
+            imageIO.when(() -> ImageIO.read(url)).thenThrow(new IOException("fail"));
+
+            assertFalse(NetworkUtils.downloadImage(http, path, filename));
+            logUtils.verify(() -> LogUtils.error(anyString()), Mockito.times(2));
+        }
     }
 }
