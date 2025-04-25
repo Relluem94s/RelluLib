@@ -72,7 +72,7 @@ public class StringUtils {
      * etc..
      *
      * @param message String to replace Symbols from
-     * @return String with unicode chars
+     * @return String with Unicode chars
      */
     public static String replaceSymbols(String message) {
         for (Map.Entry<String, String> pair : symbols.entrySet()) {
@@ -81,7 +81,7 @@ public class StringUtils {
         return message;
     }
 
-    private static Map<String, String> symbols = new HashMap<>();
+    private static final Map<String, String> symbols;
 
     static {
         Map<String, String> staticMap = new HashMap<>();

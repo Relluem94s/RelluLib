@@ -33,9 +33,9 @@ public class Color3i implements ColorI<Color3i> {
         this.b = color.b;
     }
 
-    public int r;
-    public int g;
-    public int b;
+    public final int r;
+    public final int g;
+    public final int b;
 
     @Override
     public Color3i getColor() {

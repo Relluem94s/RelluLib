@@ -3,8 +3,6 @@ package de.relluem94.rellulib.sounds;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class NoteTypeTest {
 
     @Test

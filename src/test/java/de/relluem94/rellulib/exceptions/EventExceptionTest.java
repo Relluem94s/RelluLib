@@ -2,8 +2,6 @@ package de.relluem94.rellulib.exceptions;
 
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Field;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class EventExceptionTest {

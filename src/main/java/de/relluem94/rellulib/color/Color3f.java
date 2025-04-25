@@ -24,9 +24,9 @@ public class Color3f implements ColorF<Color3f> {
         this.b = color.b;
     }
 
-    public float r;
-    public float g;
-    public float b;
+    public final float r;
+    public final float g;
+    public final float b;
 
     public Color3f getColor() {
         return this;

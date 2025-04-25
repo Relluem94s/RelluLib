@@ -47,7 +47,7 @@ class OpenSimplexNoiseTest {
 
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() {
         noise = new OpenSimplexNoise(12345L);
     }
 

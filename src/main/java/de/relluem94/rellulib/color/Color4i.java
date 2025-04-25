@@ -35,10 +35,10 @@ public class Color4i implements ColorI<Color4i>{
         this.a = color.a;
     }
 
-    public int r;
-    public int g;
-    public int b;
-    public int a;
+    public final int r;
+    public final int g;
+    public final int b;
+    public final int a;
 
     @Override
     public Color4i getColor() {

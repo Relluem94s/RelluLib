@@ -7,7 +7,6 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JProgressBar;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Spy;
@@ -28,11 +27,9 @@ public class SplashScreenTest {
     @Spy
     private SplashScreen splashScreen;
 
-    private Color4i color;
-
     @BeforeEach
     void setUp() {
-        color = new Color4i(255, 0, 0, 255);
+        Color4i color = new Color4i(255, 0, 0, 255);
         when(logo.getScaledInstance(375, 75, Image.SCALE_SMOOTH)).thenReturn(scaledImage);
         // Initialize SplashScreen with mocks
         splashScreen = spy(new SplashScreen(logo, "Test Title", "Test Text", color));

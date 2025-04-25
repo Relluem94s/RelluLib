@@ -32,6 +32,7 @@ class FixedSizeListTest {
 
     @Test
     void testClearThrowsException() {
+        @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
         FixedSizeList<Integer> list = new FixedSizeList<>(5);
 
         // Check that calling clear() throws an UnsupportedOperationException
@@ -57,6 +58,7 @@ class FixedSizeListTest {
 
     @Test
     void testRemoveAtIndexThrowsException() {
+        @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
         FixedSizeList<Integer> list = new FixedSizeList<>(5);
 
         assertThrows(UnsupportedOperationException.class, () -> list.remove(0), "remove(index) should throw an UnsupportedOperationException");
@@ -65,6 +67,7 @@ class FixedSizeListTest {
 
     @Test
     void testRemoveObjectThrowsException() {
+        @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
         FixedSizeList<Integer> list = new FixedSizeList<>(5);
 
         assertThrows(UnsupportedOperationException.class, () -> list.remove((Integer) 1), "remove(Object) should throw an UnsupportedOperationException");

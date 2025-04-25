@@ -28,7 +28,6 @@ import de.relluem94.rellulib.utils.NetworkUtils;
 import de.relluem94.rellulib.utils.ReflectionUtils;
 import de.relluem94.rellulib.utils.StringUtils;
 import de.relluem94.rellulib.utils.TypeUtils;
-import de.relluem94.rellulib.windows.SplashScreen;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

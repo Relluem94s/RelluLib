@@ -34,13 +34,11 @@ public class ReflectionUtils {
         return null;
     }
 
-    public static boolean setValue(Field field, Object o, Object val) {
+    public static void setValue(Field field, Object o, Object val) {
         try {
             field.set(o, val);
-            return true;
         } catch (IllegalArgumentException | IllegalAccessException e) {
             LogUtils.error(e.getMessage());
-            return false;
         }
     }
 

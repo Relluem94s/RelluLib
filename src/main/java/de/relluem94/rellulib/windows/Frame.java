@@ -3,12 +3,14 @@ package de.relluem94.rellulib.windows;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.io.Serial;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Frame extends JFrame {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private final Dimension minSize;

@@ -1,6 +1,5 @@
 package de.relluem94.rellulib.vector;
 
-import de.relluem94.rellulib.textures.Texture;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

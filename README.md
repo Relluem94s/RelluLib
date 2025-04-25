@@ -25,7 +25,7 @@ A Small Library
   * DoubleStore (saves two Objects)
   * TripleStore (saves three Objects)
 
-* Textures (sizes upto 8192 x 8192 Pixel)
+* Textures (sizes up to 8192 x 8192 Pixel)
   * OpenSimplexNoise Texture
   * Chess Images
   * Stripes Image
@@ -39,7 +39,7 @@ A Small Library
 
 * Windows
   * Create easily JFrame or JInternalFrame
-  * Create Splashscreens
+  * Create SplashScreens
   * Use WindowSnapper for your DesktopPane
 
 * JSON
@@ -50,12 +50,12 @@ A Small Library
     * read and write List<DoubleStore> to and from Files
     * read and write Text (String or List<String>)
     * read and write Images
-    * list all Files in Directory and subdirs
+    * list all Files in Directory and subDirs
     * get Extension from File
   * InfoUtils
     * get Operating System Name, Version and Arch
     * get CPU Info (Arch, Core count, Name)
-    * get Jaba Name and Version
+    * get Java Name and Version
     * get User Home Directory
   * LogUtils
     * info
@@ -69,7 +69,7 @@ A Small Library
     * odd / even
     * almostEqual
     * remainder
-  * MessureUtils
+  * MeasureUtils
     * Timer
   * NetworkUtils
     * Create URL from String

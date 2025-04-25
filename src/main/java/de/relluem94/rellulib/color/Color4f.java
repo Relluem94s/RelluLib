@@ -24,10 +24,10 @@ public class Color4f implements ColorF<Color4f> {
         this.a = color.a;
     }
 
-    public float r;
-    public float g;
-    public float b;
-    public float a;
+    public final float r;
+    public final float g;
+    public final float b;
+    public final float a;
 
     @Override
     public Color4f getColor() {
