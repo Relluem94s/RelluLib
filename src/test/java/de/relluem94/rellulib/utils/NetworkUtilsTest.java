@@ -157,7 +157,7 @@ public class NetworkUtilsTest {
 
     @Test
     void testGetIP_UnresolvedHost() {
-        String ip = NetworkUtils.getIP("invalid.invaliddomain.test");
+        String ip = NetworkUtils.getIP("invalid.invalidDomain.test");
         assertNull(ip);
     }
 
