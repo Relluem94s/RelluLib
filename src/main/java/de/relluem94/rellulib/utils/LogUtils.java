@@ -7,7 +7,7 @@ import java.util.List;
 
 public class LogUtils {
 
-    private LogUtils() {
+    public LogUtils() {
         throw new IllegalStateException("Utility class");
     }
 
@@ -17,7 +17,7 @@ public class LogUtils {
      * @param o Object to log
      */
     public static void log(Object o) {
-        if (LOGUTILS_LEVEL_OTHER) {
+        if (LOG_UTILS_LEVEL_OTHER) {
             System.out.println("\t\t" + o);
             log(o, true);
         }
@@ -29,7 +29,7 @@ public class LogUtils {
      * @param o Object to log
      */
     public static void logInLine(Object o) {
-        if (LOGUTILS_LEVEL_OTHER) {
+        if (LOG_UTILS_LEVEL_OTHER) {
             System.out.print(o);
         }
     }
@@ -42,7 +42,7 @@ public class LogUtils {
      * @param shouldLog boolean if should log
      */
     public static void debug(Object o, boolean shouldLog) {
-        if (LOGUTILS_LEVEL_OTHER) {
+        if (LOG_UTILS_LEVEL_OTHER) {
             if (shouldLog) {
                 System.out.println("\t\t" + o);
             }
@@ -57,7 +57,7 @@ public class LogUtils {
      * @param shouldLog boolean if should log
      */
     public static void debugInLine(Object o, boolean shouldLog) {
-        if (LOGUTILS_LEVEL_OTHER) {
+        if (LOG_UTILS_LEVEL_OTHER) {
             if (shouldLog) {
                 log(o, false);
             }
@@ -71,7 +71,7 @@ public class LogUtils {
      * @param o Object to log
      */
     public static void error(Object o) {
-        if (LOGUTILS_LEVEL_ERROR) {
+        if (LOG_UTILS_LEVEL_ERROR) {
             log("[ERROR]\t\t" + o, true);
         }
 
@@ -84,7 +84,7 @@ public class LogUtils {
      * @param o Object to log
      */
     public static void info(Object o) {
-        if (LOGUTILS_LEVEL_INFO) {
+        if (LOG_UTILS_LEVEL_INFO) {
             log("[INFO]\t\t" + o, true);
         }
 
@@ -97,7 +97,7 @@ public class LogUtils {
      * @param o Object to log
      */
     public static void test(Object o) {
-        if (LOGUTILS_LEVEL_TEST) {
+        if (LOG_UTILS_LEVEL_TEST) {
             log("[TEST]\t\t" + o, true);
         }
 
@@ -110,7 +110,7 @@ public class LogUtils {
      * @param o Object to log
      */
     public static void warning(Object o) {
-        if (LOGUTILS_LEVEL_WARNING) {
+        if (LOG_UTILS_LEVEL_WARNING) {
             log("[WARNING]\t" + o, true);
         }
     }
@@ -122,7 +122,7 @@ public class LogUtils {
      * @param o Object to log
      */
     public static void line(Object o) {
-        if (LOGUTILS_LEVEL_OTHER) {
+        if (LOG_UTILS_LEVEL_OTHER) {
             log(o, false);
         }
     }
@@ -133,7 +133,7 @@ public class LogUtils {
      * @param input List of Objects
      */
     public static void list(List<?> input) {
-        if (LOGUTILS_LEVEL_OTHER) {
+        if (LOG_UTILS_LEVEL_OTHER) {
             for (Object o : input) {
                 log(o);
             }
@@ -146,7 +146,7 @@ public class LogUtils {
      * @param input Array of Integers
      */
     public static void intArray(Integer[] input) {
-        if (LOGUTILS_LEVEL_OTHER) {
+        if (LOG_UTILS_LEVEL_OTHER) {
             for (int i : input) {
                 log(i);
             }
@@ -159,7 +159,7 @@ public class LogUtils {
      * @param input Array of Strings
      */
     public static void stringArray(String[] input) {
-        if (LOGUTILS_LEVEL_OTHER) {
+        if (LOG_UTILS_LEVEL_OTHER) {
             for (String s : input) {
                 log(s);
             }
@@ -173,8 +173,8 @@ public class LogUtils {
             System.out.print(o);
         }
 
-        if (LOGUTILS_LOG_IN_FILE) {
-            try (PrintWriter out = new PrintWriter(new FileOutputStream(LOGUTILS_LOGFILE + "/RelluLib.log", true))) {
+        if (LOG_UTILS_LOG_IN_FILE) {
+            try (PrintWriter out = new PrintWriter(new FileOutputStream(LOG_UTILS_LOGFILE + "/RelluLib.log", true))) {
                 if (line) {
                     out.println(o);
                 } else {
@@ -187,13 +187,13 @@ public class LogUtils {
         }
     }
 
-    private static boolean LOGUTILS_LEVEL_OTHER = true;
-    private static final boolean LOGUTILS_LEVEL_TEST = true;
-    private static boolean LOGUTILS_LEVEL_INFO = true;
-    private static boolean LOGUTILS_LEVEL_WARNING = true;
-    private static boolean LOGUTILS_LEVEL_ERROR = true;
-    private static boolean LOGUTILS_LOG_IN_FILE = false;
-    private static String LOGUTILS_LOGFILE = ".";
+    private static boolean LOG_UTILS_LEVEL_OTHER = true;
+    private static final boolean LOG_UTILS_LEVEL_TEST = true;
+    private static boolean LOG_UTILS_LEVEL_INFO = true;
+    private static boolean LOG_UTILS_LEVEL_WARNING = true;
+    private static boolean LOG_UTILS_LEVEL_ERROR = true;
+    private static boolean LOG_UTILS_LOG_IN_FILE = false;
+    private static String LOG_UTILS_LOGFILE = ".";
 
     /**
      * Sets Log Level for Info
@@ -201,7 +201,7 @@ public class LogUtils {
      * @param enable boolean
      */
     public static void setInfo(boolean enable) {
-        LogUtils.LOGUTILS_LEVEL_INFO = enable;
+        LogUtils.LOG_UTILS_LEVEL_INFO = enable;
     }
 
     /**
@@ -210,7 +210,7 @@ public class LogUtils {
      * @return boolean level enabled
      */
     public static boolean getInfo() {
-        return LogUtils.LOGUTILS_LEVEL_WARNING;
+        return LogUtils.LOG_UTILS_LEVEL_WARNING;
     }
 
     /**
@@ -219,7 +219,7 @@ public class LogUtils {
      * @param enable boolean
      */
     public static void setWarning(boolean enable) {
-        LogUtils.LOGUTILS_LEVEL_WARNING = enable;
+        LogUtils.LOG_UTILS_LEVEL_WARNING = enable;
     }
 
     /**
@@ -228,7 +228,7 @@ public class LogUtils {
      * @return boolean level enabled
      */
     public static boolean getWarning() {
-        return LogUtils.LOGUTILS_LEVEL_WARNING;
+        return LogUtils.LOG_UTILS_LEVEL_WARNING;
     }
 
     /**
@@ -237,7 +237,7 @@ public class LogUtils {
      * @param enable boolean
      */
     public static void setError(boolean enable) {
-        LogUtils.LOGUTILS_LEVEL_ERROR = enable;
+        LogUtils.LOG_UTILS_LEVEL_ERROR = enable;
     }
 
     /**
@@ -246,7 +246,7 @@ public class LogUtils {
      * @return boolean level enabled
      */
     public static boolean getError() {
-        return LogUtils.LOGUTILS_LEVEL_ERROR;
+        return LogUtils.LOG_UTILS_LEVEL_ERROR;
     }
 
     /**
@@ -255,7 +255,7 @@ public class LogUtils {
      * @param enable boolean
      */
     public static void setOther(boolean enable) {
-        LogUtils.LOGUTILS_LEVEL_OTHER = enable;
+        LogUtils.LOG_UTILS_LEVEL_OTHER = enable;
     }
 
     /**
@@ -264,22 +264,22 @@ public class LogUtils {
      * @return boolean level enabled
      */
     public static boolean getOther() {
-        return LogUtils.LOGUTILS_LEVEL_OTHER;
+        return LogUtils.LOG_UTILS_LEVEL_OTHER;
     }
 
     public static boolean getLog2File() {
-        return LOGUTILS_LOG_IN_FILE;
+        return LOG_UTILS_LOG_IN_FILE;
     }
 
     public static void setLog2File(boolean enable) {
-        LOGUTILS_LOG_IN_FILE = enable;
+        LOG_UTILS_LOG_IN_FILE = enable;
     }
 
     public static String getLogFilePath() {
-        return LOGUTILS_LOGFILE;
+        return LOG_UTILS_LOGFILE;
     }
 
     public static void setLogFilePath(String path) {
-        LOGUTILS_LOGFILE = path;
+        LOG_UTILS_LOGFILE = path;
     }
 }
