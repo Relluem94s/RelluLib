@@ -44,7 +44,7 @@ class InfoUtilsTest {
     }
 
     @Test
-    void cpuIndentifier() {
+    void cpuIdentifier() {
         Mockito.when(envProvider.getEnv("PROCESSOR_IDENTIFIER")).thenReturn(null);
         assertEquals("", InfoUtils.cpuIdentifier());
         Mockito.when(envProvider.getEnv("PROCESSOR_IDENTIFIER")).thenReturn("Intel64");
