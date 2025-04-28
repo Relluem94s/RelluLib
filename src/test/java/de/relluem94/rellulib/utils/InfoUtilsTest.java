@@ -46,13 +46,13 @@ class InfoUtilsTest {
     @Test
     void cpuIndentifier() {
         Mockito.when(envProvider.getEnv("PROCESSOR_IDENTIFIER")).thenReturn(null);
-        assertEquals("", InfoUtils.cpuIndentifier());
+        assertEquals("", InfoUtils.cpuIdentifier());
         Mockito.when(envProvider.getEnv("PROCESSOR_IDENTIFIER")).thenReturn("Intel64");
         InfoUtils.setEnvironmentProvider(envProvider);
         Mockito.when(envProvider.getEnv("PROCESSOR_IDENTIFIER")).thenReturn(null);
-        assertEquals("", InfoUtils.cpuIndentifier());
+        assertEquals("", InfoUtils.cpuIdentifier());
         Mockito.when(envProvider.getEnv("PROCESSOR_IDENTIFIER")).thenReturn("Intel64");
-        assertEquals("Intel64", InfoUtils.cpuIndentifier());
+        assertEquals("Intel64", InfoUtils.cpuIdentifier());
     }
 
     @Test

@@ -54,9 +54,9 @@ public class InfoUtils {
 
     /**
      *
-     * @return CPU Identifer
+     * @return CPU Identifier
      */
-    public static String cpuIndentifier() {
+    public static String cpuIdentifier() {
         return envProvider.getEnv("PROCESSOR_IDENTIFIER") == null ? "" : envProvider.getEnv("PROCESSOR_IDENTIFIER");
     }
 
