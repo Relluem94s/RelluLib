@@ -173,21 +173,21 @@ public class UnitTests {
     @Test
     public void threadTest() {
         ThreadMaster tm = new ThreadMaster();
-        tm.startTread(tm.addThread(new ThreadWorker() {
+        boolean t1 = tm.startTread(tm.addThread(new ThreadWorker() {
             @Override
             public void run() {
                 sleep(2);
                 LogUtils.info("Test22");
             }
         }));
-        tm.startTread(tm.addThread(new ThreadWorker() {
+        boolean t2 = tm.startTread(tm.addThread(new ThreadWorker() {
             @Override
             public void run() {
                 sleep(3);
                 LogUtils.info("Test44");
             }
         }));
-        tm.startTread(tm.addThread(new ThreadWorker() {
+        boolean t3 = tm.startTread(tm.addThread(new ThreadWorker() {
             @Override
             public void run() {
                 sleep(4);
@@ -195,7 +195,7 @@ public class UnitTests {
             }
         }));
 
-        tm.startTread( // USE ID FROM addThread Method
+        boolean t4 = tm.startTread( // USE ID FROM addThread Method
                 tm.addThread( // USE CLASS ThreadWorker
                         new ThreadWorker() { // Override internal Method run
                     @Override
@@ -206,6 +206,11 @@ public class UnitTests {
                 }
                 )
         );
+
+        Assertions.assertTrue(t1);
+        Assertions.assertTrue(t2);
+        Assertions.assertTrue(t3);
+        Assertions.assertTrue(t4);
     }
 
     @Test
