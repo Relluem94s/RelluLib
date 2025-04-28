@@ -177,7 +177,7 @@ public class OpenSimplexNoise {
     //3D OpenSimplex Noise.
     protected double eval(double x, double y, double z) {
 
-        //Place input coordinates on simplectic honeycomb.
+        //Place input coordinates on simplistic honeycomb.
         double stretchOffset = (x + y + z) * STRETCH_CONSTANT_3D;
         double xs = x + stretchOffset;
         double ys = y + stretchOffset;
