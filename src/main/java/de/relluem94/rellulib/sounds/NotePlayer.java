@@ -11,14 +11,14 @@ public class NotePlayer {
         throw new IllegalStateException("Utility class");
     }
 
-    private static int bpmModif = 1;
+    private static int bpmModifier = 1;
 
-    public static int getBpmModif() {
-        return bpmModif;
+    public static int getBpmModifier() {
+        return bpmModifier;
     }
 
-    public static void setBpmModif(int bpmModif) {
-        NotePlayer.bpmModif = bpmModif;
+    public static void setBpmModifier(int bpmModifier) {
+        NotePlayer.bpmModifier = bpmModifier;
     }
 
     public static void play(NoteTone[] tone, NoteLength[] length, float volume) throws LineUnavailableException {
@@ -58,7 +58,7 @@ public class NotePlayer {
         float hz = NoteTone.getTone(tone);
         int ms = NoteLength.getLength(length);
 
-        ms = ms - bpmModif;
+        ms = ms - bpmModifier;
 
         float frequency = 44100;
         byte[] buf;
@@ -95,7 +95,7 @@ public class NotePlayer {
         float hz = NoteTone.getTone(tone);
         int ms = NoteLength.getLength(length);
 
-        ms = ms - bpmModif;
+        ms = ms - bpmModifier;
 
         float frequency = 44100;
         byte[] buf;

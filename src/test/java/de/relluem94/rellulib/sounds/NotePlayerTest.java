@@ -28,7 +28,7 @@ class NotePlayerTest {
         audioSystemMock = mockStatic(AudioSystem.class);
         audioSystemMock.when(() -> AudioSystem.getSourceDataLine(any(AudioFormat.class)))
                 .thenReturn(sourceDataLine);
-        NotePlayer.setBpmModif(1);
+        NotePlayer.setBpmModifier(1);
     }
 
     @AfterEach
@@ -45,14 +45,14 @@ class NotePlayerTest {
 
     @Test
     void testBpmModifGetterSetter() {
-        NotePlayer.setBpmModif(5);
-        assertEquals(5, NotePlayer.getBpmModif());
+        NotePlayer.setBpmModifier(5);
+        assertEquals(5, NotePlayer.getBpmModifier());
 
-        NotePlayer.setBpmModif(0);
-        assertEquals(0, NotePlayer.getBpmModif());
+        NotePlayer.setBpmModifier(0);
+        assertEquals(0, NotePlayer.getBpmModifier());
 
-        NotePlayer.setBpmModif(-10);
-        assertEquals(-10, NotePlayer.getBpmModif());
+        NotePlayer.setBpmModifier(-10);
+        assertEquals(-10, NotePlayer.getBpmModifier());
     }
 
     @Test
@@ -187,7 +187,7 @@ class NotePlayerTest {
 
     @Test
     void testGenerateSineToneWithLargeBpmModif() throws LineUnavailableException {
-        NotePlayer.setBpmModif(1000);
+        NotePlayer.setBpmModifier(1000);
 
         doNothing().when(sourceDataLine).open(any(AudioFormat.class));
         doNothing().when(sourceDataLine).start();
