@@ -44,7 +44,7 @@ class NotePlayerTest {
     }
 
     @Test
-    void testBpmModifGetterSetter() {
+    void testBpmModifierGetterSetter() {
         NotePlayer.setBpmModifier(5);
         assertEquals(5, NotePlayer.getBpmModifier());
 
@@ -186,7 +186,7 @@ class NotePlayerTest {
     }
 
     @Test
-    void testGenerateSineToneWithLargeBpmModif() throws LineUnavailableException {
+    void testGenerateSineToneWithLargeBpmModifier() throws LineUnavailableException {
         NotePlayer.setBpmModifier(1000);
 
         doNothing().when(sourceDataLine).open(any(AudioFormat.class));
