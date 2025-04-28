@@ -1,6 +1,5 @@
 package de.relluem94.rellulib.sounds;
 
-@Deprecated
 public enum NoteType {
 
     SINUS,

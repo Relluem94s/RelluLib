@@ -2,7 +2,6 @@ package de.relluem94.rellulib.exceptions;
 
 import java.io.Serial;
 
-@Deprecated
 public class RelluLibException extends Exception {
 
     @Serial
