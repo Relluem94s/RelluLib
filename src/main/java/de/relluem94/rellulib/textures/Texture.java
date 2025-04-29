@@ -146,11 +146,13 @@ public class Texture {
         BufferedImage image = new BufferedImage(resolution, resolution, BufferedImage.TYPE_INT_ARGB);
         for (int x = 0; x < resolution; x++) {
             for (int y = 0; y < resolution; y++) {
+                int col;
                 if (x <= res) {
-                    image.setRGB(x, y, (0xFF << 28) | (color2.r << 16) | (color2.g << 8) | color2.b);
+                    col = (255 << 24) | ((color2.r << 16) | (color2.g << 8) | color2.b);
                 } else {
-                    image.setRGB(x, y, (0xFF << 28) | (color1.r << 16) | (color1.g << 8) | color1.b);
+                    col = (255 << 24) | ((color1.r << 16) | (color1.g << 8) | color1.b);
                 }
+                image.setRGB(x, y, col);
 
             }
         }
