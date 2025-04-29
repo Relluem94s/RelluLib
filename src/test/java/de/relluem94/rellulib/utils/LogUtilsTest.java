@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.io.*;
+import java.nio.file.Files;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -237,4 +237,36 @@ public class LogUtilsTest {
         assertFalse(outContent.toString().contains("Y"));
     }
 
+    @Test
+    void testWriteToLogFile() throws IOException {
+        File tempDir = Files.createTempDirectory("testDir").toFile();
+        tempDir.deleteOnExit();
+
+        LogUtils.setLogFilePath(tempDir.getAbsolutePath());
+        LogUtils.setLog2File(true);
+        LogUtils.setOther(true);
+
+
+
+        String message = "FileLogTestMessage";
+        String message2 = "InLine";
+        LogUtils.line(message2);
+        LogUtils.log(message);
+
+
+        File logFile = new File(tempDir, "RelluLib.log");
+        assertTrue(logFile.exists());
+
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(logFile))) {
+            String content = reader.readLine();
+            Assertions.assertEquals(message2 + message, content);
+            assertTrue(content.contains(message));
+            assertTrue(content.contains(message2));
+        }
+
+        assertTrue(logFile.delete());
+        assertTrue(tempDir.delete());
+
+    }
 }
