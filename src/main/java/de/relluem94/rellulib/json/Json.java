@@ -66,8 +66,6 @@ public class Json {
         return out + "}]";
     }
 
-    private static int dragon_helper = 0;
-
     private static ArraySearchResult searchArray(ArraySearchResult arraySearchResult, DoubleStore<?,?> ds) {
         StringBuilder out = new StringBuilder();
         if (ds == null) {
@@ -84,7 +82,7 @@ public class Json {
                     }
                     else{
                         firstInArray = appendComma(firstInArray, out);
-                        appendDoubleStore(listDs, out);
+                        appendDoubleStore(listDs, out, arraySearchResult.getRound());
                     }
                 }
                 else{
@@ -94,20 +92,20 @@ public class Json {
             }
             out.append("}");
         } else if (ds.getSecondValue() instanceof DoubleStore) {
-            dragon_helper++;
-            if (dragon_helper == 1) {
+            arraySearchResult.setRound(arraySearchResult.getRound()+1);
+            if (arraySearchResult.getRound() == 1) {
                 out.append("\"").append(ds.getValue()).append(searchArray(arraySearchResult, (DoubleStore<?,?>) ds.getSecondValue()));
             } else {
                 out.append("\":{\"").append(ds.getValue()).append(searchArray(arraySearchResult, (DoubleStore<?,?>) ds.getSecondValue())).append("}");
             }
 
         } else {
-            appendDoubleStore(ds, out);
-            if (dragon_helper != 0) {
+            appendDoubleStore(ds, out, arraySearchResult.getRound());
+            if (arraySearchResult.getRound() != 0) {
                 out.append("}");
             }
 
-            dragon_helper = 0;
+            arraySearchResult.setRound(0);
         }
 
         System.out.println("pre " + arraySearchResult.output);
@@ -117,11 +115,11 @@ public class Json {
         return arraySearchResult;
     }
 
-    private static void appendDoubleStore(DoubleStore<?, ?> ds, StringBuilder out) {
+    private static void appendDoubleStore(DoubleStore<?, ?> ds, StringBuilder out, int round) {
         if (TypeUtils.isInt("" + ds.getValue())) {
             out.append(ds.getValue()).append(":");
         } else {
-            if (dragon_helper != 0) {
+            if (round != 0) {
                 out.append("\":{\"").append(ds.getValue()).append("\":");
             } else {
                 out.append("\"").append(ds.getValue()).append("\":");
