@@ -34,7 +34,7 @@ A Small Library
   * Alter Color Image
 
 * Vectors
-  * 2,3,4,5 Floats or Integers
+  * 1,2,3,4,5 Short, Integer, Long, Float, Double
    Vector Math
 
 * Windows
