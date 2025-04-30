@@ -41,88 +41,90 @@ public class Json {
 
     private static String searchArray(DoubleStore<?,?> ds) {
         StringBuilder out = new StringBuilder();
-        if (ds != null) {
-
-            if (ds.getSecondValue() instanceof DoubleStore) {
-                dragon_helper++;
-                if (dragon_helper == 1) {
-                    out.append("\"").append(ds.getValue()).append(searchArray((DoubleStore<?,?>) ds.getSecondValue()));
-                } else {
-                    out.append(" => ").append(ds.getValue()).append(searchArray((DoubleStore<?,?>) ds.getSecondValue()));
-                }
-
-            } else {
-
-                if (TypeUtils.isInt((String) ds.getValue())) {
-                    out.append(ds.getValue()).append(":");
-                } else {
-                    if (dragon_helper != 0) {
-                        out.append(" => ").append(ds.getValue()).append("\":");
-                    } else {
-                        out.append("\"").append(ds.getValue()).append("\":");
-                    }
-                }
-                if (TypeUtils.isInt("" + ds.getSecondValue())
-                        || TypeUtils.isFloat("" + ds.getSecondValue())
-                        || ds.getSecondValue() instanceof Boolean) {
-                    out.append(ds.getSecondValue());
-                } else if (ds.getSecondValue() instanceof Integer[] in) {
-                    out.append("[");
-                    int b = 0;
-                    for (int a : in) {
-                        b++;
-                        out.append(a);
-                        if (in.length != b) {
-                            out.append(",");
-                        }
-                    }
-                    out.append("]");
-                } else if (ds.getSecondValue() instanceof int[] in) {
-                    out.append("[");
-                    int b = 0;
-                    for (int a : in) {
-                        b++;
-                        out.append(a);
-                        if (in.length != b) {
-                            out.append(",");
-                        }
-                    }
-                    out.append("]");
-                } else if (ds.getSecondValue() instanceof Float[] fl) {
-                    out.append("[");
-                    int b = 0;
-                    for (float a : fl) {
-                        b++;
-                        out.append(a);
-                        if (fl.length != b) {
-                            out.append(",");
-                        }
-                    }
-                    out.append("]");
-                } else if (ds.getSecondValue() instanceof String[] st) {
-                    out.append("[");
-                    int b = 0;
-                    for (String a : st) {
-                        b++;
-
-                        if (dragon_helper != 0) {
-                            out.append(a).append("\"");
-                        } else {
-                            out.append("\"").append(a).append("\"");
-                        }
-
-                        if (st.length != b) {
-                            out.append(",");
-                        }
-                    }
-                    out.append("]");
-                } else {
-                    out.append("\"").append(ds.getSecondValue()).append("\"");
-                }
-
-                dragon_helper = 0;
-            }
+        if (ds == null) {
+            return out.toString();
         }
+
+        if (ds.getSecondValue() instanceof DoubleStore) {
+            dragon_helper++;
+            if (dragon_helper == 1) {
+                out.append("\"").append(ds.getValue()).append(searchArray((DoubleStore<?,?>) ds.getSecondValue()));
+            } else {
+                out.append(" => ").append(ds.getValue()).append(searchArray((DoubleStore<?,?>) ds.getSecondValue()));
+            }
+
+        } else {
+
+            if (TypeUtils.isInt((String) ds.getValue())) {
+                out.append(ds.getValue()).append(":");
+            } else {
+                if (dragon_helper != 0) {
+                    out.append(" => ").append(ds.getValue()).append("\":");
+                } else {
+                    out.append("\"").append(ds.getValue()).append("\":");
+                }
+            }
+            if (TypeUtils.isInt("" + ds.getSecondValue())
+                    || TypeUtils.isFloat("" + ds.getSecondValue())
+                    || ds.getSecondValue() instanceof Boolean) {
+                out.append(ds.getSecondValue());
+            } else if (ds.getSecondValue() instanceof Integer[] in) {
+                out.append("[");
+                int b = 0;
+                for (int a : in) {
+                    b++;
+                    out.append(a);
+                    if (in.length != b) {
+                        out.append(",");
+                    }
+                }
+                out.append("]");
+            } else if (ds.getSecondValue() instanceof int[] in) {
+                out.append("[");
+                int b = 0;
+                for (int a : in) {
+                    b++;
+                    out.append(a);
+                    if (in.length != b) {
+                        out.append(",");
+                    }
+                }
+                out.append("]");
+            } else if (ds.getSecondValue() instanceof Float[] fl) {
+                out.append("[");
+                int b = 0;
+                for (float a : fl) {
+                    b++;
+                    out.append(a);
+                    if (fl.length != b) {
+                        out.append(",");
+                    }
+                }
+                out.append("]");
+            } else if (ds.getSecondValue() instanceof String[] st) {
+                out.append("[");
+                int b = 0;
+                for (String a : st) {
+                    b++;
+
+                    if (dragon_helper != 0) {
+                        out.append(a).append("\"");
+                    } else {
+                        out.append("\"").append(a).append("\"");
+                    }
+
+                    if (st.length != b) {
+                        out.append(",");
+                    }
+                }
+                out.append("]");
+            } else {
+                out.append("\"").append(ds.getSecondValue()).append("\"");
+            }
+
+            dragon_helper = 0;
+        }
+
         return out.toString();
     }
 }
