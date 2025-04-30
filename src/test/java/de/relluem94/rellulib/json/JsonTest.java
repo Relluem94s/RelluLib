@@ -11,12 +11,13 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.List;
 
 
 class JsonTest {
     @Test
     public void jsonTest() {
-        FixedSizeList<DoubleStore<?,?>> stores = new FixedSizeList<>(10);
+        FixedSizeList<DoubleStore<?,?>> stores = new FixedSizeList<>(12);
         stores.set(0, new DoubleStore<>("Firstname", "Elon"));
         stores.set(1, new DoubleStore<>("Lastname", "Musk"));
         stores.set(2, new DoubleStore<>("Age", 42));
@@ -30,13 +31,18 @@ class JsonTest {
         stores.set(6, new DoubleStore<>("Numbers", num));
         stores.set(7, new DoubleStore<>("Numbers2", num2));
         stores.set(8, new DoubleStore<>("Numbers3", num3));
-        stores.set(9, new DoubleStore<>("Test", new DoubleStore<>("Test2", new DoubleStore<>("Test3", num))));
+        stores.set(9, new DoubleStore<>("TestDoubleStores", new DoubleStore<>("Test2", new DoubleStore<>("Test3", num))));
+        stores.set(10, new DoubleStore<>("TestListNumbers", List.of(new DoubleStore<>("Test1", num), new DoubleStore<>("Test2", num))));
+        stores.set(11, new DoubleStore<>("TestListsMixed", List.of(new DoubleStore<>("Test1", num3), new DoubleStore<>("Test2", num), new DoubleStore<>("Test3", "something else"), new DoubleStore<>("Test4", true))));
         try {
             FileUtils.writeDoubleStoreTextFile(new File(InfoUtils.userHome() + "/RelluLib.txt"), stores);
             Json json = new Json(FileUtils.readDoubleStoreTextFile(new File(InfoUtils.userHome() + "/RelluLib.txt").getAbsolutePath(), Charset.defaultCharset()));
             String jsonString = Json.toJson(FileUtils.readDoubleStoreTextFile(new File(InfoUtils.userHome() + "/RelluLib.txt").getAbsolutePath(), Charset.defaultCharset()));
 
+            String hardcodedJsonString = "[{\"Firstname\":\"Elon\",\"Lastname\":\"Musk\",\"Age\":42,\"Married\":false,\"Size\":69.42,\"Languages\":[\"Deutsch\",\"Englisch\",\"Java\",\"PHP\",\"MySQL\"],\"Numbers\":[0,1,2,3,4,5,6,7,8,9],\"Numbers2\":[0,1,2,3,4,5,6,7,8,9],\"Numbers3\":[0.1,1.2,2.3,3.4,4.5,5.6,6.0,7.0,81.331,9.001],\"TestDoubleStores\": {\"Test2\": {\"Test3\":[0,1,2,3,4,5,6,7,8,9]}},\"TestListNumbers\": {\"Test1\":[0,1,2,3,4,5,6,7,8,9],\"Test2\":[0,1,2,3,4,5,6,7,8,9]},\"TestListsMixed\": {\"Test1\":[0.1,1.2,2.3,3.4,4.5,5.6,6.0,7.0,81.331,9.001],\"Test2\":[0,1,2,3,4,5,6,7,8,9],\"Test3\":\"something else\",\"Test4\":true}}]";
+
             Assertions.assertEquals(json.getJson(), jsonString);
+            Assertions.assertEquals(hardcodedJsonString, Json.toJson(stores));
 
             LogUtils.test(jsonString);
         } catch (IOException e) {
