@@ -48,7 +48,7 @@ public class Json {
             for (Object o : list) {
                 if (o instanceof DoubleStore<?, ?> listDs) {
                     if(listDs.getSecondValue() instanceof DoubleStore<?,?>){
-                        out.append(listDs.getValue()).append(searchArray((DoubleStore<?, ?>) listDs.getSecondValue()));
+                        out.append("\"").append(listDs.getValue()).append("\":{").append(searchArray((DoubleStore<?, ?>) listDs.getSecondValue())).append("}");
                     }
                     else{
                         firstInArray = appendComma(firstInArray, out);
