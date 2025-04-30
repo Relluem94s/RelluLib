@@ -84,4 +84,15 @@ class JsonTest {
         Assertions.assertEquals("[{\"Firstname\":\"Elon\",\"Lastname\":\"Musk\"}]", jsonString);
         LogUtils.info(jsonString);
     }
+
+    @Test
+    public void jsonTestOnlyOneEntryInteger() {
+        FixedSizeList<DoubleStore<?,?>> stores = new FixedSizeList<>(1);
+        stores.set(0, new DoubleStore<>(1994, "Birthyear"));
+
+        String jsonString = Json.toJson(stores);
+        Assertions.assertNotNull(jsonString);
+        Assertions.assertEquals("[{1994:\"Birthyear\"}]", jsonString);
+        LogUtils.info(jsonString);
+    }
 }

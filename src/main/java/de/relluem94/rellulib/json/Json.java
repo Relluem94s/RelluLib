@@ -83,7 +83,7 @@ public class Json {
     }
 
     private static void appendTypes(DoubleStore<?, ?> ds, StringBuilder out) {
-        if (TypeUtils.isInt((String) ds.getValue())) {
+        if (TypeUtils.isInt("" + ds.getValue())) {
             out.append(ds.getValue()).append(":");
         } else {
             if (dragon_helper != 0) {
