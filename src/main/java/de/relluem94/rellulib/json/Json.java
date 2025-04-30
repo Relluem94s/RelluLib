@@ -50,7 +50,7 @@ public class Json {
             if (dragon_helper == 1) {
                 out.append("\"").append(ds.getValue()).append(searchArray((DoubleStore<?,?>) ds.getSecondValue()));
             } else {
-                out.append(" => ").append(ds.getValue()).append(searchArray((DoubleStore<?,?>) ds.getSecondValue()));
+                out.append("\": {\"").append(ds.getValue()).append(searchArray((DoubleStore<?,?>) ds.getSecondValue())).append("}");
             }
 
         } else {
@@ -59,11 +59,12 @@ public class Json {
                 out.append(ds.getValue()).append(":");
             } else {
                 if (dragon_helper != 0) {
-                    out.append(" => ").append(ds.getValue()).append("\":");
+                    out.append("\": {\"").append(ds.getValue()).append("\":");
                 } else {
                     out.append("\"").append(ds.getValue()).append("\":");
                 }
             }
+
             if (TypeUtils.isInt("" + ds.getSecondValue())
                     || TypeUtils.isFloat("" + ds.getSecondValue())
                     || ds.getSecondValue() instanceof Boolean) {
@@ -120,6 +121,10 @@ public class Json {
                 out.append("]");
             } else {
                 out.append("\"").append(ds.getSecondValue()).append("\"");
+            }
+
+            if (dragon_helper != 0) {
+                out.append("}");
             }
 
             dragon_helper = 0;
