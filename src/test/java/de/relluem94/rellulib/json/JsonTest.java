@@ -39,7 +39,7 @@ class JsonTest {
             Json json = new Json(FileUtils.readDoubleStoreTextFile(new File(InfoUtils.userHome() + "/RelluLib.txt").getAbsolutePath(), Charset.defaultCharset()));
             String jsonString = Json.toJson(FileUtils.readDoubleStoreTextFile(new File(InfoUtils.userHome() + "/RelluLib.txt").getAbsolutePath(), Charset.defaultCharset()));
 
-            String hardcodedJsonString = "[{\"Firstname\":\"Elon\",\"Lastname\":\"Musk\",\"Age\":42,\"Married\":false,\"Size\":69.42,\"Languages\":[\"Deutsch\",\"Englisch\",\"Java\",\"PHP\",\"MySQL\"],\"Numbers\":[0,1,2,3,4,5,6,7,8,9],\"Numbers2\":[0,1,2,3,4,5,6,7,8,9],\"Numbers3\":[0.1,1.2,2.3,3.4,4.5,5.6,6.0,7.0,81.331,9.001],\"TestDoubleStores\": {\"Test2\": {\"Test3\":[0,1,2,3,4,5,6,7,8,9]}},\"TestListNumbers\": {\"Test1\":[0,1,2,3,4,5,6,7,8,9],\"Test2\":[0,1,2,3,4,5,6,7,8,9]},\"TestListsMixed\": {\"Test1\":[0.1,1.2,2.3,3.4,4.5,5.6,6.0,7.0,81.331,9.001],\"Test2\":[0,1,2,3,4,5,6,7,8,9],\"Test3\":\"something else\",\"Test4\":true}}]";
+            String hardcodedJsonString = "[{\"Firstname\":\"Elon\",\"Lastname\":\"Musk\",\"Age\":42,\"Married\":false,\"Size\":69.42,\"Languages\":[\"Deutsch\",\"Englisch\",\"Java\",\"PHP\",\"MySQL\"],\"Numbers\":[0,1,2,3,4,5,6,7,8,9],\"Numbers2\":[0,1,2,3,4,5,6,7,8,9],\"Numbers3\":[0.1,1.2,2.3,3.4,4.5,5.6,6.0,7.0,81.331,9.001],\"TestDoubleStores\":{\"Test2\":{\"Test3\":[0,1,2,3,4,5,6,7,8,9]}},\"TestListNumbers\":{\"Test1\":[0,1,2,3,4,5,6,7,8,9],\"Test2\":[0,1,2,3,4,5,6,7,8,9]},\"TestListsMixed\":{\"Test1\":[0.1,1.2,2.3,3.4,4.5,5.6,6.0,7.0,81.331,9.001],\"Test2\":[0,1,2,3,4,5,6,7,8,9],\"Test3\":\"something else\",\"Test4\":true}}]";
 
             Assertions.assertEquals(json.getJson(), jsonString);
             Assertions.assertEquals(hardcodedJsonString, Json.toJson(stores));
@@ -95,4 +95,17 @@ class JsonTest {
         Assertions.assertEquals("[{1994:\"Birthyear\"}]", jsonString);
         LogUtils.info(jsonString);
     }
+
+    @Test
+    public void jsonTestListNotWithStores() {
+        FixedSizeList<DoubleStore<?,?>> stores = new FixedSizeList<>(1);
+        stores.set(0, new DoubleStore<>("TestList", List.of(1,2,3,4,5)));
+
+        String jsonString = Json.toJson(stores);
+        Assertions.assertNotNull(jsonString);
+        Assertions.assertEquals("[{\"TestList\":{1,2,3,4,5}}]", jsonString);
+        LogUtils.info(jsonString);
+    }
+
+
 }
