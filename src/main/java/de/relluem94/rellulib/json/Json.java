@@ -31,9 +31,6 @@ public class Json {
                 out.append(",");
             }
         }
-        if (out.charAt(out.length() - 1) == ',') {
-            out = new StringBuilder(out.substring(0, out.length() - 1));
-        }
         return out + "}]";
     }
 

@@ -50,4 +50,38 @@ class JsonTest {
         }
         LogUtils.log(Json.toJson(stores));
     }
+
+    @Test
+    public void jsonTestOnlyOneEntry() {
+        FixedSizeList<DoubleStore<?,?>> stores = new FixedSizeList<>(1);
+        stores.set(0, new DoubleStore<>("Firstname", "Elon"));
+
+        String jsonString = Json.toJson(stores);
+        Assertions.assertNotNull(jsonString);
+        Assertions.assertEquals("[{\"Firstname\":\"Elon\"}]", jsonString);
+        LogUtils.info(jsonString);
+    }
+
+    @Test
+    public void jsonTestOnlyOneEntryIsNull() {
+        FixedSizeList<DoubleStore<?,?>> stores = new FixedSizeList<>(1);
+        stores.set(0, null);
+
+        String jsonString = Json.toJson(stores);
+        Assertions.assertNotNull(jsonString);
+        Assertions.assertEquals("[{}]", jsonString);
+        LogUtils.info(jsonString);
+    }
+
+    @Test
+    public void jsonTestTwoEntries() {
+        FixedSizeList<DoubleStore<?,?>> stores = new FixedSizeList<>(2);
+        stores.set(0, new DoubleStore<>("Firstname", "Elon"));
+        stores.set(1, new DoubleStore<>("Lastname", "Musk"));
+
+        String jsonString = Json.toJson(stores);
+        Assertions.assertNotNull(jsonString);
+        Assertions.assertEquals("[{\"Firstname\":\"Elon\",\"Lastname\":\"Musk\"}]", jsonString);
+        LogUtils.info(jsonString);
+    }
 }
