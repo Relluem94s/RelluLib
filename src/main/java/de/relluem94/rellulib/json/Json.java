@@ -43,7 +43,7 @@ public class Json {
         }
 
         if (ds.getSecondValue() instanceof List<?> list) {
-            out.append("\"").append(ds.getValue()).append("\": {");
+            out.append("\"").append(ds.getValue()).append("\":{");
             boolean firstInArray = true;
             for (Object o : list) {
                 if (o instanceof DoubleStore<?, ?> listDs) {
@@ -51,14 +51,13 @@ public class Json {
                         out.append(listDs.getValue()).append(searchArray((DoubleStore<?, ?>) listDs.getSecondValue()));
                     }
                     else{
-                        if(firstInArray){
-                            firstInArray = false;
-                        }
-                        else{
-                            out.append(",");
-                        }
-                        appendTypes(listDs, out);
+                        firstInArray = appendComma(firstInArray, out);
+                        appendDoubleStore(listDs, out);
                     }
+                }
+                else{
+                    firstInArray = appendComma(firstInArray, out);
+                    appendType(o, out);
                 }
             }
             out.append("}");
@@ -67,11 +66,11 @@ public class Json {
             if (dragon_helper == 1) {
                 out.append("\"").append(ds.getValue()).append(searchArray((DoubleStore<?,?>) ds.getSecondValue()));
             } else {
-                out.append("\": {\"").append(ds.getValue()).append(searchArray((DoubleStore<?,?>) ds.getSecondValue())).append("}");
+                out.append("\":{\"").append(ds.getValue()).append(searchArray((DoubleStore<?,?>) ds.getSecondValue())).append("}");
             }
 
         } else {
-            appendTypes(ds, out);
+            appendDoubleStore(ds, out);
             if (dragon_helper != 0) {
                 out.append("}");
             }
@@ -82,22 +81,26 @@ public class Json {
         return out.toString();
     }
 
-    private static void appendTypes(DoubleStore<?, ?> ds, StringBuilder out) {
+    private static void appendDoubleStore(DoubleStore<?, ?> ds, StringBuilder out) {
         if (TypeUtils.isInt("" + ds.getValue())) {
             out.append(ds.getValue()).append(":");
         } else {
             if (dragon_helper != 0) {
-                out.append("\": {\"").append(ds.getValue()).append("\":");
+                out.append("\":{\"").append(ds.getValue()).append("\":");
             } else {
                 out.append("\"").append(ds.getValue()).append("\":");
             }
         }
 
-        if (TypeUtils.isInt("" + ds.getSecondValue())
-                || TypeUtils.isFloat("" + ds.getSecondValue())
-                || ds.getSecondValue() instanceof Boolean) {
-            out.append(ds.getSecondValue());
-        } else if (ds.getSecondValue() instanceof Integer[] in) {
+        appendType(ds.getSecondValue(), out);
+    }
+
+    private static void appendType(Object o, StringBuilder out) {
+        if (TypeUtils.isInt("" + o)
+                || TypeUtils.isFloat("" + o)
+                || o instanceof Boolean) {
+            out.append(o);
+        } else if (o instanceof Integer[] in) {
             out.append("[");
             int b = 0;
             for (int a : in) {
@@ -108,7 +111,7 @@ public class Json {
                 }
             }
             out.append("]");
-        } else if (ds.getSecondValue() instanceof int[] in) {
+        } else if (o instanceof int[] in) {
             out.append("[");
             int b = 0;
             for (int a : in) {
@@ -119,7 +122,7 @@ public class Json {
                 }
             }
             out.append("]");
-        } else if (ds.getSecondValue() instanceof Float[] fl) {
+        } else if (o instanceof Float[] fl) {
             out.append("[");
             int b = 0;
             for (float a : fl) {
@@ -130,7 +133,7 @@ public class Json {
                 }
             }
             out.append("]");
-        } else if (ds.getSecondValue() instanceof String[] st) {
+        } else if (o instanceof String[] st) {
             out.append("[");
             int b = 0;
             for (String a : st) {
@@ -148,7 +151,14 @@ public class Json {
             }
             out.append("]");
         } else {
-            out.append("\"").append(ds.getSecondValue()).append("\"");
+            out.append("\"").append(o).append("\"");
         }
+    }
+
+    private static boolean appendComma(boolean firstInArray, StringBuilder out){
+        if (!firstInArray) {
+            out.append(",");
+        }
+        return false;
     }
 }
