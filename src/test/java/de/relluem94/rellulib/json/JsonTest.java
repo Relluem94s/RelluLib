@@ -107,5 +107,14 @@ class JsonTest {
         LogUtils.info(jsonString);
     }
 
+    @Test
+    public void jsonTestListWithStoresInStores() {
+        FixedSizeList<DoubleStore<?,?>> stores = new FixedSizeList<>(1);
+        stores.set(0, new DoubleStore<>("TestList", List.of(new DoubleStore<>("Test", new DoubleStore<>("Not", true)))));
 
+        String jsonString = Json.toJson(stores);
+        Assertions.assertNotNull(jsonString);
+        Assertions.assertEquals("[{\"TestList\":{\"Test\":{\"Not\":true}}}]", jsonString);
+        LogUtils.info(jsonString);
+    }
 }
