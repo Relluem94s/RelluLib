@@ -117,4 +117,15 @@ class JsonTest {
         Assertions.assertEquals("[{\"TestList\":{\"Test\":{\"Not\":true}}}]", jsonString);
         LogUtils.info(jsonString);
     }
+
+    @Test
+    public void jsonTestOnlyOneEntryStringArray() {
+        FixedSizeList<DoubleStore<?,?>> stores = new FixedSizeList<>(1);
+        stores.set(0, new DoubleStore<>("No", new DoubleStore<>("Yes", new String[]{"Test", "Test2"})));
+
+        String jsonString = Json.toJson(stores);
+        Assertions.assertNotNull(jsonString);
+        Assertions.assertEquals("[{\"No\":{\"Yes\":[\"Test\",\"Test2\"]}}]", jsonString);
+        LogUtils.info(jsonString);
+    }
 }
