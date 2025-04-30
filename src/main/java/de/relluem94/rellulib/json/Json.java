@@ -52,10 +52,8 @@ public class Json {
                 if (o instanceof DoubleStore<?, ?> listDs) {
                     if(listDs.getSecondValue() instanceof DoubleStore<?,?>){
                         out.append(listDs.getValue()).append(searchArray((DoubleStore<?, ?>) listDs.getSecondValue()));
-                        System.out.println("Test22");
                     }
                     else{
-                        System.out.println(listDs.getSecondValue().getClass());
                         if(firstInArray){
                             firstInArray = false;
                         }
@@ -63,7 +61,6 @@ public class Json {
                             out.append(",");
                         }
                         appendTypes(listDs, out);
-                        System.out.println("Test88");
                     }
                 }
             }
