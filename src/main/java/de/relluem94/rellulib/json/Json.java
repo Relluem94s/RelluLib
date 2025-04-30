@@ -138,13 +138,7 @@ public class Json {
             int b = 0;
             for (String a : st) {
                 b++;
-
-                if (dragon_helper != 0) {
-                    out.append(a).append("\"");
-                } else {
-                    out.append("\"").append(a).append("\"");
-                }
-
+                out.append("\"").append(a).append("\"");
                 if (st.length != b) {
                     out.append(",");
                 }
