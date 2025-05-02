@@ -67,7 +67,7 @@ class ClientTest {
             public void run() {
                 try {
                     LogUtils.info("Client thread waiting for server");
-                    serverReady.await(5, TimeUnit.SECONDS);
+                    assertTrue(serverReady.await(5, TimeUnit.SECONDS));
                     LogUtils.info("Client thread attempting connection");
                     assertTrue(client.connect("localhost", port));
                     LogUtils.info("Client thread connected successfully");
@@ -116,5 +116,11 @@ class ClientTest {
 
         assertThrows(IOException.class, () -> client.connect("invalid-host", 8080));
         client.close();
+    }
+
+    @Test
+    void testSocketClosed() throws IOException {
+        client.close();
+        assertThrows(IllegalStateException.class, () -> client.connect("localhost", 8080));
     }
 }
