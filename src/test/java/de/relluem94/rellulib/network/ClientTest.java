@@ -3,12 +3,10 @@ package de.relluem94.rellulib.network;
 import de.relluem94.rellulib.threads.ThreadMaster;
 import de.relluem94.rellulib.threads.ThreadWorker;
 import de.relluem94.rellulib.utils.LogUtils;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -22,13 +20,9 @@ import static org.mockito.Mockito.*;
 class ClientTest {
     private Client client;
     private Server server;
-    private ServerSocket serverSocket;
     private Socket socket;
     private ThreadMaster tm;
-    private ThreadWorker twServer;
-    private ThreadWorker twClient;
     private int port;
-
 
     @BeforeEach
     void setUp() throws IOException {
@@ -36,7 +30,6 @@ class ClientTest {
 
         client = new Client();
         server = new Server(port);
-        serverSocket = spy(ServerSocket.class);
         socket = spy(Socket.class);
         tm = new ThreadMaster();
     }
@@ -47,7 +40,7 @@ class ClientTest {
         CountDownLatch clientDone = new CountDownLatch(1);
         AtomicReference<Throwable> serverError = new AtomicReference<>();
 
-        twServer = new ThreadWorker(1) {
+        ThreadWorker twServer = new ThreadWorker(1) {
             @Override
             public void run() {
                 try {
@@ -57,12 +50,12 @@ class ClientTest {
                 } catch (IOException e) {
                     LogUtils.error("Server thread failed: " + e.getMessage());
                     serverError.set(e);
-                    serverReady.countDown(); // Stelle sicher, dass die Latch heruntergezählt wird
+                    serverReady.countDown();
                 }
             }
         };
 
-        twClient = new ThreadWorker(1) {
+        ThreadWorker twClient = new ThreadWorker(1) {
             @Override
             public void run() {
                 try {
@@ -71,6 +64,7 @@ class ClientTest {
                     LogUtils.info("Client thread attempting connection");
                     assertTrue(client.connect("localhost", port));
                     LogUtils.info("Client thread connected successfully");
+                    assertEquals(port, server.getPort());
                     clientDone.countDown();
                 } catch (IOException | InterruptedException e) {
                     LogUtils.error("Client thread failed: " + e.getMessage());
@@ -85,10 +79,8 @@ class ClientTest {
         LogUtils.info("Starting Server Thread");
         tm.startTread(0);
 
-        // Warte, bis der Server bereit ist
         assertTrue(serverReady.await(5, TimeUnit.SECONDS), "Server did not start in time");
 
-        // Prüfe, ob der Server-Thread eine Exception geworfen hat
         if (serverError.get() != null) {
             fail("Server thread failed with exception: " + serverError.get().getMessage());
         }
@@ -96,10 +88,8 @@ class ClientTest {
         LogUtils.info("Starting Client Thread");
         tm.startTread(1);
 
-        // Warte, bis der Client fertig ist
         assertTrue(clientDone.await(5, TimeUnit.SECONDS), "Client did not complete in time");
 
-        // Schließe Ressourcen
         client.close();
         server.stop();
     }
