@@ -122,5 +122,6 @@ class ClientTest {
     void testSocketClosed() throws IOException {
         client.close();
         assertThrows(IllegalStateException.class, () -> client.connect("localhost", 8080));
+        client.close();
     }
 }
