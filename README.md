@@ -1,4 +1,4 @@
-![RelluLib](https://img.relluem94.de/logos/app/rellulib.png)
+![RelluLib](https://static.relluem94.de/logos/app/rellulib.png)
 
 A Small Library 
 
