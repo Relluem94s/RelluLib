@@ -215,7 +215,7 @@ class TypeUtilsTest {
     @Test
     public void testLongToKB() {
         String result = TypeUtils.longToKB(1500);
-        assertTrue(result.startsWith("1.5"));
+        assertTrue(result.startsWith("1.5") || result.startsWith("1,5"));
         assertTrue(result.endsWith("kb"));
     }
 

@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.relluem94</groupId>
     <artifactId>rellulib</artifactId>
-    <version>0.20</version>
+    <version>0.21</version>
     <name>RelluLib</name>
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
@@ -60,7 +60,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20240303</version>
+            <version>20260814</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>
@@ -71,13 +71,13 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>5.14.2</version>
+            <version>5.24.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
-            <version>5.14.2</version>
+            <version>5.24.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
